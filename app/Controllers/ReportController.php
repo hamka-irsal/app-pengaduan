@@ -43,4 +43,11 @@ class ReportController extends BaseController
 
         return redirect()->back()->withInput()->with('error', 'There was a problem uploading the file.');
     }
+
+    public function delete($id)
+    {
+        $model = new ReportModel();
+        $model->delete($id);
+        return redirect()->to('/reports');
+    }
 }

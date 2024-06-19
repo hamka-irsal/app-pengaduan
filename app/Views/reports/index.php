@@ -29,8 +29,9 @@
             <td><?= $report['jenis_kerusakan'] ?></td>
             <td><img src="/uploads/<?= $report['gambar'] ?>" width="100" alt="gambar"></td>
             <td>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <a href="#" class="btn btn-danger">Hapus</a>
+                <!-- <a href="/reports/edit/" class="btn btn-warning">Edit</a> -->
+                <!-- <a href="/reports/delete/" class="btn btn-danger">Hapus</a> -->
+                <a href="/reports/delete/<?= $report['id'] ?>" class="btn btn-danger">Hapus</a>
             </td>
         </tr>
         <?php endforeach; ?>
