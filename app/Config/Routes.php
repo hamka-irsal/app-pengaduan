@@ -26,17 +26,27 @@ $routes->get('/users/delete/(:num)', 'UserController::delete/$1');
 $routes->get('/reports', 'ReportController::index', ['filter' => 'auth']);
 $routes->get('/reports/create', 'ReportController::create');
 $routes->post('/reports/store', 'ReportController::store');
-$routes->get('/reports/delete/(:num)', 'ReportController::delete/$1');
+$routes->get('/report/delete/(:num)', 'ReportController::delete/$1');
+$routes->get('/report/confirm/(:num)', 'ReportController::confirmReport/$1');
 
 //penilaian
 $routes->get('/assessments', 'AssessmentController::index', ['filter' => 'auth']);
 $routes->get('/assessments/create', 'AssessmentController::create');
 $routes->post('/assessments/store', 'AssessmentController::store');
 
+//topsis
+$routes->get('/topsis', 'TopsisController::index', ['filter' => 'auth']);
+// $routes->get('topsis/edit/(:num)', 'TopsisController::editWeight/$1');
+// $routes->post('topsis/edit/(:num)', 'TopsisController::editWeight/$1');
+
+$routes->get('/topsis/edit/(:num)', 'TopsisController::editWeight/$1');
+$routes->post('/topsis/update_weight', 'TopsisController::updateWeight');
+
 //pengaduan
 $routes->get('/page/pengaduan', 'PengaduanController::index');
 $routes->post('/reports/create', 'ReportController::create');
 $routes->get('/page/pengaduan/success', 'PengaduanController::success');
+
 
 
 

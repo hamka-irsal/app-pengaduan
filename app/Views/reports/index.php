@@ -2,7 +2,10 @@
 
 <?= $this->section('content') ?>
 <h1>Daftar Laporan</h1>
-<a href="/reports/create" class="btn btn-primary">Tambah Laporan</a>
+<!-- <a href="/reports/create" class="btn btn-primary">Tambah Laporan</a> -->
+<?php if (session()->getFlashdata('message')) : ?>
+    <p><?= session()->getFlashdata('message') ?></p>
+<?php endif; ?>
 <table class="table">
     <thead>
         <tr>
@@ -14,7 +17,7 @@
             <th>Jabatan</th>
             <th>Jenis Kerusakan</th>
             <th>Gambar</th>
-            <th>Aksi</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -29,9 +32,13 @@
             <td><?= $report['jenis_kerusakan'] ?></td>
             <td><img src="/uploads/<?= $report['gambar'] ?>" width="100" alt="gambar"></td>
             <td>
-                <!-- <a href="/reports/edit/" class="btn btn-warning">Edit</a> -->
-                <!-- <a href="/reports/delete/" class="btn btn-danger">Hapus</a> -->
-                <a href="/reports/delete/<?= $report['id'] ?>" class="btn btn-danger">Hapus</a>
+                <?php if ($report['status'] == 'pending') : ?>
+                    <a href="/report/confirm/<?= $report['id'] ?>" class="btn btn-warning" >Konfirmasi</a>
+                <?php endif; ?>
+                <?php if ($report['status'] == 'confirmed') : ?>
+                    <a class="btn btn-success" >Selesai</a>
+                    <a href="/report/delete/<?= $report['id'] ?>" class="btn btn-danger">Hapus</a>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; ?>

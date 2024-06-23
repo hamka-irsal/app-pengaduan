@@ -44,8 +44,6 @@
   <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet">
   <?= $this->renderSection('styles') ?>
 
-  
-
 </head>
 
 <body>
@@ -72,15 +70,6 @@
       <h1 class="logo me-auto"><a href="/">Pengaduan Fasilitas Kampus</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <nav id="navbar" class="navbar order-last order-lg-0 ">
-        <ul>
-          <li><a class="nav-link scrollto {{ (request()->is('/')) ? 'active' : '' }}" href="/">Home</a></li>
-          <li><a class="nav-link scrollto {{ (request()->is('tentang')) ? 'active' : '' }}" href="{{ url('tentang')}}">Tentang</a></li>
-          <li><a class="nav-link scrollto {{ (request()->is('pengaduan.laporan')) ? 'active' : '' }}" href="{{ route('pengaduan.laporan', 'saya')}}">Pengaduan</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
 
       <!-- @auth('user') -->
         <!-- <a href="{{ route('user.logout')}}" class="appointment-btn scrollto">Logout</a> -->
@@ -114,8 +103,6 @@
       <div class="container">
 
         <div class="row justify-content-center">
-
-
           <div class="col-lg-8 d-flex align-items-stretch">
             <div class="icon-boxes d-flex flex-column justify-content-center">
               <div class="row">
@@ -128,7 +115,7 @@
                 <div class="col-xl-3 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-analyse"></i>
-                    <h4>Proses Verifikasi</h4>
+                    <h4>Proses Konfirmasi</h4>
                   </div>
                 </div>
                 <div class="col-xl-3 d-flex align-items-stretch">
@@ -150,49 +137,6 @@
 
       </div>
     </section><!-- End Why Us Section -->
-
-    <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
-      <div class="container">
-
-        <div class="row justify-content-center">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="count-box">
-              <i class='bx bx-list-check' ></i>
-              <span data-purecounter-start="0" data-purecounter-end="$pengaduan" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Semua Pengaduan</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-            <div class="count-box">
-              <i class='bx bx-loader'></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $proses }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Sedang Diproses</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class='bx bx-check-circle'></i>
-              <span data-purecounter-start="0" data-purecounter-end="{{ $selesai }}" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Selesai</p>
-            </div>
-          </div>
-
-          <!-- <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-            <div class="count-box">
-              <i class="fas fa-award"></i>
-              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Awards</p>
-            </div>
-          </div> -->
-
-        </div>
-
-      </div>
-    </section><!-- End Counts Section -->
 
   </main><!-- End #main -->
 

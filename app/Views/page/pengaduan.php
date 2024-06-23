@@ -53,6 +53,7 @@
                 <input type="file" class="form-control" id="gambar" name="gambar" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/" class="btn btn-danger">Kembali</a>
         </form>
     </div>
 </body>

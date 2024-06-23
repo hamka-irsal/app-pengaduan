@@ -33,29 +33,13 @@
             <i class="fas fa-fw fa-star"></i>
             <span>Penilaian</span></a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Pengaduan</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" class="nav-link" href="<?= base_url('reports') ?>">Belum Selesai</a>
-                <a class="collapse-item" class="nav-link" href="<?= base_url('reports') ?>">Proses</a>
-                <a class="collapse-item" class="nav-link" href="<?= base_url('reports') ?>">Selesai</a>
-            </div>
-        </div>
+    <li class="nav-item active">
+        <a class="nav-link" href="<?= base_url('topsis') ?>">
+            <i class="fas fa-fw fa-urgent"></i>
+            <span>SPK Topsis</span></a>
     </li>
-
     <!-- Divider -->
     <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
 
     <!-- Add more menu items here -->
 

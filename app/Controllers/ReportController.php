@@ -16,6 +16,7 @@ class ReportController extends BaseController
     public function create()
     {
         return view('reports/create');
+        
     }
 
     public function store()
@@ -38,10 +39,20 @@ class ReportController extends BaseController
                 'gambar' => $fileName
             ];
             $model->insert($data);
-            return redirect()->to('/reports');
+            session()->setFlashdata('success', 'Laporan berhasil dikirim');
+            return redirect()->to('/page/pengaduan');
         }
 
         return redirect()->back()->withInput()->with('error', 'There was a problem uploading the file.');
+    }
+
+    public function confirmReport($id)
+    {
+        $reportModel = new ReportModel();
+
+        $reportModel->update($id, ['status' => 'confirmed']);
+
+        return redirect()->to('/reports')->with('message', 'Laporan berhasil dikonfirmasi');
     }
 
     public function delete($id)
