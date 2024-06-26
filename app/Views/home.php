@@ -85,8 +85,6 @@
 
 <?= $this->section('title', 'Home') ?>
 
-<?= $this->section('content') ?>
-
   <!-- This -->
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
