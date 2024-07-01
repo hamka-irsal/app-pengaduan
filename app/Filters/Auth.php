@@ -13,7 +13,7 @@ class Auth implements FilterInterface
         // Jika user belum login
         if (!session()->get('logged_in')) {
             // Redirect ke halaman login
-            return redirect()->to('/admin');
+            return redirect()->to('/login');
         }
     }
 

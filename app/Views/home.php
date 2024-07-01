@@ -73,7 +73,7 @@
 
       <!-- @auth('user') -->
         <!-- <a href="{{ route('user.logout')}}" class="appointment-btn scrollto">Logout</a> -->
-        <a href="/admin" class="appointment-btn scrollto">Login</a>
+        <a href="/login" class="appointment-btn scrollto">Login</a>
 
     </div>
   </header><!-- End Header -->

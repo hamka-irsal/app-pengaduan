@@ -3,6 +3,7 @@
 namespace Config;
 
 use CodeIgniter\Config\Filters as BaseFilters;
+use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\Cors;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -13,8 +14,9 @@ use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
 
-class Filters extends BaseFilters
+class Filters extends BaseConfig
 {
+    
     /**
      * Configures aliases for Filter classes to
      * make reading things nicer and simpler.
@@ -38,6 +40,7 @@ class Filters extends BaseFilters
         'toolbar'  => \CodeIgniter\Filters\DebugToolbar::class,
         'honeypot' => \CodeIgniter\Filters\Honeypot::class,
         'auth'     => \App\Filters\Auth::class,
+        'role'     => \App\Filters\RoleMiddleware::class,
     ];
 
     /**
@@ -109,5 +112,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        
+    ];
 }

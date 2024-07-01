@@ -26,12 +26,12 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login Admin</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login System</h1>
                                     </div>
-                                    <?php if (session()->getFlashdata('msg')) : ?>
+                                    <?php if(session()->getFlashdata('msg')):?>
                                         <div class="alert alert-danger"><?= session()->getFlashdata('msg') ?></div>
-                                    <?php endif; ?>
-                                    <form class="user" action="/admin/login" method="post">
+                                    <?php endif;?>
+                                    <form class="user" action="/auth/loginProcess" method="post">
                                         <?= csrf_field() ?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" name="username" placeholder="Enter Username" required>

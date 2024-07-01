@@ -9,13 +9,28 @@ $routes->get('/', 'Home::index');
 // $routes->get('/dashboard', 'Dashboard::index');
 
 //admin
-$routes->get('/admin', 'AdminController::index');
-$routes->post('/admin/login', 'AdminController::login');
-$routes->get('/admin/logout', 'AdminController::logout');
+// $routes->get('/admin', 'AdminController::index');
+// $routes->post('/admin/login', 'AdminController::login');
+// $routes->get('/admin/logout', 'AdminController::logout');
+// $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
+
+//login role
+// $routes->get('/login', 'AuthController::login');
+// $routes->post('/login', 'AuthController::login');
+// $routes->get('/logout', 'AuthController::logout');
+// $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
+
+// $routes->get('/admin', 'AdminController::index', ['filter' => 'role:admin']);
+// $routes->get('/pegawai', 'PegawaiController::index', ['filter' => 'role:pegawai']);
+// $routes->get('/mahasiswa', 'MahasiswaController::index', ['filter' => 'role:mahasiswa']);
+
+$routes->get('/auth/login', 'AuthController::login');
+$routes->post('/auth/loginProcess', 'AuthController::loginProcess');
+$routes->get('/auth/logout', 'AuthController::logout');
 $routes->get('/dashboard', 'Dashboard::index', ['filter' => 'auth']);
 
 //data user
-$routes->get('/users', 'UserController::index', ['filter' => 'auth']);
+$routes->get('/users', 'UserController::index');
 $routes->get('/users/create', 'UserController::create');
 $routes->post('/users/store', 'UserController::store');
 $routes->get('/users/edit/(:num)', 'UserController::edit/$1');
