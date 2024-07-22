@@ -61,8 +61,13 @@ $route['logout_karyawan'] = 'login/logout_karyawan';
 $route['logout'] = 'Login_pengadu/logout';
 
 //admin
-$route['admin'] = 'admin/Cadm_log';  //akses halaman pertama
-$route['admin/data_lokasi'] = 'admin/Cadm_dataruangtempat';  //akses halaman kedua
+$route['admin'] = 'admin/Cadm_dashboard';
+$route['admin/data_umum'] = 'admin/Cadm_dataumum';
+$route['admin/data_log'] = 'admin/Cadm_log';
+$route['admin/data_penilaian'] = 'admin/Cadm_penilaian';
+$route['admin/downloadPdf'] = 'admin/Cadm_log/downloadPdf';
+$route['admin/hapus_pengaduan/(:num)'] = 'admin/Cadm_log/hapus_pengaduan/$1';
+$route['admin/data_lokasi'] = 'admin/Cadm_dataruangtempat';  
 $route['admin/data_user'] = 'admin/Cadm_datauser';
 $route['admin/data_topsisi'] = 'user/Cpengaduan_masuk';
 $route['admin/data_user/upload'] = 'admin/Cadm_datauser/upload';
@@ -78,6 +83,23 @@ $route['admin/hapus_user/(:num)'] = 'admin/Cadm_datauser/hapus_user/$1';
 $route['admin/ubah_password'] = 'admin/Cadm_datauser/save_password';
 $route['admin/tambah_user'] = 'admin/Cadm_datauser/tambah_user';
 
+$route['admin/data_umpanbalik'] = 'admin/Cadm_umpanbalik';
+$route['admin/detail_pengaduan_umpanbalik/(:num)'] = 'admin/Cadm_umpanbalik/detail_koor/$1';
+
+$route['admin/data_masuk'] = 'admin/Cadm_datamasuk';
+$route['admin/proses_topsis'] = 'admin/Cadm_datamasuk/edit_skala_prioritas';
+$route['admin/detail_pengaduan/(:num)'] = 'admin/Cadm_datamasuk/detail/$1';
+
+$route['admin/data_kegiatan'] = 'admin/Cadm_kegiatan/index';
+$route['admin/tambah_kegiatan'] = 'admin/Cadm_kegiatan/create';
+$route['admin/tambah_kegiatan'] = 'admin/Cadm_kegiatan/store';
+$route['admin/edit_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/edit/$1';
+$route['admin/edit_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/update/$1';
+$route['admin/hapus_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/delete/$1';
+
+$route['admin/download-pdf'] = 'admin/Cadm_pdf/download_pdf';
+
+
 //user
 $route['user'] = 'user/Cform';
 $route['user/home'] = 'user/Cform/home';
@@ -86,13 +108,24 @@ $route['user/insert_data'] = 'user/Cform/tambah';
 $route['user/ubah_password'] = 'user/Cform/save_password';
 
 //analis
-$route['analis'] = 'analis/Cpengaduan_masuk';
+$route['analis'] = 'analis/Canalis_dashboard';
+$route['analis/data_umum'] = 'analis/Canalis_dataumum';
+$route['analis/data_user'] = 'analis/Canalis_datauser';
+$route['analis/data_log'] = 'analis/Canalis_log';
+$route['analis/data_penilaian'] = 'analis/Canalis_penilaian';
+$route['analis/data_masuk'] = 'analis/Cpengaduan_masuk';
+$route['analis/data_umpanbalik'] = 'analis/Canalis_umpanbalik';
+$route['analis/detail_pengaduan_umpanbalik/(:num)'] = 'analis/Canalis_umpanbalik/detail_koor/$1';
+$route['analis/edit_user'] = 'analis/Canalis_datauser/edit_user';
+$route['analis/hapus_user/(:num)'] = 'analis/Canalis_datauser/hapus_user/$1';
+$route['analis/tambah_user'] = 'analis/Canalis_datauser/tambah_user';
 $route['analis/proses_topsis'] = 'analis/Cpengaduan_masuk/topsis';
 $route['analis/detail_pengaduan/(:num)'] = 'analis/Cpengaduan_masuk/detail/$1';
 $route['analis/riwayat_pengaduan'] = 'analis/Canalis_riwayatpeng';
 $route['analis/kirim_pengaduan'] = 'analis/Cpengaduan_masuk/kirim';
 $route['analis/ubah_pengaduan'] = 'analis/Cpengaduan_masuk/ubah';
 $route['analis/buat_kategori'] = 'analis/Cpengaduan_masuk/tambah_kategori';
+$route['analis/edit_skala_prioritas'] = 'analis/Cpengaduan_masuk/edit_skala_prioritas';
 $route['analis/update_status'] = 'analis/Cpengaduan_masuk/update_status';
 $route['analis/riwayat_deleted/(:num)'] = 'analis/Canalis_riwayatpeng/deleted/$1';
 $route['analis/ubah_password_r'] = 'analis/Canalis_riwayatpeng/save_password';

@@ -56,6 +56,7 @@
 			$deskripsi = $this->input->post('deskripsi');
 			$tindaklanjut = $this->input->post('tindaklanjut');
 			$status = $this->input->post('status');
+			$email = $this->input->post('email');
 			$nama_pengguna = $this->input->post('nama_pengguna');
 			$hidden = $this->input->post('hidden');
 			
@@ -78,6 +79,7 @@
 				'penyebab' => $penyebab,
 				'deskripsi' => $deskripsi,
 				'tindaklanjut' => $tindaklanjut,
+				'email' => $email,
 				'gambar' => $this->upload->data()['file_name']
 				);
 				

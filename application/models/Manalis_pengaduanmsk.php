@@ -104,8 +104,15 @@ class Manalis_pengaduanmsk extends CI_Model {
       	return $result;
   	}
 
-	public function update_prioritas($id_pengaduan, $nilai_prioritas) {
-	$this->db->where('id_pengaduan', $id_pengaduan);
-	return $this->db->update('pengaduan p', ['nilai_prioritas' => $nilai_prioritas]);
+	// public function edit_skala_prioritas($id_pengaduan, $skala_prioritas, $nilai_prioritas) 
+	// {
+	// 	$this->db->where('id_pengaduan', $id_pengaduan);
+	// 	return $this->db->update('pengaduan', ['skala_prioritas' => $skala_prioritas, 'nilai_prioritas' => $nilai_prioritas]);
+	// }
+
+	public function edit_skala_prioritas($data,$id_pengaduan)
+	{
+		$this->db->where('id_pengaduan',$id_pengaduan);
+		$this->db->update('pengaduan',$data);
 	}
 }

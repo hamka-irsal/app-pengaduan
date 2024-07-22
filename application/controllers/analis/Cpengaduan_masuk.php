@@ -54,6 +54,7 @@ class Cpengaduan_masuk extends BaseController {
 
 		$data = array(
 			'kategori' => strtolower($kategori)
+
 		);
 		$this->Manalis_pengaduanmsk->simpan($data);
 
@@ -62,6 +63,43 @@ class Cpengaduan_masuk extends BaseController {
 		$this->session->set_flashdata('message', 'Kategori baru telah ditambahkan.');
 
 		redirect('analis/detail_pengaduan/'.$id_pengaduan);
+	}
+
+	public function tambah_pengaduan()
+	{
+		$skala_prioritas = $this->input->post('skala_prioritas');
+		$nilai_prioritas = $this->input->post('nilai_prioritas');
+		$id_pengaduan = $this->input->post('id_pengaduan');
+
+		$data = array(
+			'skala_prioritas' => strtolower($skala_prioritas),
+			'nilai_prioritas' => strtolower($nilai_prioritas),
+			
+		);
+		$this->Manalis_pengaduanmsk->simpan($data);
+
+		$this->session->set_flashdata('style', 'success');
+		$this->session->set_flashdata('alert', 'Berhasil!');
+		$this->session->set_flashdata('message', 'Skala Prioritas baru telah diubah.');
+
+		redirect('analis'.$id_pengaduan);
+	}
+
+	public function edit_skala_prioritas()
+	{
+		$id_pengaduan = $this->input->post('id_pengaduan');
+		$skala_prioritas = $this->input->post('skala_prioritas');
+		$nilai_prioritas = $this->input->post('nilai_prioritas');
+		$data = array(
+			'skala_prioritas' => $skala_prioritas,
+			'nilai_prioritas' => $nilai_prioritas
+		);
+		$this->Manalis_pengaduanmsk->edit_skala_prioritas($data, $id_pengaduan);
+
+		$this->session->set_flashdata('style','success');
+		$this->session->set_flashdata('alert','Berhasil!');
+		$this->session->set_flashdata('skala_prioritas_msg','Data Skala Prioritas telah berhasil diubah');
+		redirect('analis');
 	}
 
 	//function mau cek data user

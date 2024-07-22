@@ -118,12 +118,57 @@
                       </div>
                     </div>
 
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Email</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Silahkan isi email">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Nama</label>
+                      <input type="text" class="form-control" name="nama" id="nama" placeholder="Silahkan isi nama">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>NIP/NIKH</label>
+                      <input type="text" class="form-control" name="nip" id="nip" placeholder="Silahkan isi nip">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Jabatan</label>
+                      <input type="text" class="form-control" name="jabatan" id="jabatan" placeholder="Silahkan isi jabatan">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Nama Alat/Mesin</label>
+                      <input type="text" class="form-control" name="alat" id="alat" placeholder="Silahkan isi alat">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Spesifikasi (Bila berupa kendaraan dinas, mengisi merk & tipe kendaraan dinas)</label>
+                      <input type="text" class="form-control" name="spesifikasi" id="spesifikasi" placeholder="Silahkan isi spesifikasi">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Nomor Inventaris (Bila berupa kendaraan dinas, mengisi nomor plat kendaraan dinas)</label>
+                      <input type="text" class="form-control" name="inventaris" id="inventaris" placeholder="Silahkan isi inventaris">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Jurusan/Unit</label>
+                      <input type="text" class="form-control" name="jurusan" id="jurusan" placeholder="Silahkan isi jurusan">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Program Studi</label>
+                      <input type="text" class="form-control" name="studi" id="studi" placeholder="Silahkan isi studi">
+                    </div>
+                   
                     <!-- ruang dan tempat -->
                     <div class="form-group" style="width: 100%; margin-bottom: 10px">
                       <div class="col-md-6">
-                        <label><b>Tempat <b style="color: red">*</b></b></label>
+                        <label><b>Lokasi Alat <b style="color: red">*</b></b></label>
                         <select  class="form-control" name="tempat"  id="tempat" required>
-                          <option value="">pilih tempat kejadian</option>
+                          <option value="">pilih lokasi alat</option>
                           <?php
                           foreach ($tempat as $data){
                             ?>
@@ -139,7 +184,7 @@
 
                     <div class="form-group">
                       <div class="col-md-6">
-                        <label><b>Ruang <b style="color: red">*</b></b></label>
+                        <label><b>Lokasi Alat/Ruangan <b style="color: red">*</b></b></label>
                         <select class="form-control ruang" name="ruang" id="ruang" required>
                           <option value="">pilih ruang kejadian</option>
                         </select>
@@ -195,8 +240,8 @@
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Penyebab</label>
-                    <input type="text" class="form-control" name="penyebab" id="penyebab" placeholder="Silahkan isi penyebab">
+                    <label>Kerusakan</label>
+                    <input type="text" class="form-control" name="penyebab" id="penyebab" placeholder="Silahkan isi kerusakan">
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
@@ -210,12 +255,12 @@
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Silahkan deskripsikan tindaklanjut yang telah Anda lakukan sendiri</label>
+                    <label>Data Tambahan</label>
                     <textarea class="form-control" name="tindaklanjut" rows="3" placeholder="text ..."></textarea>
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Anda boleh menambahkan gambar pendukung (maksimal 2 Mb):</label>
+                    <label>Dokumentasi Alat (maksimal 2 Mb):</label>
                     <input type="file" name="gambar">
                     <input type="hidden" name="nama_pengguna" value="<?php echo $this->session->userdata('nama_pengguna') ?>">
                   </div>

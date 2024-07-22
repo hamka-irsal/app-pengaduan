@@ -25,64 +25,76 @@
 		
     <div id="wrapper">
 			
-			<!-- Navigation -->
-			<nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-color: #204060; margin-bottom: 0">
-				<div class="navbar-header">
-					
-					<a class="navbar-brand" style="color: #ffffff" >APP-PENGADUAN</a>
-				</div>
-				<!-- /.navbar-header -->
-				
-				<ul class="nav navbar-top-links navbar-right">
-					
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
-						<i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama_pengguna'); ?></i>
-					</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a data-toggle="modal" data-target="#settingModal"><i class="fa fa-gear fa-fw"></i> Settings</a>
-						</li>
-						<li><a href="<?php echo base_url('logout_karyawan')?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-						</li>
-					</li>
-				</ul>
-				<!-- /.dropdown-user -->
-			</li>
-			
-		</ul>
-		<!-- /.navbar-top-links -->
-		
-		<!-- MENU -->
-		<div class="navbar-default sidebar" role="navigation">
-			<div class="sidebar-nav navbar-collapse">
-				<ul class="nav" id="side-menu">
-					
-					<li class="sidebar-search" >
-						<div class="input-group custom-search-form" >
-                                <b>Menu Sistem</b>
-                            </div>
-						<!-- /input-group -->
-					</li>
-					
-					<!-- menu -->
-					
-					<li>
-						<a href=<?php echo base_url('admin')?> ><i class="fa fa-archive"></i>&nbsp; Log Penanganan</a>
-					</li>
-					<li>
-						<a href=<?php echo base_url('admin/data_lokasi')?> ><i class="fa fa-home"></i>&nbsp; Data Lokasi</a>
-					</li>
-					<li class="active">
-						<a href=<?php echo base_url('admin/data_user')?> style="color: #000000" ><i class="fa fa-users"></i><b>&nbsp; Data Pengguna</b></a>
-					</li>
-					<!-- menu -->
-					
-				</ul>
-			</div>
-			<!-- /.sidebar-collapse -->
-		</div>
-		<!-- /.navbar-static-side -->
-	</nav>
+		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
+            <div class="navbar-header">
+                <a href="admin" style="color: #ffffff; font-size: 20px;"><img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 50px;"><b> Politeknik Negeri Ujung Pandang</b></a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
+                        <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama_pengguna'); ?></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a data-toggle="modal" data-target="#settingModal"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li><a href="<?php echo base_url('logout_karyawan')?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <!--- user panel -->
+            <section class="sidebar">
+
+            </section>
+
+            <!-- MENU -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+
+                        <li>
+                            <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                         <li>
+                            <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                        </li>
+                       <!-- <li>
+                            <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
+                        </li> -->
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
 	
 	<!-- Page Content -->
 	<div id="page-wrapper">
@@ -97,8 +109,9 @@
 	            </div>
 	          <?php endif; ?>
 	        </center>
-	        
-				<h1 class="page-header">Data Pengguna</h1>
+				<center>
+				<h1 class="page-header">Data Diri</h1>
+				</center>
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>

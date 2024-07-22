@@ -267,13 +267,11 @@
                                                           <div class="modal-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
-
                                                                     <div class="form-group">
                                                                         <label>Edit Jenis</label>
                                                                         <input class="form-control" type="text" name="nama_jenis" value="<?php echo $data->nama_jenis ?>">
                                                                         <input class="form-control" type="hidden" name="id_jenis" value="<?php echo $data->id_jenis ?>">
                                                                     </div>
-
                                                                 </div>
                                                             </div>
                                                         </div>

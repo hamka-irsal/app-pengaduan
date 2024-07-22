@@ -8,9 +8,19 @@ class Madm_log extends CI_Model {
 		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan');
 		$this->db->from('pengaduan p');
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
+		// $this->db->where('p.deleted');
 		$this->db->order_by('p.timestamp','DESC');
 		return $this->db->get()->result();
 	}
+
+	// public function pengaduan()
+	// {
+	// 	$this->db->select('id_log, id_pengaduan, id_user, status, keterangan, timestamp');
+	// 	$this->db->from('log');
+	// 	$this->db->where('deleted',0);
+	// 	$this->db->order_by('timestamp','ASC');
+	// 	return $this->db->get()->result();
+	// }
 
 	public function detail_log($id_pengaduan)
 	{
@@ -55,4 +65,16 @@ class Madm_log extends CI_Model {
 	}
 		//end
 
+		public function get_log_by_id($id_pengaduan) {
+			$this->db->where('id_pengaduan', $id_pengaduan);
+			$query = $this->db->get('log');
+			return $query->row();
+		}
+
+		public function get_logs() {
+			$query = $this->db->select('id_pengaduan, status, timestamp')
+							  ->from('log')
+							  ->get();
+			return $query->result();
+		}
 }

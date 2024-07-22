@@ -142,6 +142,9 @@
                                             <td><?php echo $data->nilai_prioritas ?></td>
                                             <td>
                                                 <a href="<?php echo base_url('analis/detail_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Detail </a>
+                                                <!-- <a href="<?php echo base_url('analis/tambah_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-edit"></span> Ubah Pengaduan </a> -->
+                                                <a data-toggle="modal" data-target="#skala_prioritas" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-edit"></span> Ubah Pengaduan </a>
+
                                             </td>
                                         </tr>
                                         <?php 
@@ -212,6 +215,43 @@
             </div>
         </div>
 <!-- modal setting -->
+
+  <!-- modal tambah ruang -->
+  <div>
+        <div class="modal modal-primary fade" id="skala_prioritas" style="margin-top: 5%">
+          <div class="modal-dialog">
+            <div class="modal-content" style="width: 70%; margin-left: 15%">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">UBAH SKALA PRIORITAS</h4>
+              </div>
+
+              <form method="POST" action="<?php echo base_url('analis/edit_skala_prioritas') ?>">
+                  <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Skala Prioritas</label>
+                                <input class="form-control" type="text" name="skala_prioritas" value="<?php echo $data->skala_prioritas ?>">
+                                <input class="form-control" type="hidden" name="id_pengaduan" value="<?php echo $data->id_pengaduan ?>">
+                            </div>
+                            <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Nilai Prioritas</label>
+                                <input class="form-control" type="text" name="nilai_prioritas" value="<?php echo $data->nilai_prioritas ?>">
+                                <input class="form-control" type="hidden" name="id_pengaduan" value="<?php echo $data->id_pengaduan ?>">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
+                        <input type="submit" class="btn btn-primary" value="simpan">
+                    </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
 
     <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
     <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
