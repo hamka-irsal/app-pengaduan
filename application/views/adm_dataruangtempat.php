@@ -73,6 +73,9 @@
                             <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
+                            <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
+                        </li>
+                        <li>
                             <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
@@ -115,8 +118,9 @@
                           <?php echo $this->session->flashdata('tempat_msg') ?>
                     </div>
                   <?php endif; ?>
-
+                    <center>
                     <h1 class="page-header">Data Ruang dan Tempat</h1>
+                    </center>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

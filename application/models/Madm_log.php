@@ -77,4 +77,9 @@ class Madm_log extends CI_Model {
 							  ->get();
 			return $query->result();
 		}
+
+		public function delete_log($id) {
+			$this->db->where('id_pengaduan', $id);
+			return $this->db->delete('pengaduan');
+		}
 }

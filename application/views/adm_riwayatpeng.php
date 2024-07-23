@@ -103,47 +103,84 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
-                <center>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Penilaian</h1>
+
+                    <center>
+                      <?php if($this->session->flashdata('message')): ?>
+                          <div style="margin-top: 10px; width: 50%" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
+                              <?php echo $this->session->flashdata('message') ?>
+                        </div>
+                    <?php endif; ?>
+                    </center>
+                    <center>
+                        <h1 class="page-header">Riwayat Pelaporan</h1>
+                    </center>
                 </div>
-                </center>
+                <!-- /.col-lg-12 -->
             </div>
+            <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header">Link Penilaian : <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFg40LWTRQu1LSXWxTxuvElBWTxrCvNDdCNsoTI9JyNNC3qQ/viewform">Form Penilaian</a></h3>
-                </div>
-            </div>
-            
-            <div class="col-lg-12" style="width: 100%">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-                        <div class="pull-right">
-                            <div class="btn-group">
-
-                            </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Basic Form Elements
                         </div>
+                            <div class="panel-body">
+                                <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kategori</th>
+                                            <th>Tempat</th>
+                                            <th>Jam kelola</th>
+                                            <th>Tanggal kelola</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $this->load->model('Manalis_riwayatpeng');
+                                        $i = 1;
+                                            foreach ($proses as $data)
+                                            {
+                                                
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $i; ?></td>
+                                            <td><?php echo $data->kategori ?></td>
+                                            <td><?php echo $data->nama_ruang ?></td>
+                                            <td><?php echo date('H:i:s', strtotime($data->timestamp)) ?></td>
+                                            <td><?php echo date('d-F-Y', strtotime($data->timestamp)) ?></td>
+                                            <td>
+                                            <?php
+                                                if($data->status == "diproses"){
+                                            ?>
+                                                <span class="badge warning"><?php echo $data->status ?></span>
+                                            <?php }else{ ?>
+                                                <span class="badge success">Selesai</span>
+                                            <?php }?>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                            $i++;
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            <!-- /.row (nested) -->
+                            </div>
+                        <!-- /.panel-body -->
                     </div>
-
-
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-
-                        <div class="box box-info">
-                            <div class="box-body chart-responsive">
-                              <canvas id="myChart" width="300" height="100"></canvas>
-                          </div>
-                          <!-- /.box-body -->
-                      </div>
-
-                  </div>
-                  <!-- /.panel-body -->
-              </div>
-              <!-- /.panel -->
-
-              <!-- /.panel -->
-          </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
 
             <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
                           <div class="modal-dialog">
@@ -192,74 +229,24 @@
                     </div>
                     <!-- modal setting -->
 
-<script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
-<script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
+                    <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
 
-<script type="text/javascript">
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'ordering'    : false,
-            'info'        : true,
-            'autoWidth'   : false
-        })
-    })
-</script>
-
-<script type="text/javascript">
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-
-            labels: [
-            <?php for ($i=0; $i < count($ruang) ; $i++) 
-            { 
-                if (!empty($ruang[$i]->nama_ruang)) 
-                {
-                    echo '"'.$ruang[$i]->nama_ruang.'",';
-                } 
-            } 
-            ?>
-            ],
-            datasets: [{
-                label: '# nama ruang',
-                data: [
-                <?php for ($i=0; $i < count($ruang) ; $i++) 
-                { 
-                    if (!empty($ruang[$i]->jumlah)) 
-                    { 
-                        echo ''.$ruang[$i]->jumlah.',';
-                    }
-                } 
-                ?>
-                ],
-                backgroundColor: [
-                'rgba(54, 162, 235, 0)',
-                ],
-                borderColor: [
-                'rgba(54, 162, 235, 2)',
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });   
-
-</script>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#example1').DataTable()
+                            $('#example2').DataTable({
+                              'paging'      : true,
+                              'lengthChange': false,
+                              'ordering'    : false,
+                              'info'        : true,
+                              'autoWidth'   : false
+                          })
+                        })
+                    </script>
         </html>

@@ -245,6 +245,21 @@
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Nama Bahan</label>
+                    <input type="text" class="form-control" name="nama_bahan" id="nama_bahan" placeholder="Silahkan isi bahan">
+                  </div>
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Jumlah Bahan</label>
+                    <input type="text" class="form-control" name="jumlah_bahan" id="jumlah_bahan" placeholder="Silahkan isi jumlah bahan">
+                  </div>
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Keperluan</label>
+                    <input type="text" class="form-control" name="keperluan" id="keperluan" placeholder="Silahkan isi keperluan">
+                  </div>
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Efek kejadian <b style="color: red">*</b></label>
                     <input type="text" class="form-control" name="efek" id="efek" placeholder="Silahkan isi efek" required>
                   </div>

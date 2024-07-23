@@ -10,11 +10,14 @@
 
   <title>Login App-Pengaduan</title>
 
+	<link href=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.css")?>  rel="stylesheet">
+	<link href=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.css")?>  rel="stylesheet">
   <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
   <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?> rel="stylesheet">
   <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
   <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?> rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
+    
 
 </head>
 
@@ -73,7 +76,11 @@
                         <button class="btn btn-sm btn-primary" type="submit">MASUK</button>
                       </center>
                     </div>
-
+                    <div>
+                      <center>
+                      <a href=<?php echo base_url('user/register')?> class="btn btn-primary btn-md"><span class="fa fa-user-plus"></span> Registrasi Pengguna </a>
+                      </center>
+                    </div>
                   </fieldset>
                 </form>
                 <center style="margin-top: 10px">
@@ -87,17 +94,89 @@
       </div>
     </div>
 
-    <!-- jQuery -->
-    <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
+	<div class="modal modal-primary fade" id="tambahPengguna" style="margin-top: 5%">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width: 80%; margin-left: 10%">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span></button>
+						<center>
+						<h4 class="modal-title">REGISTER PENGGUNA BARU</h4>
+						</center>
+					</div>
+					
+					<form method="POST" action="<?php echo base_url('register_user') ?>">
+						<div class="modal-body">
+							<div class="row">
+                				<div class="col-md-12">
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
+									<div class="form-group row">
+									    <label class="col-sm-2 col-form-label">Nama</label>
+									    <div class="col-sm-10">
+									      <input type="text" class="form-control" name="nama_pengguna" placeholder="Silahkan isi nama lengkap" required>
+									    </div>
+									</div>
 
-    <!-- Custom Theme JavaScript -->
-    <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+									<div class="form-group row">
+									    <label class="col-sm-2 col-form-label">NIP</label>
+									    <div class="col-sm-10">
+									      <input type="text" class="form-control" name="username" placeholder="Silahkan isi nip" required>
+									    </div>
+									</div>
+
+									<div class="form-group row">
+									    <label class="col-sm-2 col-form-label">Email</label>
+									    <div class="col-sm-10">
+									      <input type="email" class="form-control" name="email" placeholder="Silahkan isi email" required>
+									    </div>
+									</div>
+
+									<div class="form-group row">
+									    <label class="col-sm-2 col-form-label">Password</label>
+									    <div class="col-sm-10">
+									      <input type="password" class="form-control" name="password" required>
+									    </div>
+									</div>
+
+									
+
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
+							<input type="submit" class="btn btn-success" value="Tambah">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+<script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
+<script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
+<script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
+<script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
+<script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
+<script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
+<script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
+	$(document).ready(function() {
+		$('#dataTables-example1').DataTable({
+			responsive: true
+		}),
+		$('#dataTables-example2').DataTable({
+			responsive: true
+		}),
+		$('#dataTables-example3').DataTable({
+			responsive: true
+		});
+	});
+
+	$("#hilang").show().delay(3000).slideUp(400);
+</script>
 
   </body>
 

@@ -59,6 +59,8 @@ $route['forgot'] = 'forgot';
 $route['forgot/reset_password'] = 'forgot/lupa_password';
 $route['logout_karyawan'] = 'login/logout_karyawan';
 $route['logout'] = 'Login_pengadu/logout';
+$route['user/register'] = 'Register/register';
+
 
 //admin
 $route['admin'] = 'admin/Cadm_dashboard';
@@ -97,7 +99,11 @@ $route['admin/edit_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/edit/$1';
 $route['admin/edit_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/update/$1';
 $route['admin/hapus_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/delete/$1';
 
+$route['admin/hapus_log/(:num)'] = 'admin/Cadm_log/delete/$1';
+
 $route['admin/download-pdf'] = 'admin/Cadm_pdf/download_pdf';
+
+$route['admin/riwayat_pengaduan'] = 'admin/Cadm_riwayatpeng';
 
 
 //user
@@ -106,6 +112,7 @@ $route['user/home'] = 'user/Cform/home';
 $route['user/riwayat_pengaduan'] = 'user/Criwayat_pengaduanuser';
 $route['user/insert_data'] = 'user/Cform/tambah';
 $route['user/ubah_password'] = 'user/Cform/save_password';
+
 
 //analis
 $route['analis'] = 'analis/Canalis_dashboard';

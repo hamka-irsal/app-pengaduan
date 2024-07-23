@@ -86,4 +86,9 @@ class Cadm_log extends BaseController {
         // Output PDF
         $pdf->Output('D', 'pengaduan_' . $log->id_pengaduan . '.pdf');
     }
+
+	public function delete($id) {
+        $this->Madm_log->delete_log($id);
+        redirect('admin/data_log');
+    }
 }
