@@ -1,6 +1,6 @@
 <?php
 require APPPATH . '/libraries/BaseController.php';
-class Cadm_umpanbalik extends BaseController 
+class Canalis_umpanbalik extends BaseController 
 {
 	function __construct()
 	{

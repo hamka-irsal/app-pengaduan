@@ -61,34 +61,34 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
+                            <a href=<?php echo base_url('analis')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
+                            <a href=<?php echo base_url('analis/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                            <a href=<?php echo base_url('analis/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
+                            <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('analis/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                            <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
+                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                            <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
                         </li>
                         <!-- <li>
-                            <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-home"></i><b>&nbsp; Data Lokasi</b></a>
+                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-home"></i><b>&nbsp; Data Lokasi</b></a>
                         </li> -->
                     </ul>
                 </div>
@@ -101,47 +101,104 @@
         <div id="page-wrapper">
             <div class="row">
                 <center>
-                <div class="col-lg-12">
-                    <h1 class="page-header">Penilaian</h1>
-                </div>
+				    <h1 class="page-header">FORM PENILAIAN</h1>
                 </center>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header">Link Penilaian : <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFg40LWTRQu1LSXWxTxuvElBWTxrCvNDdCNsoTI9JyNNC3qQ/viewform">Form Penilaian</a></h3>
-                </div>
-            </div>
-            
-            <div class="col-lg-12" style="width: 100%">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-                        <div class="pull-right">
-                            <div class="btn-group">
+                <!-- /.col-lg-12 -->
 
-                            </div>
-                        </div>
+                <form action="<?php echo base_url('analis/tambah_penilaian') ?>" method="POST" role="form" enctype="multipart/form-data">
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Email</label>
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Silahkan isi email">
                     </div>
 
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Tgl Penilaian</label>
+                      <input type="date" class="form-control" name="tgl_penilaian" id="tgl_penilaian" placeholder="Silahkan isi tgl penilaian">
+                    </div>
+                    
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Nama</label>
+                      <input type="text" class="form-control" name="nama" id="nama" placeholder="Silahkan isi nama">
+                    </div>
 
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>NIP/NIKH</label>
+                      <input type="text" class="form-control" name="nip" id="nip" placeholder="Silahkan isi nip">
+                    </div>
 
-                        <div class="box box-info">
-                            <div class="box-body chart-responsive">
-                              <canvas id="myChart" width="300" height="100"></canvas>
-                          </div>
-                          <!-- /.box-body -->
-                      </div>
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Jabatan</label>
+                      <input type="text" class="form-control" name="jabatan" id="jabatan" placeholder="Silahkan isi jabatan">
+                    </div>
+                   
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label for="pendapat1">Bagimana pendapat anda terhadap kemudahan pelaporan kerusakan di unit ini?</label><br>
+                        <input type="radio" name="pendapat1" value="Sangat Memuaskan"> Sangat Memuaskan<br>
+                        <input type="radio" name="pendapat1" value="Memuaskan"> Memuaskan<br>
+                        <input type="radio" name="pendapat1" value="Kurang Memuaskan"> Kurang Memuaskan<br>
+                        <input type="radio" name="pendapat1" value="Tidak Memuaskan"> Tidak Memuaskan<br>
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label for="pendapat2">Bagaimana pendapat anda tentang kecepatan waktu dalam memberikan pelayanan perbaikan kerusakan alat maupun perangkat?</label><br>
+                        <input type="radio" name="pendapat2" value="Sangat Memuaskan"> Sangat Memuaskan<br>
+                        <input type="radio" name="pendapat2" value="Memuaskan"> Memuaskan<br>
+                        <input type="radio" name="pendapat2" value="Kurang Memuaskan"> Kurang Memuaskan<br>
+                        <input type="radio" name="pendapat2" value="Tidak Memuaskan"> Tidak Memuaskan<br>
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label for="pendapat3">Bagaimana pendapat anda tentang kompetensi kemampuan petugas dalam pelayanan</label><br>
+                        <input type="radio" name="pendapat3" value="Sangat Memuaskan"> Sangat Memuaskan<br>
+                        <input type="radio" name="pendapat3" value="Memuaskan"> Memuaskan<br>
+                        <input type="radio" name="pendapat3" value="Kurang Memuaskan"> Kurang Memuaskan<br>
+                        <input type="radio" name="pendapat3" value="Tidak Memuaskan"> Tidak Memuaskan<br>
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label for="pendapat4">Bagaimana pendapat anda perilaku petugas dalam pelayanan terkait kesopanan dan keramahan</label><br>
+                        <input type="radio" name="pendapat4" value="Sangat Memuaskan"> Sangat Memuaskan<br>
+                        <input type="radio" name="pendapat4" value="Memuaskan"> Memuaskan<br>
+                        <input type="radio" name="pendapat4" value="Kurang Memuaskan"> Kurang Memuaskan<br>
+                        <input type="radio" name="pendapat4" value="Tidak Memuaskan"> Tidak Memuaskan<br>
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label for="pendapat5">Bagaimana pendapat anda tentang kualitas sarana dan prasarana kampus</label><br>
+                        <input type="radio" name="pendapat5" value="Sangat Memuaskan"> Sangat Memuaskan<br>
+                        <input type="radio" name="pendapat5" value="Memuaskan"> Memuaskan<br>
+                        <input type="radio" name="pendapat5" value="Kurang Memuaskan"> Kurang Memuaskan<br>
+                        <input type="radio" name="pendapat5" value="Tidak Memuaskan"> Tidak Memuaskan<br>
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Saran/masukan untuk pelayanan kedepannya</label><br>
+                      <textarea name="saran"></textarea>
+                    </div>
 
                   </div>
-                  <!-- /.panel-body -->
-              </div>
-              <!-- /.panel -->
+                  
+                  <!-- <div class="input-group form-group" style="width: 100%">
+                    <div class="input_fields_wrap">
+                        <input type="text" name="" placeholder="text" class="form-control" style="width: 40%">
+                        <button style="margin-left: 10px" class="add_field_button btn btn-primary">Add</button>
+                        <div></div>
+                    </div>
+                  </div> -->
+                  
+                  <div style="margin-left: 90%">
+                    <button class="btn btn-success" name="simpan" value="simpan" style="margin-top: 20px; width:80px">simpan</button>
+                  </div>
+                </div>
+                <!-- /.tab-pane -->
+              </form>
+               
+            </div>
+            <!-- /.row -->
 
-              <!-- /.panel -->
-          </div>
-
+            
+            
             <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
                           <div class="modal-dialog">
                             <div class="modal-content" style="width: 75%; margin-left: 15%">
@@ -189,74 +246,61 @@
                     </div>
                     <!-- modal setting -->
 
-<script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
-<script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
-<script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
+                    <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#example1').DataTable()
+                            $('#example2').DataTable({
+                              'paging'      : true,
+                              'lengthChange': false,
+                              'ordering'    : false,
+                              'info'        : true,
+                              'autoWidth'   : false
+                          })
+                        })
+                    </script>
 
 <script type="text/javascript">
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'ordering'    : false,
-            'info'        : true,
-            'autoWidth'   : false
-        })
-    })
+  $(document).ready(function(){
+    $('#tempat').change(function(){
+      var id=$(this).val();
+      $.ajax({
+                    url : "<?php echo base_url('user/Cform/ruang');?>", //ngarahin ke function ruang di cform
+                    method : "POST",
+                    data : {id:id},
+                    dataType : 'json',
+                    success : function(data){
+                      var html = '';
+                      var i;
+
+                      html += '<option value="">pilih ruang kejadian</option>';
+
+                      if(data.length == 0)
+                      {
+                        html += '<option value = ""> Maaf, data tidak ditemukan!</option>';
+                      }
+                      else
+                      {
+                        for(i=0; i<data.length; i++)
+                        {   //jika ada, maka akan tampilkan data dari tabel ruang
+                          html += '<option value = "'+ data[i].id_ruang +'">' + data[i].nama_ruang +'</option>';
+                        }
+                      }
+                      $('.ruang').html(html);
+                    }
+                  });
+    });
+  });
 </script>
 
 <script type="text/javascript">
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-
-            labels: [
-            <?php for ($i=0; $i < count($ruang) ; $i++) 
-            { 
-                if (!empty($ruang[$i]->nama_ruang)) 
-                {
-                    echo '"'.$ruang[$i]->nama_ruang.'",';
-                } 
-            } 
-            ?>
-            ],
-            datasets: [{
-                label: '# nama ruang',
-                data: [
-                <?php for ($i=0; $i < count($ruang) ; $i++) 
-                { 
-                    if (!empty($ruang[$i]->jumlah)) 
-                    { 
-                        echo ''.$ruang[$i]->jumlah.',';
-                    }
-                } 
-                ?>
-                ],
-                backgroundColor: [
-                'rgba(54, 162, 235, 0)',
-                ],
-                borderColor: [
-                'rgba(54, 162, 235, 2)',
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });   
-
+  $("#hilang").show().delay(1500).slideUp(400);
 </script>
         </html>

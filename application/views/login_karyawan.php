@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Login Pegawai</title>
+  <title>Login</title>
 
   <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
   <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?> rel="stylesheet">
@@ -39,7 +39,7 @@
 
                 <div class="panel-heading" style="align-items: center;">
                   <img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 100px; margin-bottom: 10px">
-                  <h3 class="panel-title"><b>LOGIN PEGAWAI <br><br>SISTEM PENGADUAN KERUSAKAN KAMPUS</b></h3>
+                  <h3 class="panel-title"><b>LOGIN <br><br>SISTEM PENGADUAN KERUSAKAN KAMPUS</b></h3>
                   <h5>Politeknik Negri Ujung Pandang</h5>
                 </div>
               </center>
@@ -68,6 +68,11 @@
                     <div class="checkbox">
                       <center>
                         <input class="btn btn-sm btn-primary" type="submit" value="MASUK">
+                      </center>
+                    </div>
+                    <div>
+                      <center>
+                      <a href=<?php echo base_url('user/register')?> class="btn btn-primary btn-md"><span class="fa fa-user-plus"></span> Registrasi Pengguna </a>
                       </center>
                     </div>
 

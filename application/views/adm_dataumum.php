@@ -11,14 +11,14 @@
 
     <title>Admin</title>
 
-    <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.css")?> rel="stylesheet">
+    <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-
+    
 </head>
 
 <body>
@@ -103,104 +103,149 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
-                <center>
                 <div class="col-lg-12">
-                    <h1><b>UPT. Teknologi Permesinan & Peralatan Penunjang Akademik (TP3A)</b></h1>
+
+                    <center>
+                      <?php if($this->session->flashdata('message')): ?>
+                          <div style="margin-top: 10px; width: 50%" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
+                              <?php echo $this->session->flashdata('message') ?>
+                        </div>
+                    <?php endif; ?>
+                    </center>
+
+                    <center>
+                    <div class="col-lg-12">
+                        <h1 class="page-header"><b>UPT. Teknologi Permesinan & Peralatan Penunjang Akademik (TP3A)</b></h1>
+                    </div>
+                    </center>
                 </div>
-                <div class="col-lg-12">
-                    <h2><b>Visi</b></h2>
-                    <h3>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</h3>
-                </div>
-                <div class="col-lg-12">
-                    <h2><b>Misi</b></h2>
-                    <h3>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</h3>
-                </div>
-                <div class="col-lg-12">
-                    <h2><b>Janji Layanan</b></h2>
-                    <h3>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</h3>
-                </div>
-                <div class="col-lg-12">
-                    <h2><b>Tupoksi Kerja</b></h2>
-                    <h3>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</h3>
-                </div>
-                <div class="col-lg-12">
-                    <h2><b>Alur Pelaporan</b></h2>
-                    <h3>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</h3>
-                </div>
-                <div class="col-lg-12">
-                    <h2><b>Struktur Organisasi</b></h2>
-                    <h3>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</h3>
-                </div>
-                </center>
                 <!-- /.col-lg-12 -->
             </div>
-           
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                    <!-- <a  href=<?php echo base_url('admin/tambah_umum')?> class="btn btn-primary btn-md" style="margin-left: 74%"><span class="fa fa-plus"></span> Tambah Kegiatan </a> -->
+                        <div class="panel-heading">
+                            Data Umum
+                        </div>
+                            <div class="panel-body">
+                                <table width="100%" class="table table-striped table-hover" id="dataTables-example" class="text-center">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Visi</th>
+                                            <th>Misi</th>
+                                            <th>Janji Layanan</th>
+                                            <th>Tupoksi Kerja</th>
+                                            <th>Alur Pelaporan</th>
+                                            <th>Struktur Organisasi</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($umum as $u): ?>
+                                    <tr>
+                                        <!-- <td><?= $u['id_umum'] ?></td> -->
+                                        <td><?= $u['visi'] ?></td>
+                                        <td><?= $u['misi'] ?></td>
+                                        <td><?= $u['janji_layanan'] ?></td>
+                                        <td><?= $u['tupoksi_kerja'] ?></td>
+                                        <td><?= $u['alur_pelaporan'] ?></td>
+                                        <td><?= $u['struktur_organisasi'] ?></td>
+                                        <td>
+                                            <a href="<?= base_url('admin/edit_umum/'.$u['id_umum']) ?>">Edit</a>
+                                            <!-- <a href="<?= base_url('umum/delete/'.$u['id_umum']) ?>" onclick="return confirm('Apakah Anda yakin?')">Hapus</a> -->
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <!-- /.row (nested) -->
+                            </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
         </div>
-            <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
-                          <div class="modal-dialog">
-                            <div class="modal-content" style="width: 75%; margin-left: 15%">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span></button>
-                                    <center>
-                                    <h4 class="modal-title">GANTI PASSWORD</h4>
-                                    </center>
-                                </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- modal setting -->
+        <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 75%; margin-left: 15%">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <center>
+                        <h4 class="modal-title">GANTI PASSWORD</h4>
+                        </center>
+                    </div>
                     
-                                <form method="POST" action="<?php echo base_url('admin/ubah_password') ?>">
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                
-                                                <div class="form-group row">
-                                                  <label class="col-sm-4 col-form-label">Password lama :</label>
-                                                  <div class="col-sm-8">
-                                                    <input type="password" class="form-control" name="old" required>
-                                                  </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                  <label class="col-sm-4 col-form-label">Password baru :</label>
-                                                  <div class="col-sm-8">
-                                                    <input type="password" class="form-control" name="new" required>
-                                                  </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                  <label class="col-sm-4 col-form-label">Konfirmasi :</label>
-                                                  <div class="col-sm-8">
-                                                    <input type="password" class="form-control" name="re_new" required>
-                                                  </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <form method="POST" action="<?php echo base_url('analis/ubah_password_m') ?>">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group row">
+                                      <label class="col-sm-4 col-form-label">Password lama :</label>
+                                      <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="old" required>
+                                      </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
-                                        <input type="submit" class="btn btn-primary" value="Simpan">
+                                    <div class="form-group row">
+                                      <label class="col-sm-4 col-form-label">Password baru :</label>
+                                      <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="new" required>
+                                      </div>
                                     </div>
-                                </form>
+                                    <div class="form-group row">
+                                      <label class="col-sm-4 col-form-label">Konfirmasi :</label>
+                                      <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="re_new" required>
+                                      </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- modal setting -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
+                            <input type="submit" class="btn btn-primary" value="Simpan">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!-- modal setting -->
 
-                    <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
-                    <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
-                    <script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
-                    <script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
-                    <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
-                    <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
-                    <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+  <!-- modal tambah ruang -->
 
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#example1').DataTable()
-                            $('#example2').DataTable({
-                              'paging'      : true,
-                              'lengthChange': false,
-                              'ordering'    : false,
-                              'info'        : true,
-                              'autoWidth'   : false
-                          })
-                        })
-                    </script>
-        </html>
+    <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
+    <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
+    <script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
+    <script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
+    <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
+    <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
+    <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+
+        $("#hilang").show().delay(2000).slideUp(400);
+    });
+    </script>
+
+</body>
+
+</html>

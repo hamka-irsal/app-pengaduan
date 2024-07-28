@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                      <label>NIP/NIM</label>
+                      <label>NIP/NIM/Username</label>
                       <input type="text" class="form-control" name="username" id="username" placeholder="Silahkan isi username">
                     </div>
 

@@ -160,7 +160,7 @@
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Nama Kegiatan:</label>
                     <input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="<?php echo $kegiatan['nama_kegiatan']; ?>">
-                </div>
+                  </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Foto Kegiatan:</label>

@@ -26,7 +26,7 @@ class Cadm_datamasuk extends BaseController {
 		$data['detail_pengaduan']=$this->Madm_datamasuk->detail_pengaduan($id);
 		$data['level']=$this->Madm_datamasuk->level();	//ke level tujuan
 
-		$this->load->view('detail_pengaduan',$data);
+		$this->load->view('admdetail_datamasuk',$data);
 	}
 
 	public function ubah()
@@ -38,7 +38,7 @@ class Cadm_datamasuk extends BaseController {
 		);
 		$this->Madm_datamasuk->ubah($data,$id_pengaduan);
 
-		redirect('admin/detail_pengaduan/'.$id_pengaduan);
+		redirect('admin/admdetail_datamasuk/'.$id_pengaduan);
 	}
 
 	public function update_status($id_pengaduan,$status)

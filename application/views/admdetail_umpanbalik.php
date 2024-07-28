@@ -195,7 +195,7 @@
                                                     </center>
                                                 </div>
                                                 
-                                                <form method="POST" action="<?php echo base_url('koordinator/konfirmasi') ?>">
+                                                <form method="POST" action="<?php echo base_url('admin/konfirmasi') ?>">
                                                       <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -232,7 +232,7 @@
                                               </center>
                                           </div>
 
-                                          <form method="POST" action="<?php echo base_url('koordinator/kirim_pengaduan') ?>">
+                                          <form method="POST" action="<?php echo base_url('admin/kirim_pengaduan') ?>">
                                               <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-md-12">

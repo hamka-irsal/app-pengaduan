@@ -152,7 +152,7 @@
                                             <td><?php echo date('d-F-Y', strtotime($data->wkt_pengaduan)) ?></td>
                                             <td>
                                                 
-                                                <a href="<?php echo base_url('admin/detail_pengaduan_umpanbalik/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Detail </a>
+                                                <a href="<?php echo base_url('admin/detail_umpanbalik/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Detail </a>
                                             </td>
                                         </tr>
                                         <?php 

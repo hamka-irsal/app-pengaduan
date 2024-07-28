@@ -57,13 +57,22 @@
 			$tindaklanjut = $this->input->post('tindaklanjut');
 			$status = $this->input->post('status');
 			$email = $this->input->post('email');
+			$nama = $this->input->post('nama');
+			$nip = $this->input->post('nip');
+			$jabatan = $this->input->post('jabatan');
+			$alat = $this->input->post('alat');
+			$spesifikasi = $this->input->post('spesifikasi');
+			$inventaris = $this->input->post('inventaris');
+			$jurusan = $this->input->post('jurusan');
+			$studi = $this->input->post('studi');
+			// $lokasi = $this->input->post('lokasi');
 			$nama_pengguna = $this->input->post('nama_pengguna');
 			$hidden = $this->input->post('hidden');
 			
 			$config['upload_path'] = './assets/gambar/';
-	    $config['allowed_types'] = 'gif|jpg|png|jpeg';
-	    $config['max_size']  = '2048';
-	    $config['file_name'] = $nama_pengguna.'_'.$kategori.'_'.time();
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size']  = '2048';
+			$config['file_name'] = $nama_pengguna.'_'.$kategori.'_'.time();
 			
 	    $this->load->library('upload', $config); // Load konfigurasi uploadnya
 	    if($this->upload->do_upload('gambar')){ // Lakukan upload dan Cek jika proses upload berhasil
@@ -80,6 +89,15 @@
 				'deskripsi' => $deskripsi,
 				'tindaklanjut' => $tindaklanjut,
 				'email' => $email,
+				'nama' => $nama,
+				'nip' => $nip,
+				'jabatan' => $jabatan,
+				'alat' => $alat,
+				'spesifikasi' => $spesifikasi,
+				'inventaris' => $inventaris,
+				'jurusan' => $jurusan,
+				'studi' => $studi,
+				// 'lokasi' => $lokasi,
 				'gambar' => $this->upload->data()['file_name']
 				);
 				

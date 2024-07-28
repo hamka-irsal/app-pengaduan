@@ -40,7 +40,7 @@ class Register extends BaseController {
 
             if ($this->Mregis_user->insert_user($user_data)) {
                 $this->session->set_flashdata('success', 'Registration successful.');
-                redirect('login_pengaduan');
+                redirect('karyawan');
             } else {
                 $this->session->set_flashdata('error', 'Registration failed.');
                 $this->load->view('register', $data);

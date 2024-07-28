@@ -11,13 +11,21 @@
 
     <title>Admin</title>
 
-    <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.css")?> rel="stylesheet">
+    <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
+    <link href=<?php echo base_url("assets/vendor/morrisjs/morris.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
+    <script src=<?php echo base_url("assets/chartjs/Chart.bundle.min.js")?> ></script>
+    <style>
+        .chart-container {
+            width: 80%; /* Atur lebar sesuai kebutuhan, misalnya 80% */
+                 /* Agar berada di tengah */
+        }
+    </style>
 
 </head>
 
@@ -105,45 +113,105 @@
             <div class="row">
                 <center>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Penilaian</h1>
+                    <h1 class="page-header">Grafik Penilaian</h1>
                 </div>
                 </center>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header">Link Penilaian : <a href="https://docs.google.com/forms/d/e/1FAIpQLSeFg40LWTRQu1LSXWxTxuvElBWTxrCvNDdCNsoTI9JyNNC3qQ/viewform">Form Penilaian</a></h3>
-                </div>
-            </div>
-            
-            <div class="col-lg-12" style="width: 100%">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
-                        <div class="pull-right">
-                            <div class="btn-group">
+           
+            <div style="width: 75%; margin: auto;">
+        <canvas id="penilaianChart"></canvas>
+    </div>
 
-                            </div>
-                        </div>
-                    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById('penilaianChart').getContext('2d');
 
+            var data = {
+                labels: ['Sangat Memuaskan', 'Memuaskan', 'Kurang Memuaskan', 'Tidak Memuaskan'],
+                datasets: [
+                    {
+                        label: 'Pendapat 1',
+                        data: [
+                            <?php echo $penilaian['pendapat1_sangat_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat1_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat1_kurang_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat1_tidak_memuaskan']; ?>
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Pendapat 2',
+                        data: [
+                            <?php echo $penilaian['pendapat2_sangat_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat2_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat2_kurang_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat2_tidak_memuaskan']; ?>
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Pendapat 3',
+                        data: [
+                            <?php echo $penilaian['pendapat3_sangat_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat3_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat3_kurang_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat3_tidak_memuaskan']; ?>
+                        ],
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Pendapat 4',
+                        data: [
+                            <?php echo $penilaian['pendapat4_sangat_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat4_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat4_kurang_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat4_tidak_memuaskan']; ?>
+                        ],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Pendapat 5',
+                        data: [
+                            <?php echo $penilaian['pendapat5_sangat_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat5_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat5_kurang_memuaskan']; ?>,
+                            <?php echo $penilaian['pendapat5_tidak_memuaskan']; ?>
+                        ],
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
 
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
+            var options = {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            };
 
-                        <div class="box box-info">
-                            <div class="box-body chart-responsive">
-                              <canvas id="myChart" width="300" height="100"></canvas>
-                          </div>
-                          <!-- /.box-body -->
-                      </div>
+            var penilaianChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: options
+            });
+        });
+    </script>
 
-                  </div>
-                  <!-- /.panel-body -->
-              </div>
-              <!-- /.panel -->
+  
+        </div>
 
-              <!-- /.panel -->
-          </div>
+   
 
             <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
                           <div class="modal-dialog">
@@ -191,6 +259,7 @@
                         </div>
                     </div>
                     <!-- modal setting -->
+                    </html>
 
 <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
 <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
@@ -198,68 +267,10 @@
 <script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
 <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
 <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
+<script src=<?php echo base_url("assets/vendor/raphael/raphael.min.js")?> ></script>
+<script src=<?php echo base_url("assets/vendor/morrisjs/morris.min.js")?> ></script>
+<script src=<?php echo base_url("assets/data/morris-data.js")?> ></script>
 <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
 
-<script type="text/javascript">
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'ordering'    : false,
-            'info'        : true,
-            'autoWidth'   : false
-        })
-    })
-</script>
-
-<script type="text/javascript">
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-
-            labels: [
-            <?php for ($i=0; $i < count($ruang) ; $i++) 
-            { 
-                if (!empty($ruang[$i]->nama_ruang)) 
-                {
-                    echo '"'.$ruang[$i]->nama_ruang.'",';
-                } 
-            } 
-            ?>
-            ],
-            datasets: [{
-                label: '# nama ruang',
-                data: [
-                <?php for ($i=0; $i < count($ruang) ; $i++) 
-                { 
-                    if (!empty($ruang[$i]->jumlah)) 
-                    { 
-                        echo ''.$ruang[$i]->jumlah.',';
-                    }
-                } 
-                ?>
-                ],
-                backgroundColor: [
-                'rgba(54, 162, 235, 0)',
-                ],
-                borderColor: [
-                'rgba(54, 162, 235, 2)',
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });   
-
-</script>
-        </html>
+</body>
+</html>

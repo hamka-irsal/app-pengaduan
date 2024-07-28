@@ -6,6 +6,7 @@ class Cadm_dashboard extends BaseController {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Madm_pengaduanmsk');
 		$this->load->model('Madmin_datauser');
 		$this->load->helper('url','form');
 		$this->isLoggedIn();
@@ -16,8 +17,20 @@ class Cadm_dashboard extends BaseController {
         $data['user']=$this->Madmin_datauser->user();
 		$data['level']=$this->Madmin_datauser->level();
 		$data['role']=$this->Madmin_datauser->role();
+        $data['pengaduan'] = $this->Madm_pengaduanmsk->get_unread_pengaduan();
+        $data['unread_count'] = $this->Madm_pengaduanmsk->count_unread_pengaduan();
 		$this->load->view('adm_dashboard', $data);
 	}
+
+    public function get_unread_count() {
+        $count = $this->Madm_pengaduanmsk->count_unread_pengaduan();
+        echo json_encode(['unread_count' => $count]);
+    }
+
+    public function get_unread_pengaduan() {
+        $pengaduan = $this->Madm_pengaduanmsk->get_unread_pengaduan();
+        echo json_encode($pengaduan);
+    }
 
     public function save_password()
     { 

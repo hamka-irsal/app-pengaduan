@@ -46,7 +46,7 @@ class Cadm_umpanbalik extends BaseController
 		$this->session->set_flashdata('alert', 'Berhasil!');
 		$this->session->set_flashdata('message', 'Pengaduan telah dikonfirmasi.');
 
-		redirect('admin/data_umpanbalik');
+		redirect('admdetail_umpanbalik');
 	}
 
 	//function mau cek data user
@@ -60,7 +60,7 @@ class Cadm_umpanbalik extends BaseController
 
 	    if($this->form_validation->run() == FALSE)
 	  {
-			redirect('admin/data_umpanbalik');
+			redirect('adm_umpanbalik');
 	  }
 	  	else
 	  {
@@ -69,7 +69,7 @@ class Cadm_umpanbalik extends BaseController
 	   if (count($cek_old) == 0){
 		    $this->session->set_flashdata('error','Password lama yang Anda masukkan salah' );
 		    
-		    redirect('admin/data_umpanbalik');
+		    redirect('adm_umpanbalik');
 	   }
 	   	else
 	   {

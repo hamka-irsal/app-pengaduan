@@ -49,11 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Login_pengadu';
+$route['default_controller'] = 'Login/login_karyawan';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['login_pengaduan'] = 'Login_pengadu'; //path lain dari login
+// $route['login_pengaduan'] = 'Login_pengadu'; //path lain dari login
 $route['karyawan'] = 'Login/login_karyawan';
 $route['forgot'] = 'forgot';
 $route['forgot/reset_password'] = 'forgot/lupa_password';
@@ -64,7 +64,6 @@ $route['user/register'] = 'Register/register';
 
 //admin
 $route['admin'] = 'admin/Cadm_dashboard';
-$route['admin/data_umum'] = 'admin/Cadm_dataumum';
 $route['admin/data_log'] = 'admin/Cadm_log';
 $route['admin/data_penilaian'] = 'admin/Cadm_penilaian';
 $route['admin/downloadPdf'] = 'admin/Cadm_log/downloadPdf';
@@ -86,11 +85,14 @@ $route['admin/ubah_password'] = 'admin/Cadm_datauser/save_password';
 $route['admin/tambah_user'] = 'admin/Cadm_datauser/tambah_user';
 
 $route['admin/data_umpanbalik'] = 'admin/Cadm_umpanbalik';
-$route['admin/detail_pengaduan_umpanbalik/(:num)'] = 'admin/Cadm_umpanbalik/detail_koor/$1';
+$route['admin/detail_umpanbalik/(:num)'] = 'admin/Cadm_umpanbalik/detail_koor/$1';
+$route['admin/konfirmasi'] = 'admin/Cadm_umpanbalik/konfirmasi';
+$route['admin/kirim_pengaduan'] = 'admin/Cadm_umpanbalik/kirim';
 
 $route['admin/data_masuk'] = 'admin/Cadm_datamasuk';
 $route['admin/proses_topsis'] = 'admin/Cadm_datamasuk/edit_skala_prioritas';
 $route['admin/detail_pengaduan/(:num)'] = 'admin/Cadm_datamasuk/detail/$1';
+$route['admin/konfirmasi'] = 'admin/Cadm_datamasuk/konfirmasi';
 
 $route['admin/data_kegiatan'] = 'admin/Cadm_kegiatan/index';
 $route['admin/tambah_kegiatan'] = 'admin/Cadm_kegiatan/create';
@@ -99,11 +101,29 @@ $route['admin/edit_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/edit/$1';
 $route['admin/edit_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/update/$1';
 $route['admin/hapus_kegiatan/(:num)'] = 'admin/Cadm_kegiatan/delete/$1';
 
+$route['admin/data_umum'] = 'admin/Cadm_dataumum/index';
+$route['admin/tambah_umum'] = 'admin/Cadm_dataumum/create';
+$route['admin/tambah_umum'] = 'admin/Cadm_dataumum/store';
+$route['admin/edit_umum/(:num)'] = 'admin/Cadm_dataumum/edit/$1';
+$route['admin/edit_umum/(:num)'] = 'admin/Cadm_dataumum/update/$1';
+
 $route['admin/hapus_log/(:num)'] = 'admin/Cadm_log/delete/$1';
+$route['admin/detail_log/(:num)'] = 'admin/Cadm_log/detail/$1';
 
 $route['admin/download-pdf'] = 'admin/Cadm_pdf/download_pdf';
 
 $route['admin/riwayat_pengaduan'] = 'admin/Cadm_riwayatpeng';
+
+$route['admin/data_chart'] = 'admin/Cadm_penilaian/chart';
+
+// Route untuk mendapatkan jumlah pengaduan yang belum dibaca
+$route['admin/get_unread_count'] = 'Cadm_dashboard/get_unread_count';
+
+// Route untuk mendapatkan pengaduan yang belum dibaca
+$route['admin/get_unread_pengaduan'] = 'Cadm_dashboard/get_unread_pengaduan';
+
+$route['admin/konfirmasi/(:num)'] = 'admin/Cadm_datamasuk/konfirmasi/$1';
+// $route['admin/konfirmasi'] = 'admin/Cadm_datamasuk/konfirmasi';
 
 
 //user
@@ -112,6 +132,19 @@ $route['user/home'] = 'user/Cform/home';
 $route['user/riwayat_pengaduan'] = 'user/Criwayat_pengaduanuser';
 $route['user/insert_data'] = 'user/Cform/tambah';
 $route['user/ubah_password'] = 'user/Cform/save_password';
+
+
+//anggota
+$route['anggota'] = 'anggota/Cagt_dashboard';
+$route['anggota/data_umum'] = 'anggota/Cagt_dataumum';
+$route['anggota/data_diri'] = 'anggota/Cagt_datadiri';
+$route['anggota/data_pelapor'] = 'anggota/Cagt_datapelapor';
+$route['anggota/insert_data'] = 'anggota/Cagt_datapelapor/tambah';
+$route['anggota/data_penilaian'] = 'anggota/Cagt_penilaian';
+$route['anggota/tambah_penilaian'] = 'anggota/Cagt_penilaian/create';
+$route['anggota/tambah_penilaian'] = 'anggota/Cagt_penilaian/store';
+$route['anggota/riwayat_pengaduan'] = 'anggota/Cagt_riwayatpeng';
+$route['anggota/data_kegiatan'] = 'anggota/Cagt_kegiatan/index';
 
 
 //analis
@@ -149,7 +182,17 @@ $route['analis/edit_jenis'] = 'analis/Ckategori_jenis/edit_jenis';
 $route['analis/hapus_kategori/(:num)'] = 'analis/Ckategori_jenis/hapus_kategori/$1';
 $route['analis/hapus_jenis/(:num)'] = 'analis/Ckategori_jenis/hapus_jenis/$1';
 //$route['analis/konfirmasi/(:num)'] = 'analis/Cpengaduan_masuk/konfirmasi/$1';
-$route['analis/konfirmasi'] = 'analis/Cpengaduan_masuk/konfirmasi';
+// $route['analis/konfirmasi'] = 'analis/Cpengaduan_masuk/konfirmasi';
+$route['analis/data_diri'] = 'analis/Canalis_datadiri';
+$route['analis/data_pelapor'] = 'analis/Canalis_datapelapor';
+$route['analis/insert_data'] = 'analis/Canalis_datapelapor/tambah';
+$route['analis/data_lokasi'] = 'analis/Canalis_dataruangtempat'; 
+$route['analis/data_kegiatan'] = 'analis/Canalis_kegiatan/index';
+
+$route['analis/data_penilaian'] = 'analis/Canalis_penilaian';
+$route['analis/tambah_penilaian'] = 'analis/Canalis_penilaian/create';
+$route['analis/tambah_penilaian'] = 'analis/Canalis_penilaian/store';
+
 
 //koor
 $route['koordinator'] = 'koor/Ckpengaduan_masuk';

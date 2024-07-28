@@ -28,17 +28,16 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
             <div class="navbar-header">
-                
-                <a class="navbar-brand" style="color: #ffffff" >APP-PENGADUAN</a>
+                <a href="admin" style="color: #ffffff; font-size: 20px;"><img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 50px;"><b> Politeknik Negeri Ujung Pandang</b></a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
-                        <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama_pengguna') ?></i>
+                        <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama_pengguna'); ?></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a data-toggle="modal" data-target="#settingModal"><i class="fa fa-gear fa-fw"></i> Settings</a>
@@ -53,34 +52,44 @@
 
             <!--- user panel -->
             <section class="sidebar">
+
             </section>
 
-            <div class="navbar-default sidebar" role="navigation"> <!--style="margin-top: 15%;"-->
+            <!-- MENU -->
+            <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
-                        <li class="sidebar-search" >
-                            <!-- <div class="input-group custom-search-form" style="margin-left: 20%">
-                                <p>Isnaini Barochatun</p>
-                            </div> -->
-                            <div class="input-group custom-search-form" >
-                                <b>Menu Sistem</b>
-                            </div>
-                            <!--  input-group -->
-                        </li>
-                        
-                        <li class="active">
-                            <a href=<?php echo base_url('analis')?> style="color: #000000"><i class="fa fa-envelope"></i><b>&nbsp; Pengaduan Masuk</b></a>
+                        <li>
+                            <a href=<?php echo base_url('analis')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?> ><i class="fa fa-table"></i>&nbsp; Riwayat Pengaduan</a>
+                            <a href=<?php echo base_url('analis/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/kelola')?>><i class="fa fa-gears"></i>&nbsp; Kategori dan Jenis</a>
+                            <a href=<?php echo base_url('analis/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/laporan')?>><i class="fa fa-dashboard"></i>&nbsp; Laporan Pengaduan</a>
+                            <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                        </li>
+                        <!-- <li>
+                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-home"></i><b>&nbsp; Data Lokasi</b></a>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -124,7 +133,7 @@
                                             <th>Tanggal</th>
                                             <th>Skala Prioritas</th>
                                             <th>Nilai</th>
-                                            <th>Detail</th>
+                                            <!-- <th>Detail</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -140,12 +149,12 @@
                                             <td><?php echo date('d-F-Y', strtotime($data->wkt_pengaduan)) ?></td>
                                             <td><?php echo $data->skala_prioritas ?></td>
                                             <td><?php echo $data->nilai_prioritas ?></td>
-                                            <td>
+                                            <!-- <td>
                                                 <a href="<?php echo base_url('analis/detail_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Detail </a>
-                                                <!-- <a href="<?php echo base_url('analis/tambah_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-edit"></span> Ubah Pengaduan </a> -->
+                                                <a href="<?php echo base_url('analis/tambah_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-edit"></span> Ubah Pengaduan </a>
                                                 <a data-toggle="modal" data-target="#skala_prioritas" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-edit"></span> Ubah Pengaduan </a>
 
-                                            </td>
+                                            </td> -->
                                         </tr>
                                         <?php 
                                         }
@@ -217,7 +226,7 @@
 <!-- modal setting -->
 
   <!-- modal tambah ruang -->
-  <div>
+  <!-- <div>
         <div class="modal modal-primary fade" id="skala_prioritas" style="margin-top: 5%">
           <div class="modal-dialog">
             <div class="modal-content" style="width: 70%; margin-left: 15%">
@@ -249,7 +258,7 @@
                         <input type="submit" class="btn btn-primary" value="simpan">
                     </div>
             </form>
-        </div>
+        </div> -->
         <!-- /.modal-content -->
     </div>
 

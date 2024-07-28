@@ -32,8 +32,11 @@ class Login extends CI_Controller {
         }
         else
         {
-        	if ($level == 5) {
+        	if ($level == 5 ) {
                 	redirect('admin');
+                }
+                elseif ($level == 1) {
+                	redirect('anggota');
                 }
                 elseif ($level == 2) {
                 	redirect('analis');
@@ -89,6 +92,9 @@ class Login extends CI_Controller {
                     $this->session->set_userdata($sessionArray);
                     if ($res->id_level == 5) {
                         redirect('admin');
+                    }
+                    elseif ($res->id_level == 1) {
+                        redirect('anggota');
                     }
                     elseif ($res->id_level == 2) {
                         redirect('analis');

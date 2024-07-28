@@ -319,25 +319,6 @@
                   <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <b>Perhatian!</b> Jika Anda ingin menambahkan ruang di tempat baru, Anda harus menambahkan tempat baru terlebih dahulu. Terimakasih.</a>.
-                            </div>
-
-                            <div class="form-group">
-                                <label>Pilih Tempat untuk ruang baru:</label>
-                                <select class="form-control" name="id_tempat" required>
-                                    <option value="0">-------------------------------- pilih tempat ----------------------------------</option>
-                                    <?php
-                                    foreach ($tempat as $data) 
-                                    {
-                                        ?>
-                                        <option value="<?php echo $data->id_tempat ?>"><?php echo $data->nama_tempat ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                            </div>
 
                             <div class="form-group">
                                 <label>Tambah ruang</label>

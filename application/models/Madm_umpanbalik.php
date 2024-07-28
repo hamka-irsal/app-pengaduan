@@ -23,7 +23,7 @@ class Madm_umpanbalik extends CI_Model
 
 	public function detail_koor($id)
 	{
-		$this->db->select('p.id_pengaduan, p.id_user, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek,  r.nama_ruang, p.gambar, k.kategori, u.nama_pengguna');	
+		$this->db->select('p.id_pengaduan, p.id_user, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek,  r.nama_ruang, p.gambar, k.kategori, u.nama_pengguna, p.alat, p.nama');	
 		$this->db->from('pengaduan p','ruang r'); 
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		$this->db->join('kategori k','k.id_kategori = p.id_kategori');

@@ -5,7 +5,7 @@ class Madm_log extends CI_Model {
 
 	public function log_activity()
 	{
-		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan');
+		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan, p.email');
 		$this->db->from('pengaduan p');
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		// $this->db->where('p.deleted');
@@ -24,7 +24,7 @@ class Madm_log extends CI_Model {
 
 	public function detail_log($id_pengaduan)
 	{
-		$this->db->select('log.id_pengaduan, log.status, log.keterangan, user.id_user, level.id_level, level.nama_level, level.posisi, user.nama_pengguna, log.timestamp');
+		$this->db->select('log.id_pengaduan, log.status, log.keterangan, user.id_user, level.id_level, level.nama_level, level.posisi, user.nama_pengguna, user.email, log.timestamp');
 		$this->db->from('log','user','level');
 		$this->db->join('user', 'user.id_user = log.id_user');
 		$this->db->join('level', 'level.id_level = user.id_level');
@@ -36,6 +36,17 @@ class Madm_log extends CI_Model {
 	{
 		return $this->db->get('level')->result();
 	}
+
+	public function pengaduan()
+	{
+		return $this->db->get('pengaduan')->result();
+	}
+
+	public function get_pengaduan($id) {
+        $this->db->where('id_pengaduan', $id);
+        $query = $this->db->get('pengaduan');
+        return $query->row_array();
+    }
 
 	//bikin update password di admin dulu
 	public function save()

@@ -161,7 +161,7 @@
                                                 <td><?php //echo date('d-F-Y', strtotime($data->timestamp)) ?></td> -->
                                                 <td><?= $data->timestamp ?></td>
                                                 <td>
-                                                    <i class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan ?>">&nbsp;Detail</i>
+                                                    <a href="<?php echo base_url('admin/detail_log/'.$data->id_pengaduan) ?>" class="btn btn-primary"><span class="fa fa-eye"></span> Detail </a>
                                                     <a class="btn btn-warning" href="<?= base_url('admin/download-pdf') ?>"> Download</a>
                                                     <a class="btn btn-success btn-print" onclick="window.print()"><i class="fa fa-print"></i> Cetak</a>
                                                     <a class="btn btn-danger" href="<?php echo site_url('admin/hapus_log/'.$data->id_pengaduan); ?>"><i class="fa fa-trash"></i> Hapus</a>
@@ -200,6 +200,9 @@
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <label>Laporan</label>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label>Email</label>
                                                                     </div>
                                                                 </div>
                                                                 <?php 
@@ -244,6 +247,12 @@
                                                                         </div>
                                                                             </div>
                                                                             <?php $j++;} ?>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><?php echo $log->email ?></p>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><?php echo $log->alat ?></p>
                                                                         </div>
 
                                                                         <div class="modal-footer">

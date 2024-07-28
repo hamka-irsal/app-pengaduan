@@ -20,6 +20,14 @@ class Cadm_log extends BaseController {
 		$this->load->view('adm_log',$data);
 	}
 
+	public function detail($id) {
+        $this->load->model('Madm_log');
+        $data['pengaduan'] = $this->Madm_log->get_pengaduan($id);
+        
+        // Load the view and pass the data
+        $this->load->view('admdetail_pelaporan', $data);
+    }
+
 	//function mau cek data user
 	public function save_password()
 	 { 
