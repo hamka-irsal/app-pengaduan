@@ -25,8 +25,7 @@
 		
     <div id="wrapper">
 			
-			<!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
             <div class="navbar-header">
                 <a href="admin" style="color: #ffffff; font-size: 20px;"><img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 50px;"><b> Politeknik Negeri Ujung Pandang</b></a>
             </div>
@@ -102,80 +101,62 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-			
-		</ul>
-		<!-- /.navbar-top-links -->
-		
-		<!-- MENU -->
-		
-		<!-- /.navbar-static-side -->
-	</nav>
 	
 	<!-- Page Content -->
 	<div id="page-wrapper">
 		<div class="row">
+			<div class="col-lg-12">
+				<center>
+	          <?php if($this->session->flashdata('message')): ?>
+	              <div style="margin-top: 10px;" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
+	                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	                  <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
+	                  <?php echo $this->session->flashdata('message') ?>
+	            </div>
+	          <?php endif; ?>
+	        </center>
+				<center>
+				<h1 class="page-header">SPK Topsis</h1>
+				</center>
+			</div>
 			<!-- /.col-lg-12 -->
 		</div>
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-lg-12">
-			<div class="panel panel-default">
-              <div class="panel-heading">
-                <center><h3><strong>Edit Data Umum</strong></h3></center>
-              </div>
-              <div class="panel-body">
-                <!-- Tab Pane Draft -->
-              <div class="tab-content"><!-- 
-                <div class="active tab-pane fade in" id="halaman_1"> -->
-                 <div class="box-body">
-
-                  <form action="<?php echo base_url('admin/edit_umum/' .$umum['id_umum']) ?>" method="POST" role="form" enctype="multipart/form-data">
-
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Visi:</label>
-                    <textarea type="text" class="form-control" name="visi" id="visi"><?= $umum['visi'] ?></textarea>
-                  </div>
-
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Misi:</label>
-                    <textarea type="text" class="form-control" name="misi" id="misi"><?= $umum['misi'] ?></textarea>
-                  </div>
-
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Janji Layanan:</label>
-                    <textarea type="text" class="form-control" name="janji_layanan" id="janji_layanan"><?= $umum['janji_layanan'] ?></textarea>
-                  </div>
-
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Tupoksi Kerja:</label>
-                    <textarea type="text" class="form-control" name="tupoksi_kerja" id="tupoksi_kerja"><?= $umum['tupoksi_kerja'] ?></textarea>
-                  </div>
-
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Alur Pelaporan:</label>
-                    <textarea type="text" class="form-control" name="alur_pelaporan" id="alur_pelaporan"><?= $umum['alur_pelaporan'] ?></textarea>
-                  </div>
-
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
-                    <label>Struktur Organisasi:</label>
-                    <textarea type="text" class="form-control" name="struktur_organisasi" id="struktur_organisasi"><?= $umum['struktur_organisasi'] ?></textarea>
-                  </div>
-                  
-                  <!-- <div class="input-group form-group" style="width: 100%">
-                    <div class="input_fields_wrap">
-                        <input type="text" name="" placeholder="text" class="form-control" style="width: 40%">
-                        <button style="margin-left: 10px" class="add_field_button btn btn-primary">Add</button>
-                        <div></div>
-                    </div>
-                  </div> -->
-                  
-                  <div style="margin-left: 90%">
-                    <button class="btn btn-success" name="submit" value="simpan" type="submit" style="margin-top: 20px; width:80px">simpan</button>
-                  </div>
-                </div>
-                <!-- /.tab-pane -->
-              </form>
-            </div>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="tab-content">
+							<div id="mahasiswa" class="tab-pane fade in active">
+								<!-- data mahasiswa -->
+								<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example1">
+                                <thead>
+                                    <tr>
+                                        <th>ID Pengaduan</th>
+                                        <th>Biaya</th>
+                                        <th>SDM</th>
+                                        <th>Regulasi</th>
+                                        <th>Skor Preferensi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($pengaduanData as $index => $pengaduan): ?>
+                                        <tr>
+                                            <td><?php echo $pengaduan['id_pengaduan']; ?></td>
+                                            <td><?php echo $pengaduan['biaya']; ?></td>
+                                            <td><?php echo $pengaduan['sdm']; ?></td>
+                                            <td><?php echo $pengaduan['regulasi']; ?></td>
+                                            <td><?php echo number_format($preferenceScores[$index], 4); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+								</table>
+                            </div>
+							
+						</div>
+						
+						<!-- /.row (nested) -->
+					</div>
 					<!-- /.panel-body -->
 				</div>
         <!-- /.panel -->

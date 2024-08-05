@@ -1,21 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/BaseController.php';
-class Canalis_umpanbalik extends BaseController {
+class Cagt_umpanbalik extends BaseController {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Manalis_umpanbalik');
+		$this->load->model('Magt_umpanbalik');
 		$this->load->helper('url','form');
 		$this->isLoggedIn();
 	}
 
 	public function index()
 	{
-		$data['log_activity']=$this->Manalis_umpanbalik->log_activity();
-		$data['level']=$this->Manalis_umpanbalik->level();
-		$this->load->view('analis_umpanbalik',$data);
+		$data['log_activity']=$this->Magt_umpanbalik->log_activity();
+		$data['level']=$this->Magt_umpanbalik->level();
+		$this->load->view('agt_umpanbalik',$data);
 	}
 
 	//function mau cek data user

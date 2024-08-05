@@ -37,9 +37,10 @@ class Magt_Penilaian extends CI_Model {
         return $this->db->count_all_results();
     }
 
-    public function get_penilaian_count()
+    public function get_penilaian_count_with_date()
     {
         $this->db->select('
+            DATE_FORMAT(tgl_penilaian, "%Y-%m-%d") as tgl_penilaian,
             SUM(pendapat1 = "Sangat Memuaskan") as pendapat1_sangat_memuaskan,
             SUM(pendapat1 = "Memuaskan") as pendapat1_memuaskan,
             SUM(pendapat1 = "Kurang Memuaskan") as pendapat1_kurang_memuaskan,
@@ -61,8 +62,9 @@ class Magt_Penilaian extends CI_Model {
             SUM(pendapat5 = "Kurang Memuaskan") as pendapat5_kurang_memuaskan,
             SUM(pendapat5 = "Tidak Memuaskan") as pendapat5_tidak_memuaskan
         ');
+        $this->db->group_by('DATE(tgl_penilaian)');
         $query = $this->db->get('penilaian');
-        return $query->row_array();
+        return $query->result_array();
     }
     
 }

@@ -28,13 +28,12 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
             <div class="navbar-header">
-                
-                <a class="navbar-brand" style="color: #ffffff" >APP-PENGADUAN</a>
+                <a href="admin" style="color: #ffffff; font-size: 20px;"><img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 50px;"><b> Politeknik Negeri Ujung Pandang</b></a>
             </div>
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
-                
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
@@ -53,34 +52,41 @@
 
             <!--- user panel -->
             <section class="sidebar">
+
             </section>
 
-            <div class="navbar-default sidebar" role="navigation"> <!--style="margin-top: 15%;"-->
+            <!-- MENU -->
+            <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
-                        <li class="sidebar-search" >
-                            <!-- <div class="input-group custom-search-form" style="margin-left: 20%">
-                                <p>Isnaini Barochatun</p>
-                            </div> -->
-                            <div class="input-group custom-search-form" >
-                                <b>Menu Sistem</b>
-                            </div>
-                            <!--  input-group -->
-                        </li>
-                        
                         <li>
-                            <a href=<?php echo base_url('analis')?>><i class="fa fa-envelope"></i>&nbsp; Pengaduan Masuk</a>
-                        </li>
-                        <li class="active">
-                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?> style="color: #000000"><i class="fa fa-table"></i><b>&nbsp; Riwayat Pengaduan</b></a>
+                            <a href=<?php echo base_url('analis')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/kelola')?>><i class="fa fa-gears"></i>&nbsp; Kategori dan Jenis</a>
+                            <a href=<?php echo base_url('analis/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/laporan')?>><i class="fa fa-dashboard"></i>&nbsp; Laporan Pengaduan</a>
+                            <a href=<?php echo base_url('analis/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
                         </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                        </li>
+                        <!-- <li>
+                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-home"></i><b>&nbsp; Data Lokasi</b></a>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -101,9 +107,12 @@
                               <?php echo $this->session->flashdata('message') ?>
                         </div>
                     <?php endif; ?>
+                    
                     </center>
 
-                    <h1 class="page-header">Riwayat Pengaduan</h1>
+                    <center>
+                        <h1 class="page-header">Hasil Perbaikan</h1>
+                    </center>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

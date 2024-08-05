@@ -57,30 +57,37 @@
             </section>
 
             <!-- MENU -->
-            <div class="navbar-default sidebar" role="navigation" >
+            <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
-                        <li class="sidebar-search" >
-                            <div class="input-group custom-search-form" >
-                                <b>Menu Sistem</b>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        
-                        
                         <li>
-                            <a href=<?php echo base_url('analis')?>><i class="fa fa-envelope"></i>&nbsp; Pengaduan Masuk</a>
+                            <a href=<?php echo base_url('analis')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?> ><i class="fa fa-table"></i>&nbsp; Riwayat Pengaduan</a>
-                        </li>
-                        <li class="active">
-                            <a href=<?php echo base_url('analis/kelola')?> style="color: #000000"><i class="fa fa-gears"></i><b>&nbsp; Kategori dan Jenis</b></a>
+                            <a href=<?php echo base_url('analis/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/laporan')?>><i class="fa fa-dashboard"></i>&nbsp; Laporan Pengaduan</a>
+                            <a href=<?php echo base_url('analis/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
                         </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                        </li>
+                        <!-- <li>
+                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-home"></i><b>&nbsp; Data Lokasi</b></a>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

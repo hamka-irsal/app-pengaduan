@@ -13,7 +13,7 @@ class Cadm_penilaian extends BaseController {
 
 	public function index()
 	{
-        $data['penilaian'] = $this->Magt_penilaian->get_penilaian_count();
+        $data['penilaian'] = $this->Magt_penilaian->get_penilaian_count_with_date();
         $this->load->view('adm_penilaian', $data);
 	}
 

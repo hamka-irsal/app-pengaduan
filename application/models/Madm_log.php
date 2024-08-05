@@ -76,21 +76,28 @@ class Madm_log extends CI_Model {
 	}
 		//end
 
-		public function get_log_by_id($id_pengaduan) {
-			$this->db->where('id_pengaduan', $id_pengaduan);
-			$query = $this->db->get('log');
-			return $query->row();
-		}
+	public function get_log_by_id($id_pengaduan) {
+		$this->db->where('id_pengaduan', $id_pengaduan);
+		$query = $this->db->get('log');
+		return $query->row();
+	}
 
-		public function get_logs() {
-			$query = $this->db->select('id_pengaduan, status, timestamp')
-							  ->from('log')
-							  ->get();
-			return $query->result();
-		}
+	public function get_logs() {
+		$query = $this->db->select('id_pengaduan, status, timestamp')
+							->from('log')
+							->get();
+		return $query->result();
+	}
 
-		public function delete_log($id) {
-			$this->db->where('id_pengaduan', $id);
-			return $this->db->delete('pengaduan');
-		}
+	public function delete_log($id) {
+		$this->db->where('id_pengaduan', $id);
+		return $this->db->delete('pengaduan');
+	}
+
+	public function get_pengaduan_data()
+    {
+        $this->db->select('id_pengaduan, alat, spesifikasi, kejadian, penyebab, inventaris, tgl_kejadian, jurusan, studi, nama, nip, gambar');
+        $query = $this->db->get('pengaduan');
+        return $query->result_array();
+    }
 }

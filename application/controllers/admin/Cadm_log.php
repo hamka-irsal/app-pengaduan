@@ -28,6 +28,25 @@ class Cadm_log extends BaseController {
         $this->load->view('admdetail_pelaporan', $data);
     }
 
+	public function generate_pdf()
+    {
+        $data['pengaduan_data'] = $this->Madm_log->get_pengaduan_data();
+        
+        // Load the view and store the output in a variable
+        $html_content = $this->load->view('admpdf_pelaporan', $data, true);
+
+        // Create a new PDF document
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', '', 12);
+
+        // Convert HTML to PDF
+        $pdf->WriteHTML($html_content);
+
+        // Output the PDF
+        $pdf->Output('D', 'pengaduan.pdf');
+    }
+
 	//function mau cek data user
 	public function save_password()
 	 { 

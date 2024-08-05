@@ -11,14 +11,14 @@
 
     <title>Admin</title>
 
-    <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
+    <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-
+   
 </head>
 
 <body>
@@ -73,16 +73,13 @@
                             <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
-                        </li>
-                        <li>
-                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
@@ -100,22 +97,11 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
-
-                <center>
-                  <?php if($this->session->flashdata('message')): ?>
-                      <div style="margin-top: 10px;" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
-                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                          <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
-                          <?php echo $this->session->flashdata('message') ?>
-                    </div>
-                  <?php endif; ?>
-                </center>
-
-                <center>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Umpan Balik</h1>
+                    <center>
+                        <h1 class="page-header">Umpan Balik</h1>
+                    </center>
                 </div>
-                </center>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
@@ -123,120 +109,225 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Data Pengaduan Masuk
+                            Basic Form Elements
                         </div>
-                            <div class="panel-body">
-                                <table width="100%" class="table table-striped table-hover" id="dataTables-example" class="text-center">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>Kategori</th>
-                                            <th>Ruang</th>
-                                            <th>Jam</th>
-                                            <th>Tanggal</th>
-                                            <!-- <th>Detail</th> -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php 
-                                            
-                                            foreach ($masuk as $data) {
-                                                
+                        <div class="panel-body">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align: center; width: 100px">ID Pengaduan</th>
+                                        <th style="text-align: center;">Ruang</th>
+                                        <th style="text-align: center;">Status</th>
+                                        <th style="text-align: center;">Waktu</th>
+                                        <th style="text-align: center; width: 50px">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+                                    foreach ($log_activity as $data)
+                                    {
                                         ?>
                                         <tr>
-                                            <td><?php echo $data->kategori ?></td>
+                                            <td style="text-align: center;"><?php echo $data->id_pengaduan ?></td>
                                             <td><?php echo $data->nama_ruang ?></td>
-                                            <td><?php echo date('H:i:s', strtotime($data->wkt_pengaduan)) ?></td>
-                                            <td><?php echo date('d-F-Y', strtotime($data->wkt_pengaduan)) ?></td>
-                                            <!-- <td>
-                                                <a href="<?php echo base_url('admin/detail_pengaduan_umpanbalik/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Detail </a>
-                                            </td> -->
-                                        </tr>
-                                        <?php 
-                                    }
-                                    ?>
-                                        
-                                    </tbody>
-                                </table>
-                            <!-- /.row (nested) -->
-                            </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
+                                            <td style="text-align: center;">
+                                                <?php
+                                                if ($data->status == 'masuk') {
+                                                    ?>
+                                                    <span class="badge badge primary"><?php echo $data->status ?></span>
+                                                    <?php
+                                                }elseif($data->status == 'diproses'){
+                                                    ?>
+                                                    <span class="badge badge warning"><?php echo $data->status ?></span>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                    <span class="badge badge success"><?php echo $data->status ?></span>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </td>
+                                            <!-- <td><?php //echo date('H:i:s', strtotime($data->timestamp)) ?></td>
+                                                <td><?php //echo date('d-F-Y', strtotime($data->timestamp)) ?></td> -->
+                                                <td><?= $data->timestamp ?></td>
+                                                <td>
+                                                    <i class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan ?>">&nbsp;Detail</i>
+                                                </td>
+                                            </tr>
+                                            <!-- modal edit user -->
+                                            <div class="modal modal-primary fade" id="detail<?php echo $data->id_pengaduan ?>" style="margin-top: 5%;">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span></button>
+                                                                <center><h4 class="modal-title">DETAIL UMPAN BALIK</h4></center>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row text-center">
 
-    <!-- modal setting -->
-        <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width: 75%; margin-left: 15%">
-                    <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                        <center>
-                            <h4 class="modal-title">GANTI PASSWORD</h4>
-                        </center>
-                    </div>
-                    
-                    <form method="POST" action="<?php echo base_url('koordinator/ubah_password_masuk') ?>">
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group row">
-                                      <label class="col-sm-4 col-form-label">Password lama :</label>
-                                      <div class="col-sm-8">
-                                        <input type="password" class="form-control" name="old" required>
-                                      </div>
+                                                                    <div class="col-md-1">
+                                                                        <label>No.</label>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Tanggal</label>
+                                                                    </div>
+                                                                    <div class="col-md-1">
+                                                                        <label>Jam</label>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Bagian</label>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label>Nama</label>
+                                                                    </div>
+                                                                    <div class="col-md-1">
+                                                                        <label>Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label>Pesan</label>
+                                                                    </div>
+                                                                </div>
+                                                                <?php 
+                                                                $this->load->model('Manalis_umpanbalik');
+                                                                $log_activity = $this->Manalis_umpanbalik->detail_log($data->id_pengaduan);
+                                                                $j = 1;
+                                                                foreach ($log_activity as $log) { 
+                                                                    ?> 
+                                                                    <div class="row text-center">
+                                                                        <div class="col-md-1">
+                                                                            <p><?php echo $j ?></p>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><?php echo date("d F Y", strtotime($log->timestamp)) ?></p>
+                                                                        </div>
+                                                                        <div class="col-md-1">
+                                                                            <p><?php echo date("H:i:s", strtotime($log->timestamp)) ?></p>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><?= $log->nama_level." ".$log->posisi; ?>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><?php echo $log->nama_pengguna ?></p>
+                                                                        </div>
+                                                                        <div class="col-md-1">
+                                                                            <p>
+                                                                                <?php
+                                                                                if($log->status == 'masuk') {
+                                                                                    ?>
+                                                                                    <span class="badge primary"><?php echo $log->status ?></span><br>
+                                                                                    <?php }elseif($log->status == 'diproses'){
+                                                                                        ?>
+                                                                                        <span class="badge warning"><?php echo $log->status ?></span><br>
+                                                                                        <?php }else{ ?>
+                                                                                        <span class="badge success"><?php echo $log->status ?></span><br>
+                                                                                        <?php } ?>
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <p><?php echo $log->keterangan ?></p>
+                                                                        </div>
+                                                                            </div>
+                                                                            <?php $j++;} ?>
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button style="margin-left: 45%" type="button" class="btn btn-warning pull-left" data-dismiss="modal">close
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- modal edit user -->
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                <!-- /.row (nested) -->
+                                            </div>
+                                            <!-- /.panel-body -->
+                                        </div>
+                                        <!-- /.panel -->
                                     </div>
-                                    <div class="form-group row">
-                                      <label class="col-sm-4 col-form-label">Password baru :</label>
-                                      <div class="col-sm-8">
-                                        <input type="password" class="form-control" name="new" required>
-                                      </div>
-                                    </div>
-                                    <div class="form-group row">
-                                      <label class="col-sm-4 col-form-label">Konfirmasi :</label>
-                                      <div class="col-sm-8">
-                                        <input type="password" class="form-control" name="re_new" required>
-                                      </div>
-                                    </div>
+                                    <!-- /.col-lg-12 -->
                                 </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /#page-wrapper -->
+                        </div>
+                        <!-- /#wrapper -->
+
+                        <!-- modal setting -->
+                        <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
+                          <div class="modal-dialog">
+                            <div class="modal-content" style="width: 75%; margin-left: 15%">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                    <center>
+                                    <h4 class="modal-title">GANTI PASSWORD</h4>
+                                    </center>
+                                </div>
+                    
+                                <form method="POST" action="<?php echo base_url('admin/ubah_password') ?>">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                
+                                                <div class="form-group row">
+                                                  <label class="col-sm-4 col-form-label">Password lama :</label>
+                                                  <div class="col-sm-8">
+                                                    <input type="password" class="form-control" name="old" required>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                  <label class="col-sm-4 col-form-label">Password baru :</label>
+                                                  <div class="col-sm-8">
+                                                    <input type="password" class="form-control" name="new" required>
+                                                  </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                  <label class="col-sm-4 col-form-label">Konfirmasi :</label>
+                                                  <div class="col-sm-8">
+                                                    <input type="password" class="form-control" name="re_new" required>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
+                                        <input type="submit" class="btn btn-primary" value="Simpan">
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
-                            <input type="submit" class="btn btn-primary" value="Simpan">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-<!-- modal setting -->
+                    </div>
+                    <!-- modal setting -->
 
-    <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
-    <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
-    <script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
-    <script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
-    <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
-    <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
-    <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables/js/jquery.dataTables.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
+                    <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
+                    <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#example1').DataTable()
+                            $('#example2').DataTable({
+                              'paging'      : true,
+                              'lengthChange': false,
+                              'ordering'    : false,
+                              'info'        : true,
+                              'autoWidth'   : false
+                          })
+                        })
+                    </script>
+                </body>
 
-    $("#hilang").show().delay(2000).slideUp(400);
-    </script>
-
-</body>
-
-</html>
+                </html>

@@ -73,16 +73,13 @@
                             <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
-                        </li>
-                        <li>
-                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>

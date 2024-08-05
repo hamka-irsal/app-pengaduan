@@ -18,6 +18,25 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        td[contenteditable="true"] {
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+    </style>
     
 </head>
 
@@ -67,7 +86,7 @@
                             <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
@@ -83,6 +102,9 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
                         </li>
                          <li>
                             <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
@@ -155,7 +177,8 @@
                                         <td><?= $u['alur_pelaporan'] ?></td>
                                         <td><?= $u['struktur_organisasi'] ?></td>
                                         <td>
-                                            <a href="<?= base_url('admin/edit_umum/'.$u['id_umum']) ?>">Edit</a>
+                                            <a href="<?= base_url('admin/edit_umum/'.$u['id_umum']) ?>"><i class="fa fa-edit" style="color: blue"></i></a>
+
                                             <!-- <a href="<?= base_url('umum/delete/'.$u['id_umum']) ?>" onclick="return confirm('Apakah Anda yakin?')">Hapus</a> -->
                                         </td>
                                     </tr>

@@ -18,7 +18,7 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-    
+
 </head>
 
 <body>
@@ -67,7 +67,7 @@
                             <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
@@ -83,6 +83,9 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
                         </li>
                          <li>
                             <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
@@ -103,31 +106,28 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
 
-                    <center>
-                      <?php if($this->session->flashdata('message')): ?>
-                          <div style="margin-top: 10px; width: 50%" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
-                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                              <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
-                              <?php echo $this->session->flashdata('message') ?>
-                        </div>
-                    <?php endif; ?>
-                    </center>
-
-                    <center>
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Data Masuk</h1>
+                <center>
+                  <?php if($this->session->flashdata('message')): ?>
+                      <div style="margin-top: 10px;" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
+                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                          <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
+                          <?php echo $this->session->flashdata('message') ?>
                     </div>
-                    </center>
+                  <?php endif; ?>
+                </center>
+
+                <center>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Data Masuk</h1>
                 </div>
+                </center>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        
                         <div class="panel-heading">
                             Data Pengaduan Masuk
                         </div>
@@ -139,33 +139,43 @@
                                             <th>Tempat</th>
                                             <th>Jam</th>
                                             <th>Tanggal</th>
-                                            <th>Skala Prioritas</th>
-                                            <th>Nilai</th>
+                                            <th>Status</th>
                                             <th>Detail</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
-                                        // $this->load->model('Manalis_pengaduanmsk');
-                                            foreach ($pengaduan as $data) {
-                                                // if($this->Manalis_pengaduanmsk->pengaduan_diproses($data->id_pengaduan) == 0){
+                                            foreach ($masuk as $data) {  
                                         ?>
                                         <tr>
                                             <td><?php echo $data->kategori ?></td>
                                             <td><?php echo $data->nama_ruang ?></td>
                                             <td><?php echo date('H:i:s', strtotime($data->wkt_pengaduan)) ?></td>
                                             <td><?php echo date('d-F-Y', strtotime($data->wkt_pengaduan)) ?></td>
-                                            <td><?php echo $data->skala_prioritas ?></td>
-                                            <td><?php echo $data->nilai_prioritas ?></td>
+                                            <td style="text-align: center;">
+                                                <?php
+                                                if ($data->status == 'masuk') {
+                                                    ?>
+                                                    <span class="badge badge primary"><?php echo $data->status ?></span>
+                                                    <?php
+                                                }elseif($data->status == 'diproses'){
+                                                    ?>
+                                                    <span class="badge badge warning"><?php echo $data->status ?></span>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                    <span class="badge badge success"><?php echo $data->status ?></span>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </td>
                                             <td>
-                                                <a href="<?php echo base_url('admin/detail_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Detail </a>
-                                                <!-- <a href="<?php echo base_url('admin/tambah_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-edit"></span> Ubah Pengaduan </a> -->
-                                                <a data-toggle="modal" data-target="#skala_prioritas" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-edit"></span> Ubah Pengaduan </a>
-
+                                                
+                                                <a href="<?php echo base_url('admin/detail_datamasuk/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Detail </a>
                                             </td>
                                         </tr>
                                         <?php 
-                                        }
+                                    }
                                     ?>
                                         
                                     </tbody>
@@ -189,18 +199,17 @@
             <div class="modal-dialog">
                 <div class="modal-content" style="width: 75%; margin-left: 15%">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                         <center>
-                        <h4 class="modal-title">GANTI PASSWORD</h4>
+                            <h4 class="modal-title">GANTI PASSWORD</h4>
                         </center>
                     </div>
                     
-                    <form method="POST" action="<?php echo base_url('analis/ubah_password_m') ?>">
+                    <form method="POST" action="<?php echo base_url('koordinator/ubah_password_masuk') ?>">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
-
                                     <div class="form-group row">
                                       <label class="col-sm-4 col-form-label">Password lama :</label>
                                       <div class="col-sm-8">
@@ -219,7 +228,6 @@
                                         <input type="password" class="form-control" name="re_new" required>
                                       </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -232,44 +240,6 @@
             </div>
         </div>
 <!-- modal setting -->
-
-  <!-- modal tambah ruang -->
-  <div>
-        <div class="modal modal-primary fade" id="skala_prioritas" style="margin-top: 5%">
-          <div class="modal-dialog">
-            <div class="modal-content" style="width: 70%; margin-left: 15%">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">UBAH SKALA PRIORITAS</h4>
-              </div>
-
-              <form method="POST" action="<?php echo base_url('admin/proses_topsis') ?>">
-                  <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Skala Prioritas</label>
-                                <input class="form-control" type="text" name="skala_prioritas" value="<?php echo $data->skala_prioritas ?>">
-                                <input class="form-control" type="hidden" name="id_pengaduan" value="<?php echo $data->id_pengaduan ?>">
-                            </div>
-                            <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Nilai Prioritas</label>
-                                <input class="form-control" type="text" name="nilai_prioritas" value="<?php echo $data->nilai_prioritas ?>">
-                                <input class="form-control" type="hidden" name="id_pengaduan" value="<?php echo $data->id_pengaduan ?>">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
-                            <input type="submit" class="btn btn-primary" value="simpan">
-                        </div>
-                    </div>
-                    </div>
-                   
-            </form>
-        </div>
-        <!-- /.modal-content -->
-    </div>
 
     <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
     <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
@@ -285,9 +255,9 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
-
-        $("#hilang").show().delay(2000).slideUp(400);
     });
+
+    $("#hilang").show().delay(2000).slideUp(400);
     </script>
 
 </body>

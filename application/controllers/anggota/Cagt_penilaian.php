@@ -11,8 +11,10 @@ class Cagt_penilaian extends CI_Controller {
         $this->load->library('form_validation');
     }
 
-    public function index() {
-        $data['penilaian'] = $this->Magt_penilaian->get_all_penilaian();
+    public function index()
+    {
+        $this->load->model('Magt_penilaian');
+        $data['penilaian'] = $this->Magt_penilaian->get_penilaian_count_with_date();
         $this->load->view('agt_penilaian', $data);
     }
 

@@ -75,7 +75,7 @@
                             <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
@@ -91,6 +91,9 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
                         </li>
                          <li>
                             <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
@@ -127,66 +130,64 @@
             var ctx = document.getElementById('penilaianChart').getContext('2d');
 
             var data = {
-                labels: ['Sangat Memuaskan', 'Memuaskan', 'Kurang Memuaskan', 'Tidak Memuaskan'],
+                labels: [
+                    <?php 
+                        foreach ($penilaian as $p) {
+                            echo '"' . $p['tgl_penilaian'] . '", ';
+                        }
+                    ?>
+                ],
                 datasets: [
                     {
-                        label: 'Pendapat 1',
+                        label: 'Pendapat 1 - Sangat Memuaskan',
                         data: [
-                            <?php echo $penilaian['pendapat1_sangat_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat1_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat1_kurang_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat1_tidak_memuaskan']; ?>
+                            <?php 
+                                foreach ($penilaian as $p) {
+                                    echo $p['pendapat1_sangat_memuaskan'] . ', ';
+                                }
+                            ?>
                         ],
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Pendapat 2',
+                        label: 'Pendapat 2 - Memuaskan',
                         data: [
-                            <?php echo $penilaian['pendapat2_sangat_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat2_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat2_kurang_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat2_tidak_memuaskan']; ?>
+                            <?php 
+                                foreach ($penilaian as $p) {
+                                    echo $p['pendapat2_memuaskan'] . ', ';
+                                }
+                            ?>
                         ],
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Pendapat 3',
+                        label: 'Pendapat 3 - Kurang Memuaskan',
                         data: [
-                            <?php echo $penilaian['pendapat3_sangat_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat3_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat3_kurang_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat3_tidak_memuaskan']; ?>
+                            <?php 
+                                foreach ($penilaian as $p) {
+                                    echo $p['pendapat3_kurang_memuaskan'] . ', ';
+                                }
+                            ?>
                         ],
                         backgroundColor: 'rgba(255, 206, 86, 0.2)',
                         borderColor: 'rgba(255, 206, 86, 1)',
                         borderWidth: 1
                     },
                     {
-                        label: 'Pendapat 4',
+                        label: 'Pendapat 4 - Tidak Memuaskan',
                         data: [
-                            <?php echo $penilaian['pendapat4_sangat_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat4_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat4_kurang_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat4_tidak_memuaskan']; ?>
+                            <?php 
+                                foreach ($penilaian as $p) {
+                                    echo $p['pendapat4_tidak_memuaskan'] . ', ';
+                                }
+                            ?>
                         ],
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Pendapat 5',
-                        data: [
-                            <?php echo $penilaian['pendapat5_sangat_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat5_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat5_kurang_memuaskan']; ?>,
-                            <?php echo $penilaian['pendapat5_tidak_memuaskan']; ?>
-                        ],
-                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                        borderColor: 'rgba(153, 102, 255, 1)',
                         borderWidth: 1
                     }
                 ]

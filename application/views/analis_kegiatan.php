@@ -18,7 +18,23 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-		
+	<style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .gallery-item {
+            margin: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            width: 200px;
+        }
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 	</head>
 	
 	<body>
@@ -55,7 +71,7 @@
             </section>
 
             <!-- MENU -->
-            <div class="navbar-default sidebar" role="navigation">
+			<div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
@@ -72,16 +88,13 @@
                             <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
-                        </li>
-                        <li>
-                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
@@ -128,29 +141,14 @@
 						<div class="tab-content">
 							<div id="mahasiswa" class="tab-pane fade in active">
 								<!-- data mahasiswa -->
-								<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example1">
-									<thead>
-										<tr>
-											<th>No</th>
-											<th style="width: 35%">Nama Kegiatan</th>
-											<th>Foto Kegiatan</th>
-										</tr>
-									</thead>
-									<tbody>
-                                        <?php $i=1; ?>
-                                        <?php foreach ($kegiatan as $k) : ?>
-                                        <tr>
-                                            <td><?php echo $i++; ?></td>
-                                            <td><?php echo $k['nama_kegiatan']; ?></td>
-                                            <td><img src="<?php echo base_url('assets/gambar/'.$k['foto']); ?>" width="100"></td>
-                                            <!-- <td>
-                                                <a class="fa fa-edit" href="<?php echo site_url('admin/edit_kegiatan/'.$k['id_kegiatan']); ?>"></a>
-                                                <a onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?');" href="<?php echo base_url('admin/hapus_kegiatan/'.$k['id_kegiatan']); ?>"><i class="fa fa-trash-o" style="color: red"></i>
-                                            </td> -->
-                                        </tr>
-                                        <?php endforeach; ?>
-									</tbody>
-								</table>
+								<div class="gallery">
+									<?php foreach ($kegiatan as $item): ?>
+										<div class="gallery-item">
+											<h2><?php echo $item['nama_kegiatan']; ?></h2>
+											<img src="<?php echo base_url('assets/gambar/' . $item['foto']); ?>" alt="<?php echo $item['nama_kegiatan']; ?>">
+										</div>
+									<?php endforeach; ?>
+								</div>
                             </div>
 							
 						</div>

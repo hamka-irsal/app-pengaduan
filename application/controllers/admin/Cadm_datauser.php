@@ -9,7 +9,7 @@ class Cadm_datauser extends BaseController {
 		$this->load->model('Madmin_datauser');
 		$this->load->database();
 		$this->load->helper(array('url','download'));
-		$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
+		// $this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
 		$this->isLoggedIn();
 	}
 

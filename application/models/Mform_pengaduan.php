@@ -118,7 +118,8 @@
 				);
 				return $this->db->insert('log', $data2);
 				
-			}else{
+			}
+			else{
 				
 				$data1 = array(
 				'tgl_kejadian' => $waktu,
