@@ -108,7 +108,7 @@
 
                     <center>
                     <div class="col-lg-12">
-                        <h1 class="page-header">Kirim Umpan Balik</h1>
+                        <h1 class="page-header">Kirim Umpan Balik Ke Admin</h1>
                     </div>
                     </center>
                 </div>

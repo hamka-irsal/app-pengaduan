@@ -139,6 +139,9 @@ $route['admin/kirim/(:num)'] = 'admin/Cadm_feedback/kirimUmpanBalik/$1';
 $route['admin/tampilkan/(:num)'] = 'admin/Cadm_feedback/tampilkanUmpanBalik/$1';
 $route['admin/pesan/(:num)'] = 'admin/Cadm_feedback/tampilkanPesanAdmin/$1';
 
+$route['admin/data_laporan'] = 'admin/Cadm_laporan/selesai';
+
+
 //user
 $route['user'] = 'user/Cform';
 $route['user/home'] = 'user/Cform/home';

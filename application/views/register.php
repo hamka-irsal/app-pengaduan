@@ -103,6 +103,7 @@
                         <select  class="form-control" name="level"  id="level" required>
                           <option value="">pilih level</option>
                           <?php foreach($levels as $level): ?>
+                            
                             <option value="<?php echo $level->id_level; ?>"><?php echo $level->nama_level; ?></option>
                          <?php endforeach; ?>
                         </select> 

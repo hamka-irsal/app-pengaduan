@@ -73,6 +73,9 @@
                             <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
+                            <a href=<?php echo base_url('admin/data_laporan')?>><i class="fa fa-send"></i><b>&nbsp; Hasil Pelaporan</b></a>
+                        </li>
+                        <li>
                             <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
                         </li>
                         <li>
@@ -120,7 +123,7 @@
 
                     <center>
                     <div class="col-lg-12">
-                        <h1 class="page-header">Kirim Umpan Balik</h1>
+                        <h1 class="page-header">Kirim Umpan Balik Ke User</h1>
                     </div>
                     </center>
                 </div>

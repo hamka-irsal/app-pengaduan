@@ -19,5 +19,13 @@ class Madm_pengaduanmsk extends CI_Model {
         $query = $this->db->get('pengaduan');
         return $query->row();
     }
+
+    public function get_selesai_pengaduan()
+    {
+        // Mengambil data pengaduan yang sudah selesai
+        $this->db->where('status', 'selesai');
+        $query = $this->db->get('pengaduan');
+        return $query->result_array();
+    }
 }
 ?>

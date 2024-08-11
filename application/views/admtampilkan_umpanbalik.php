@@ -18,7 +18,65 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-    
+    <style>
+       body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.complaint-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.complaint-item {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 15px 0;
+}
+
+.complaint-item:last-child {
+    border-bottom: none;
+}
+
+.complainant-name {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.messages {
+    padding-left: 20px;
+}
+
+.message {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+}
+
+.message:last-child {
+    margin-bottom: 0;
+}
+    </style>
 </head>
 
 <body>
@@ -73,6 +131,9 @@
                             <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
+                            <a href=<?php echo base_url('admin/data_laporan')?>><i class="fa fa-send"></i><b>&nbsp; Hasil Pelaporan</b></a>
+                        </li>
+                        <li>
                             <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
                         </li>
                         <li>
@@ -120,7 +181,7 @@
 
                     <center>
                     <div class="col-lg-12">
-                        <h1 class="page-header">Kirim Umpan Balik</h1>
+                        <h1 class="page-header">Umpan Balik Dari User</h1>
                     </div>
                     </center>
                 </div>
@@ -153,6 +214,7 @@
                             <?php else: ?>
                                 <p>Tidak ada pesan untuk ditampilkan.</p>
                             <?php endif; ?>
+
                             <!-- /.row (nested) -->
                             </div>
                         <!-- /.panel-body -->

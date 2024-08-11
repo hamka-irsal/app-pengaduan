@@ -235,8 +235,18 @@
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Uraian</label>
+                    <input type="text" class="form-control" name="uraian" id="uraian" placeholder="Silahkan isi uraian">
+                  </div>
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Penyedia</label>
+                    <input type="text" class="form-control" name="penyedia" id="penyedia" placeholder="Silahkan isi penyedia">
+                  </div>
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Nama Bahan</label>
-                    <input type="text" class="form-control" name="nama_bahan" id="nama_bahan" placeholder="Silahkan isi bahan">
+                    <input type="text" class="form-control" name="bahan" id="bahan" placeholder="Silahkan isi bahan">
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">

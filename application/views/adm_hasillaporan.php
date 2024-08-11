@@ -61,26 +61,44 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href=<?php echo base_url('anggota')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
+                            <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('anggota/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
+                            <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('anggota/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
+                            <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('anggota/data_umpanbalik')?> ><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('admin/data_laporan')?>><i class="fa fa-send"></i><b>&nbsp; Hasil Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('anggota/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                            <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('anggota/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                            <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
+                        </li>
+                         <li>
+                            <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                        </li>
+                       <!-- <li>
+                            <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -105,7 +123,7 @@
 
                     <center>
                     <div class="col-lg-12">
-                        <h1 class="page-header">Kirim Umpan Balik Ke Admin</h1>
+                        <h1 class="page-header">Hasil Pelaporan</h1>
                     </div>
                     </center>
                 </div>
@@ -116,19 +134,46 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         
+                        <div class="panel-heading">
+                            Data Hasil Pelaporan
+                        </div>
                             <div class="panel-body">
-                            <?php if ($pengaduan): ?>
-                                <p><strong>Nama Pengadu:</strong> <?= htmlspecialchars($pengaduan->nama); ?></p>
-
-                                <form action="<?= site_url('anggota/kirimPesan/' . $pengaduan->id_pengaduan); ?>" method="post">
-                                    <label for="pesan">Pesan:</label><br>
-                                    <textarea name="pesan" id="pesan" rows="5" cols="50" required></textarea><br><br>
-
-                                    <input type="submit" value="Kirim Pesan">
-                                </form>
-                            <?php else: ?>
-                                <p>Pengaduan tidak ditemukan.</p>
-                            <?php endif; ?>
+                                <table width="100%" class="table table-striped table-hover" id="dataTables-example" class="text-center">
+                                <thead>
+                                        <tr>
+                                            <th>ID Pelapor</th>
+                                            <th>Nama Pelapor</th>
+                                            <th>Jabatan</th>
+                                            <th>Uraian</th>
+                                            <th>Penyedia</th>
+                                            <th>Bahan</th>
+                                            <th>Dokumentasi</th>
+                                            <th>Status</th>
+                                            <th>Waktu Pelaporan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (count($pengaduan_selesai) > 0): ?>
+                                            <?php foreach ($pengaduan_selesai as $row): ?>
+                                                <tr>
+                                                    <td><?= $row['id_pengaduan']; ?></td>
+                                                    <td><?= $row['nama']; ?></td>
+                                                    <td><?= $row['jabatan']; ?></td>
+                                                    <td><?= $row['uraian']; ?></td>
+                                                    <td><?= $row['penyedia']; ?></td>
+                                                    <td><?= $row['bahan']; ?></td>
+                                                    <td><img src="<?php echo base_url('assets/gambar/'.$row['gambar']); ?>" width="100"></td>
+                                                    <td><?= $row['status']; ?></td>
+                                                    <td><?= $row['wkt_pengaduan']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr>
+                                                <td colspan="5" class="text-center">Tidak ada pengaduan yang selesai</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
                             <!-- /.row (nested) -->
                             </div>
                         <!-- /.panel-body -->

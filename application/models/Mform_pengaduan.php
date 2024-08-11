@@ -65,6 +65,9 @@
 			$inventaris = $this->input->post('inventaris');
 			$jurusan = $this->input->post('jurusan');
 			$studi = $this->input->post('studi');
+			$uraian = $this->input->post('uraian');
+			$penyedia = $this->input->post('studi');
+			$bahan = $this->input->post('bahan');
 			// $lokasi = $this->input->post('lokasi');
 			$nama_pengguna = $this->input->post('nama_pengguna');
 			$hidden = $this->input->post('hidden');
@@ -97,6 +100,9 @@
 				'inventaris' => $inventaris,
 				'jurusan' => $jurusan,
 				'studi' => $studi,
+				'uraian' => $uraian,
+				'penyedia' => $penyedia,
+				'bahan' => $bahan,
 				// 'lokasi' => $lokasi,
 				'gambar' => $this->upload->data()['file_name']
 				);
