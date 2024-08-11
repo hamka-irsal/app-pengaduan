@@ -18,7 +18,7 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-   
+
 </head>
 
 <body>
@@ -73,13 +73,10 @@
                             <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
-                        </li>
-                        <li>
-                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
@@ -99,7 +96,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <center>
-                        <h1 class="page-header">Umpan Balik</h1>
+                        <h1 class="page-header">Data Masuk</h1>
                     </center>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -116,7 +113,9 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align: center; width: 100px">ID Pengaduan</th>
-                                        <th style="text-align: center;">Ruang</th>
+                                        <th style="text-align: center;">Tempat</th>
+                                        <th style="text-align: center;">Jam Kelola</th>
+                                        <th style="text-align: center;">Tgl Kelola</th>
                                         <th style="text-align: center;">Status</th>
                                         <th style="text-align: center;">Waktu</th>
                                         <th style="text-align: center; width: 50px">Aksi</th>
@@ -131,6 +130,8 @@
                                         <tr>
                                             <td style="text-align: center;"><?php echo $data->id_pengaduan ?></td>
                                             <td><?php echo $data->nama_ruang ?></td>
+                                            <td><?php echo date('H:i:s', strtotime($data->timestamp)) ?></td>
+                                            <td><?php echo date('d-F-Y', strtotime($data->timestamp)) ?></td>
                                             <td style="text-align: center;">
                                                 <?php
                                                 if ($data->status == 'masuk') {
@@ -152,7 +153,11 @@
                                                 <td><?php //echo date('d-F-Y', strtotime($data->timestamp)) ?></td> -->
                                                 <td><?= $data->timestamp ?></td>
                                                 <td>
-                                                    <i class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan ?>">&nbsp;Detail</i>
+                                                    <!-- <i class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan ?>">&nbsp;Detail</i> -->
+                                                    <a href="<?php echo base_url('analis/detail_log/'.$data->id_pengaduan) ?>"><i class="fa fa-eye" style="color: blue"></i></a>
+                                                    <a href="<?= base_url('analis/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
+                                                    <a href="<?= site_url('analis/tampilkan/' . $data->id_pengaduan); ?>"><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="<?= site_url('analis/pesan/' . $data->id_pengaduan); ?>"><i class="fa fa-send" style="color: brown"></i></a>
                                                 </td>
                                             </tr>
                                             <!-- modal edit user -->
@@ -190,8 +195,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <?php 
-                                                                $this->load->model('Manalis_umpanbalik');
-                                                                $log_activity = $this->Manalis_umpanbalik->detail_log($data->id_pengaduan);
+                                                                $this->load->model('Magt_umpanbalik');
+                                                                $log_activity = $this->Magt_umpanbalik->detail_log($data->id_pengaduan);
                                                                 $j = 1;
                                                                 foreach ($log_activity as $log) { 
                                                                     ?> 

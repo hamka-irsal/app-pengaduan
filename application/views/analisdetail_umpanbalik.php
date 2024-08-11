@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-	
-	<head>
-		
+
+<head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-		
-    <title>Admin</title>
-		
+
+    <title>Detail Pengaduan</title>
+
     <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-	<style>
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .gallery-item {
-            margin: 10px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            width: 200px;
+        table, th, td {
+            border: 1px solid black;
         }
-        .gallery-item img {
-            max-width: 100%;
-            height: auto;
+        th, td {
+            padding: 8px;
+            text-align: left;
         }
     </style>
-	</head>
-	
-	<body>
-		
+
+</head>
+
+<body>
+
     <div id="wrapper">
-			
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
             <div class="navbar-header">
                 <a href="admin" style="color: #ffffff; font-size: 20px;"><img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 50px;"><b> Politeknik Negeri Ujung Pandang</b></a>
             </div>
@@ -71,7 +68,7 @@
             </section>
 
             <!-- MENU -->
-			<div class="navbar-default sidebar" role="navigation">
+            <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
@@ -105,114 +102,110 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-	
-	<!-- Page Content -->
-	<div id="page-wrapper">
-		<div class="row">
-			<div class="col-lg-12">
-				<center>
-	          <?php if($this->session->flashdata('message')): ?>
-	              <div style="margin-top: 10px;" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
-	                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	                  <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
-	                  <?php echo $this->session->flashdata('message') ?>
-	            </div>
-	          <?php endif; ?>
-	        </center>
-				<center>
-				<h1 class="page-header">Data Kegiatan</h1>
-				</center>
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
 
-						<!-- <a  href=<?php echo base_url('admin/tambah_kegiatan')?> class="btn btn-primary btn-md" style="margin-left: 74%"><span class="fa fa-plus"></span> Tambah Kegiatan </a> -->
-						
-					</div>
-					<div class="panel-body">
-						<div class="tab-content">
-							<div id="mahasiswa" class="tab-pane fade in active">
-								<!-- data mahasiswa -->
-								<div class="gallery">
-									<?php foreach ($kegiatan as $item): ?>
-										<div class="gallery-item">
-											<h2><?php echo $item['nama_kegiatan']; ?></h2>
-											<img src="<?php echo base_url('assets/gambar/' . $item['foto']); ?>" alt="<?php echo $item['nama_kegiatan']; ?>">
-										</div>
-									<?php endforeach; ?>
-								</div>
-                            </div>
-							
-						</div>
-						
-						<!-- /.row (nested) -->
-					</div>
-					<!-- /.panel-body -->
-				</div>
-        <!-- /.panel -->
-			</div>
-			<!-- /.col-lg-12 -->
-		</div>
-		<!-- /.row -->
-		
-		<!-- modal setting -->
-		<div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
-			<div class="modal-dialog">
-				<div class="modal-content" style="width: 75%; margin-left: 15%">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span></button>
-						<center>
-						<h4 class="modal-title">GANTI PASSWORD</h4>
-						</center>
-					</div>
-					
-					<form method="POST" action="<?php echo base_url('admin/ubah_password') ?>">
-						<div class="modal-body">
-							<div class="row">
-                				<div class="col-md-12">
-									
-									<div class="form-group row">
-					                  <label class="col-sm-4 col-form-label">Password lama :</label>
-					                  <div class="col-sm-8">
-					                    <input type="password" class="form-control" name="old" required>
-					                  </div>
-					                </div>
-					                <div class="form-group row">
-					                  <label class="col-sm-4 col-form-label">Password baru :</label>
-					                  <div class="col-sm-8">
-					                    <input type="password" class="form-control" name="new" required>
-					                  </div>
-					                </div>
-					                <div class="form-group row">
-					                  <label class="col-sm-4 col-form-label">Konfirmasi :</label>
-					                  <div class="col-sm-8">
-					                    <input type="password" class="form-control" name="re_new" required>
-					                  </div>
-					                </div>
-
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
-							<input type="submit" class="btn btn-primary" value="Simpan">
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- modal setting -->
-		
-	</div>
-	<!-- /#page-wrapper -->
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="row">
+                <center>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Detail Pengaduan Pengguna</h1>
+                </div>
+                </center>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+          
+            <div class="row">
+                <div class="col-lg-12">
+                <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;"><h5><b>POLITEKNIK <br> NEGERI <br> UJUNG PANDANG</b></h5></th>
+                <th style="text-align: center;"><h5><b>LAPORAN KERUSAKAN <br> UPT. TEKNOLOGI PERMESINAN DAN <br> PERALATAN PENUNJANG AKADEMIK</b></h5></th>
+                <th style="text-align: center;">NO LAPORAN : <?= $pengaduan['id_pengaduan']; ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>NAMA ALAT/MESIN :</td>
+                <td><?= $pengaduan['alat']; ?></td>
+                <td>NO INVENT : <?= $pengaduan['inventaris']; ?></td>
+            </tr>
+            <tr>
+                <td>SPESIFIKASI :</td>
+                <td><?= $pengaduan['spesifikasi']; ?></td>
+                <td>TANGGAL : <?= $pengaduan['tgl_kejadian']; ?></td>
+            </tr>
+            <tr>
+                <td>KEJADIAN :</td>
+                <td><?= $pengaduan['kejadian']; ?></td>
+                <td>JURUSAN/UNIT : <?= $pengaduan['jurusan']; ?></td>
+            </tr>
+            <tr>
+                <td>KERUSAKAN :</td>
+                <td><?= $pengaduan['penyebab']; ?></td>
+                <td>PROGRAM STUDI : <?= $pengaduan['studi']; ?></td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center;"><h5><b>DILAPORKAN OLEH</b></h5></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>NAMA :  <?= $pengaduan['nama']; ?></td>
+            </tr>
+            <tr>
+                <td>NIP/NIKH :  <?= $pengaduan['nip']; ?></td>
+            </tr>
+            <tr>
+                <td>TANDA TANGAN : </td>
+            </tr>
+            <tr>
+                <td>CATATAN TAMBAHAN : </td>
+            </tr>
+            <tr>
+                <td>URAIAN : </td>
+            </tr>
+            <tr>
+                <td>PENYEDIA : </td>
+            </tr>
+            <tr>
+                <td>BAHAN : </td>
+            </tr>
+            <tr>
+                <td>DOKUMENTASI : <img src="<?= base_url('assets/gambar/'.$pengaduan['gambar']); ?>" alt="Gambar Pengaduan" style="width: 100px; height: 100px;"></td>
+            </tr>
+        </tbody>
+    </table>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row (nested) -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
 </div>
+<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
+
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+</div>
+
 <!-- /#wrapper -->
+
 
 <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
 <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
@@ -221,23 +214,56 @@
 <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
 <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
 <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
+<script src=<?php echo base_url("assets/dist/jquery.min.js")?> ></script>
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-	$(document).ready(function() {
-		$('#dataTables-example1').DataTable({
-			responsive: true
-		}),
-		$('#dataTables-example2').DataTable({
-			responsive: true
-		}),
-		$('#dataTables-example3').DataTable({
-			responsive: true
-		});
-	});
-
-	$("#hilang").show().delay(3000).slideUp(400);
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
 </script>
+
+<script type="text/javascript">
+        $(document).ready(function(){ //Make script DOM ready
+        $('#myselect').change(function() { //jQuery Change Function
+        var opval = $(this).val(); //Get value from select element
+        if(opval=="secondoption"){ //Compare it and if true
+            $('#myModal').modal("show"); //Open Modal
+        }
+    });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function(){
+
+$.ajaxSetup({
+type:"post",
+cache:false,
+dataType: "json"
+});
+
+
+$(document).on("click","td",function(){
+$(this).find("span[class~='caption']").hide();
+$(this).find("input[class~='editor']").fadeIn().focus();
+});
+});
+</script>
+
+<script>
+$(function(){
+
+  $('img').mouseenter(function(){
+  $('img').css('width','70%');
+ });
+ $('img').mouseleave(function(){
+  $('img').css('width','150');
+});});
+</script>
+
 </body>
 
 </html>

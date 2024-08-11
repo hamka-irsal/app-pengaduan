@@ -240,7 +240,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div >
-                                                            <label>Laporan :</label>
+                                                            <label>Pesan Ke User :</label>
                                                             <textarea class="form-control" type="text" name="keterangan"></textarea>
                                                             <input type="hidden" name="id_pengaduan" value="<?php echo $data->id_pengaduan ?>">
                                                         </div>

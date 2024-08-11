@@ -143,7 +143,7 @@
                                             <th>Jam</th>
                                             <th>Tanggal</th>
                                             <th>Status</th>
-                                            <th>Detail</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -175,8 +175,9 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('admin/detail_pengaduan/'.$data->id_pengaduan) ?>" class="btn btn-primary" style="margin-left: 10px"><span class="fa fa-eye"></span> Ubah Status </a>
-
+                                                <a href="<?php echo base_url('admin/detail_pengaduan/'.$data->id_pengaduan) ?>"><i class="fa fa-edit" style="color: blue"></i></a>
+                                                <a href="<?= site_url('admin/pesan/' . $data->id_pengaduan); ?>"><i class="fa fa-eye" style="color: green"></i></a>
+                                                <a href="<?= site_url('admin/form/' . $data->id_pengaduan); ?>"><i class="fa fa-send" style="color: orange"></i></a>
                                             </td>
                                         </tr>
                                         <?php 

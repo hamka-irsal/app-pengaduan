@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Pegawai</title>
+    <title>Admin</title>
 
     <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?>  rel="stylesheet">
@@ -18,7 +18,7 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-
+    
 </head>
 
 <body>
@@ -61,28 +61,40 @@
                     <ul class="nav" id="side-menu">
 
                         <li>
-                            <a href=<?php echo base_url('analis')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
+                            <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
+                            <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                            <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
+                            <a href=<?php echo base_url('admin/data_log')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                            <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
                         </li>
-                        <!-- <li>
-                            <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-home"></i><b>&nbsp; Data Lokasi</b></a>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
+                        </li>
+                         <li>
+                            <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
+                        </li>
+                        <li>
+                            <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
+                        </li>
+                       <!-- <li>
+                            <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
                         </li> -->
                     </ul>
                 </div>
@@ -104,11 +116,12 @@
                               <?php echo $this->session->flashdata('message') ?>
                         </div>
                     <?php endif; ?>
-                    
                     </center>
 
                     <center>
-                        <h1 class="page-header">Hasil Perbaikan</h1>
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Kirim Umpan Balik</h1>
+                    </div>
                     </center>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -117,51 +130,29 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Form Elements
-                        </div>
+                        
                             <div class="panel-body">
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Kategori</th>
-                                            <th>Tempat</th>
-                                            <th>Jam kelola</th>
-                                            <th>Tanggal kelola</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            $this->load->model('Manalis_riwayatpeng');
-                                        $i = 1;
-                                            foreach ($proses as $data)
-                                            {
-                                                
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $i; ?></td>
-                                            <td><?php echo $data->kategori ?></td>
-                                            <td><?php echo $data->nama_ruang ?></td>
-                                            <td><?php echo date('H:i:s', strtotime($data->timestamp)) ?></td>
-                                            <td><?php echo date('d-F-Y', strtotime($data->timestamp)) ?></td>
-                                            <td>
-                                            <?php
-                                                if($data->status == "diproses"){
-                                            ?>
-                                                <span class="badge warning"><?php echo $data->status ?></span>
-                                            <?php }else{ ?>
-                                                <span class="badge success">Selesai</span>
-                                            <?php }?>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                            $i++;
-                                            }
-                                        ?>
-                                    </tbody>
-                                </table>
+                            <?php if ($pengaduan): ?>
+                                <p><strong>Nama Pengadu:</strong> <?= htmlspecialchars($pengaduan->nama); ?></p>
+                            <?php else: ?>
+                                <p>Pengaduan tidak ditemukan.</p>
+                            <?php endif; ?>
+
+                            <h2>Daftar Pesan</h2>
+
+                            <?php if (!empty($pesan_list)): ?>
+                                <ul>
+                                    <?php foreach ($pesan_list as $pesan): ?>
+                                        <li>
+                                            <strong><?= htmlspecialchars($pesan->pengirim); ?>:</strong> 
+                                            <?= htmlspecialchars($pesan->pesan); ?> 
+                                            <em>(<?= date('d M Y, H:i', strtotime($pesan->created_at)); ?>)</em>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                <p>Tidak ada pesan untuk ditampilkan.</p>
+                            <?php endif; ?>
                             <!-- /.row (nested) -->
                             </div>
                         <!-- /.panel-body -->
@@ -178,19 +169,21 @@
 
     <!-- modal setting -->
         <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
-          <div class="modal-dialog">
-            <div class="modal-content" style="width: 75%; margin-left: 15%">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                    <center>
-                    <h4 class="modal-title">GANTI PASSWORD</h4>
-                    </center>
-                </div>
-                <form method="POST" action="<?php echo base_url('analis/ubah_password_r') ?>">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 75%; margin-left: 15%">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <center>
+                        <h4 class="modal-title">GANTI PASSWORD</h4>
+                        </center>
+                    </div>
+                    
+                    <form method="POST" action="<?php echo base_url('analis/ubah_password_m') ?>">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12">
+
                                     <div class="form-group row">
                                       <label class="col-sm-4 col-form-label">Password lama :</label>
                                       <div class="col-sm-8">
@@ -209,18 +202,57 @@
                                         <input type="password" class="form-control" name="re_new" required>
                                       </div>
                                     </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
+                            <input type="submit" class="btn btn-primary" value="Simpan">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<!-- modal setting -->
+
+  <!-- modal tambah ruang -->
+  <div>
+        <div class="modal modal-primary fade" id="skala_prioritas" style="margin-top: 5%">
+          <div class="modal-dialog">
+            <div class="modal-content" style="width: 70%; margin-left: 15%">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">UBAH SKALA PRIORITAS</h4>
+              </div>
+
+              <form method="POST" action="<?php echo base_url('admin/proses_topsis') ?>">
+                  <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Skala Prioritas</label>
+                                <input class="form-control" type="text" name="skala_prioritas" value="<?php echo $data->skala_prioritas ?>">
+                                <input class="form-control" type="hidden" name="id_pengaduan" value="<?php echo $data->id_pengaduan ?>">
+                            </div>
+                            <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Nilai Prioritas</label>
+                                <input class="form-control" type="text" name="nilai_prioritas" value="<?php echo $data->nilai_prioritas ?>">
+                                <input class="form-control" type="hidden" name="id_pengaduan" value="<?php echo $data->id_pengaduan ?>">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
+                            <input type="submit" class="btn btn-primary" value="simpan">
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
-                    <input type="submit" class="btn btn-primary" value="Simpan">
-                </div>
+                    </div>
+                   
             </form>
         </div>
+        <!-- /.modal-content -->
     </div>
-</div>
-<!-- modal setting -->
 
     <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
     <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
@@ -236,24 +268,9 @@
         $('#dataTables-example').DataTable({
             responsive: true
         });
+
+        $("#hilang").show().delay(2000).slideUp(400);
     });
-    </script>
-
-    <script type="text/javascript">
-        $(function () {
-            $('#example1').DataTable()
-            $('#example2').DataTable({
-              'paging'      : true,
-              'lengthChange': false,
-              'ordering'    : false,
-              'info'        : true,
-              'autoWidth'   : false
-          })
-        })
-    </script>
-
-    <script type="text/javascript">
-        $("#hilang").show().delay(1500).slideUp(400);
     </script>
 
 </body>

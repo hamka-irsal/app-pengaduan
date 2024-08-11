@@ -19,6 +19,38 @@
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .card h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .card p {
+            color: #555;
+            margin: 5px 0;
+        }
+        .card .role {
+            margin-top: 15px;
+            padding: 5px;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -73,13 +105,10 @@
                             <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/riwayat_pengaduan')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
-                        </li>
-                        <li>
-                            <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
@@ -96,18 +125,13 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="row">
-                <center>
-				    <h1 class="page-header">Data Diri</h1>
-				</center>
-                <center>
-                <div class="col-lg-12">
-                    <h2 class="page-header">Nama    : <?php echo $this->session->userdata('nama_pengguna'); ?></a></h2>
-                    <h2 class="page-header">Nip     : <?php echo $this->session->userdata('username'); ?></a></h2>
-                    <h2 class="page-header">Role    : <?php echo $this->session->userdata('role'); ?></a></h2>
+        <div class="row">
+                <div class="card">
+                    <h2>Data Diri</h2>
+                    <p><strong>Nama:</strong> <?php echo $this->session->userdata('nama_pengguna'); ?></p>
+                    <p><strong>NIM:</strong> <?php echo $this->session->userdata('username'); ?></p>
+                    <p class="role"><strong>Role:</strong> <?php echo $this->session->userdata('role'); ?></p>
                 </div>
-                </center>
-                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">

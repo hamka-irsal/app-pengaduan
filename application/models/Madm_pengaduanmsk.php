@@ -13,5 +13,11 @@ class Madm_pengaduanmsk extends CI_Model {
         $this->db->from('pengaduan');
         return $this->db->count_all_results();
     }
+	
+    public function getPengaduanById($id_pengaduan) {
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        $query = $this->db->get('pengaduan');
+        return $query->row();
+    }
 }
 ?>

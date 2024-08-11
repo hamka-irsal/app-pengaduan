@@ -64,6 +64,12 @@ class Madmin_datauser extends CI_Model {
 		return $this->db->insert('user',$data);
 	}
 
+	public function getPenggunaById($id_pengaduan) {
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        $query = $this->db->get('pengaduan');
+        return $query->row(); // Mengembalikan satu baris data
+    }
+
 	// public function cek_user()
 	// {	//strtolower = biar hurufnya kecil semua
 	// 	return $this->db->where('nama_pengguna')->or_where('email', $this->input->post('nama_pengguna').$this->input->post('email')))->where('deleted', 0)->get('user')->result();

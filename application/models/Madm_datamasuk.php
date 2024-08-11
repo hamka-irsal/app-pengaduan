@@ -21,6 +21,7 @@ class Madm_datamasuk extends CI_Model
 		return $this->db->get()->result();
 	}
 
+
 	public function detail_koor($id)
 	{
 		$this->db->select('p.id_pengaduan, p.id_user, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek,  r.nama_ruang, p.gambar, k.kategori, u.nama_pengguna, p.alat, p.nama');	

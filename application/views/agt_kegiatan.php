@@ -72,7 +72,7 @@
             </section>
 
             <!-- MENU -->
-            <div class="navbar-default sidebar" role="navigation">
+			<div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 
@@ -89,13 +89,10 @@
                             <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('anggota/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Data Masuk</b></a>
+                            <a href=<?php echo base_url('anggota/data_umpanbalik')?> ><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
-                        </li>
-                        <li>
-                            <a href=<?php echo base_url('anggota/data_umpanbalik')?> ><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>

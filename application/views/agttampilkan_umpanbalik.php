@@ -91,84 +91,20 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
-
-                    <center>
-                      <?php if($this->session->flashdata('message')): ?>
-                          <div style="margin-top: 10px; width: 50%" id="hilang" class="alert alert-<?php echo $this->session->flashdata('style') ?> alert-dismissable fade-in">
-                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                              <strong><?php echo $this->session->flashdata('alert') ?></strong>&nbsp;<br>
-                              <?php echo $this->session->flashdata('message') ?>
-                        </div>
-                    <?php endif; ?>
-                    </center>
-                    <center>
-                        <h1 class="page-header">Hasil Perbaikan</h1>
-                    </center>
-                </div>
+            <?php if ($feedback): ?>
+                <h2>Pengaduan ID: <?= htmlspecialchars($feedback->id_pengaduan); ?></h2>
+                <h2><strong>Tanggal:</strong> <?= htmlspecialchars($feedback->created_at); ?></h2>
+                <h2><strong>Pesan Dari Admin: </strong><?= nl2br(htmlspecialchars($feedback->pesan)); ?></h2>
+            <?php else: ?>
+                <h3>Pesan Umpan balik tidak ditemukan.</h3>
+            <?php endif; ?>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Basic Form Elements
-                        </div>
-                            <div class="panel-body">
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Kategori</th>
-                                            <th>Tempat</th>
-                                            <th>Jam kelola</th>
-                                            <th>Tanggal kelola</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            $this->load->model('Manalis_riwayatpeng');
-                                        $i = 1;
-                                            foreach ($proses as $data)
-                                            {
-                                                
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $i; ?></td>
-                                            <td><?php echo $data->kategori ?></td>
-                                            <td><?php echo $data->nama_ruang ?></td>
-                                            <td><?php echo date('H:i:s', strtotime($data->timestamp)) ?></td>
-                                            <td><?php echo date('d-F-Y', strtotime($data->timestamp)) ?></td>
-                                            <td>
-                                            <?php
-                                                if($data->status == "diproses"){
-                                            ?>
-                                                <span class="badge warning"><?php echo $data->status ?></span>
-                                            <?php }else{ ?>
-                                                <span class="badge success">Selesai</span>
-                                            <?php }?>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                            $i++;
-                                            }
-                                        ?>
-                                    </tbody>
-                                </table>
-                            <!-- /.row (nested) -->
-                            </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
+            <h1 class="page-header"></a>
+            </h1>
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-    </div>
 
             <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
                           <div class="modal-dialog">

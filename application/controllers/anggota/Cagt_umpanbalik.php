@@ -7,7 +7,9 @@ class Cagt_umpanbalik extends BaseController {
 	{
 		parent::__construct();
 		$this->load->model('Magt_umpanbalik');
+		$this->load->model('Madm_log');
 		$this->load->helper('url','form');
+		$this->load->library('pdf');
 		$this->isLoggedIn();
 	}
 
@@ -17,6 +19,38 @@ class Cagt_umpanbalik extends BaseController {
 		$data['level']=$this->Magt_umpanbalik->level();
 		$this->load->view('agt_umpanbalik',$data);
 	}
+
+	public function detail($id) {
+        $this->load->model('Madm_log');
+        $data['pengaduan'] = $this->Madm_log->get_pengaduan($id);
+        
+        // Load the view and pass the data
+        $this->load->view('agtdetail_umpanbalik', $data);
+    }
+
+	public function download_pdf($id_pengaduan) {
+        $this->load->library('fpdf_lib');
+
+        // Ambil data dari model
+        $log = $this->Madm_log->get_log_by_id($id_pengaduan);
+
+        // Inisialisasi FPDF
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 12);
+
+        // Tambahkan data ke PDF
+        $pdf->Cell(40, 10, 'ID Pengaduan: ' . $log->id_pengaduan);
+		$pdf->Ln();
+        $pdf->Cell(40, 10, 'Tempat: ' . $log->nama_ruang);
+        $pdf->Ln();
+        $pdf->Cell(40, 10, 'Status: ' . $log->status);
+        $pdf->Ln();
+        $pdf->Cell(40, 10, 'Waktu: ' . $log->waktu);
+
+        // Output PDF
+        $pdf->Output('D', 'pengaduan_' . $log->id_pengaduan . '.pdf');
+    }
 
 	//function mau cek data user
 	public function save_password()

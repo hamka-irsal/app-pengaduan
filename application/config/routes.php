@@ -134,7 +134,10 @@ $route['admin/konfirmasi/(:num)'] = 'admin/Cadm_datamasuk/konfirmasi/$1';
 
 $route['admin/data_topsis'] = 'admin/Cadm_topsis/index';
 
-
+$route['admin/form/(:num)'] = 'admin/Cadm_feedback/tampilkanFormUmpanBalik/$1';
+$route['admin/kirim/(:num)'] = 'admin/Cadm_feedback/kirimUmpanBalik/$1';
+$route['admin/tampilkan/(:num)'] = 'admin/Cadm_feedback/tampilkanUmpanBalik/$1';
+$route['admin/pesan/(:num)'] = 'admin/Cadm_feedback/tampilkanPesanAdmin/$1';
 
 //user
 $route['user'] = 'user/Cform';
@@ -156,6 +159,11 @@ $route['anggota/tambah_penilaian'] = 'anggota/Cagt_penilaian/store';
 $route['anggota/riwayat_pengaduan'] = 'anggota/Cagt_riwayatpeng';
 $route['anggota/data_kegiatan'] = 'anggota/Cagt_kegiatan/index';
 $route['anggota/data_umpanbalik'] = 'anggota/Cagt_umpanbalik';
+$route['anggota/pesan/(:num)'] = 'anggota/Cagt_pesanuser/tampilkanFormPesan/$1';
+$route['anggota/kirimPesan/(:num)'] = 'anggota/Cagt_pesanuser/kirimPesan/$1';
+$route['anggota/tampilkan/(:num)'] = 'anggota/Cagt_pesanuser/tampilkanUmpanBalik/$1';
+$route['anggota/detail_log/(:num)'] = 'anggota/Cagt_umpanbalik/detail/$1';
+$route['anggota/download-pdf'] = 'anggota/Cagt_pdf/download_pdf';
 
 
 //analis
@@ -203,6 +211,13 @@ $route['analis/data_kegiatan'] = 'analis/Canalis_kegiatan/index';
 $route['analis/data_penilaian'] = 'analis/Canalis_penilaian';
 $route['analis/tambah_penilaian'] = 'analis/Canalis_penilaian/create';
 $route['analis/tambah_penilaian'] = 'analis/Canalis_penilaian/store';
+
+$route['analis/detail_log/(:num)'] = 'analis/Canalis_umpanbalik/detail/$1';
+$route['analis/download-pdf'] = 'analis/Canalis_pdf/download_pdf';
+
+$route['analis/pesan/(:num)'] = 'analis/Canalis_pesanuser/tampilkanFormPesan/$1';
+$route['analis/kirimPesan/(:num)'] = 'analis/Canalis_pesanuser/kirimPesan/$1';
+$route['analis/tampilkan/(:num)'] = 'analis/Canalis_pesanuser/tampilkanUmpanBalik/$1';
 
 //koor
 $route['koordinator'] = 'koor/Ckpengaduan_masuk';
