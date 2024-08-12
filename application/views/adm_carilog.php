@@ -111,7 +111,7 @@
             <div class="row">
                 <center>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Pelaporan</a>
+                    <h1 class="page-header">Hasil Pencarian Pelaporan</a>
 					</h1>
                 </div>
                 </center>
@@ -121,22 +121,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <center>
-                        <div class="panel-heading">
-                            <h3>Semua Form Laporan Yang Masuk Dari User/Pelapor</h3>
-                        </div>
-                        </center>
-                        <form method="post" action="<?php echo site_url('admin/cari'); ?>">
-                            <label for="start_date">Tanggal Mulai:</label>
-                            <input type="date" name="start_date" required>
-                            
-                            <label for="end_date">Tanggal Akhir:</label>
-                            <input type="date" name="end_date" required>
-                            
-                            <input type="submit" name="submit" value="Cari">
-                        </form>
                         <div class="panel-body">
-                        <?php if (!empty($log_activity)): ?>
+                        <?php if (!empty($pengaduan)): ?>
                             <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
                                 <thead>
                                     <tr>
@@ -149,14 +135,15 @@
                                 <tbody>
                                     <?php
 
-                                    foreach ($log_activity as $data)
+                                    foreach ($pengaduan as $data)
                                     {
                                         ?>
                                         <tr>
                                             <td style="text-align: center;"><?php echo $data->id_pengaduan ?></td>
                                             <!-- <td><?php //echo date('H:i:s', strtotime($data->timestamp)) ?></td>
                                                 <td><?php //echo date('d-F-Y', strtotime($data->timestamp)) ?></td> -->
-                                                <td><?= $data->wkt_pengaduan ?></td>
+                                                <!-- <td><?= $data->wkt_pengaduan ?></td> -->
+                                                <td><?php echo date('d-F-Y', strtotime($data->wkt_pengaduan)) ?></td>
                                                 <td><?php echo date('d-F-Y', strtotime($data->timestamp)) ?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('admin/detail_log/'.$data->id_pengaduan) ?>"><i class="fa fa-eye" style="color: blue"></i></a>

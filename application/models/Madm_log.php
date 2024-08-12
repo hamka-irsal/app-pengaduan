@@ -22,6 +22,15 @@ class Madm_log extends CI_Model {
 	// 	return $this->db->get()->result();
 	// }
 
+	public function getPelaporanByDateRange($startDate, $endDate) {
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->where('wkt_pengaduan >=', $startDate);
+        $this->db->where('timestamp <=', $endDate);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 	public function detail_log($id_pengaduan)
 	{
 		$this->db->select('log.id_pengaduan, log.status, log.keterangan, user.id_user, level.id_level, level.nama_level, level.posisi, user.nama_pengguna, user.email, log.timestamp');

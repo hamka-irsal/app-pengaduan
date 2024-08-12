@@ -116,6 +116,7 @@ $route['admin/update_umum/(:num)'] = 'Cadm_dataumum/update/$i';
 $route['admin/hapus_log/(:num)'] = 'admin/Cadm_log/delete/$1';
 $route['admin/detail_log/(:num)'] = 'admin/Cadm_log/detail/$1';
 $route['admin/pdf_log'] = 'admin/Cadm_log/generate_pdf';
+$route['admin/cari'] = 'admin/Cadm_log/cari';
 
 $route['admin/download-pdf'] = 'admin/Cadm_pdf/download_pdf';
 

@@ -20,6 +20,24 @@ class Cadm_log extends BaseController {
 		$this->load->view('adm_log',$data);
 	}
 
+	public function cari() {
+        $data['pengaduan'] = [];
+
+        if ($this->input->post('submit')) {
+            $startDate = $this->input->post('start_date');
+            $endDate = $this->input->post('end_date');
+
+            // Validasi input tanggal
+            if ($startDate && $endDate) {
+                $data['pengaduan'] = $this->Madm_log->getPelaporanByDateRange($startDate, $endDate);
+            } else {
+                $data['error'] = 'Tanggal mulai dan akhir harus diisi!';
+            }
+        }
+
+        $this->load->view('adm_carilog', $data);
+    }
+
 	public function detail($id) {
         $this->load->model('Madm_log');
         $data['pengaduan'] = $this->Madm_log->get_pengaduan($id);
