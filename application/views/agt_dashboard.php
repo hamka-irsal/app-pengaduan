@@ -18,7 +18,110 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
+    <style>
+        .notification-icon {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
 
+        .notification-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .notification-list {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            border: 1px solid #ccc;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .notification-list ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .notification-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .notification-list li:last-child {
+            border-bottom: none;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function toggleNotifications() {
+            console.log("Icon clicked!");
+            var notificationList = document.getElementById('notification-list');
+            if (notificationList.style.display === 'none' || notificationList.style.display === '') {
+                notificationList.style.display = 'block';
+            } else {
+                notificationList.style.display = 'none';
+            }
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.notification-icon') && !event.target.closest('.notification-list')) {
+                var notificationList = document.getElementById('notification-list');
+                if (notificationList.style.display === 'block') {
+                    notificationList.style.display = 'none';
+                }
+            }
+        }
+
+        function fetchUnreadCount() {
+            $.ajax({
+                url: '<?php echo base_url("Cadm_dashboard/get_unread_count"); ?>',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('.notification-count').text(data.unread_count);
+                }
+            });
+        }
+
+        function fetchUnreadPengaduan() {
+            $.ajax({
+                url: '<?php echo base_url("Cadm_dashboard/get_unread_pengaduan"); ?>',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var list = $('#notification-list ul');
+                    list.empty();
+                    if (data.length > 0) {
+                        data.forEach(function(pengaduan) {
+                            list.append('<li>' + pengaduan.nama + '</li>');
+                        });
+                    } else {
+                        list.append('<li>Tidak ada pengaduan baru.</li>');
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            fetchUnreadCount();
+            fetchUnreadPengaduan();
+            setInterval(fetchUnreadCount, 5000); // Poll every 5 seconds
+            setInterval(fetchUnreadPengaduan, 5000); // Poll every 5 seconds
+        });
+    </script>
 </head>
 
 <body>
@@ -47,6 +150,24 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right" style="margin-top: 20px; margin-right:20px;">
+            <div class="notification-icon" onclick="toggleNotifications()">
+            <i class="fas fa-bell"></i>
+                <span class="notification-count"><?php echo 1; ?></span>
+            </div>
+
+            <div id="notification-list" class="notification-list">
+                <ul>
+                    <?php if (count($pengaduan) > 1) : ?>
+                        <?php foreach ($pengaduan as $p) : ?>
+                            <li><?php echo $p->nama; ?></li>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <li>Tidak ada pengaduan baru.</li>
+                    <?php endif; ?>
+                </ul>
+            </div>
             </ul>
             <!-- /.navbar-top-links -->
 

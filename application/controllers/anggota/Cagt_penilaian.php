@@ -9,6 +9,7 @@ class Cagt_penilaian extends CI_Controller {
         $this->load->model('Magt_penilaian');
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
+		// $this->isLoggedIn();
     }
 
     public function index()

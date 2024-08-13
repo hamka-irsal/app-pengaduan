@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/BaseController.php';
+use Config\Services;
 class Cadm_log extends BaseController {
 
 	function __construct()
@@ -8,6 +9,7 @@ class Cadm_log extends BaseController {
 		parent::__construct();
 		$this->load->model('Madm_log');
 		$this->load->helper('url','form');
+        $this->load->library('form_validation');
 		$this->load->library('pdf');
 		$this->isLoggedIn();
 	}
@@ -36,6 +38,30 @@ class Cadm_log extends BaseController {
         }
 
         $this->load->view('adm_carilog', $data);
+    }
+
+	public function edit($id) {
+        $this->load->model('Madm_log');
+        $data['pelaporan'] = $this->Madm_log->get_pelaporan_by_id($id);
+
+        $this->load->view('adm_editlog', $data);
+    }
+
+    public function update($id) {
+        $this->load->model('Madm_log');
+        
+        $this->form_validation->set_rules('wkt_pengerjaan', 'Tanggal Pengerjaan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit($id);
+        } else {
+            $data = array(
+                'wkt_pengerjaan' => $this->input->post('wkt_pengerjaan')
+            );
+            
+            $this->Madm_log->update_pelaporan($id, $data);
+            redirect('admin/data_log');
+        }
     }
 
 	public function detail($id) {

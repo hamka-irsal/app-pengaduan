@@ -63,9 +63,9 @@ class Magt_Penilaian extends CI_Model {
             SUM(pendapat5 = "Tidak Memuaskan") as pendapat5_tidak_memuaskan
         ');
         $this->db->group_by('DATE(tgl_penilaian)');
+        $this->db->group_by('pendapat1,pendapat2,pendapat3,pendapat4,pendapat5');
         $query = $this->db->get('penilaian');
         return $query->result_array();
     }
-    
 }
 ?>

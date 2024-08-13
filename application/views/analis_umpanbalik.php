@@ -112,26 +112,22 @@
                             <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
                                 <thead>
                                     <tr>
-                                        <th style="text-align: center; width: 100px">ID Pengaduan</th>
-                                        <th style="text-align: center;">Tempat</th>
-                                        <th style="text-align: center;">Jam Kelola</th>
-                                        <th style="text-align: center;">Tgl Kelola</th>
+                                        <th style="text-align: center; width: 100px">Id Pelapor</th>
+                                        <th style="text-align: center;">Tgl Pelaporan</th>
+                                        <th style="text-align: center;">Tgl Perencanaan <br> Pengerjaan</th>
                                         <th style="text-align: center;">Status</th>
-                                        <th style="text-align: center;">Waktu</th>
                                         <th style="text-align: center; width: 50px">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-
                                     foreach ($log_activity as $data)
                                     {
                                         ?>
                                         <tr>
                                             <td style="text-align: center;"><?php echo $data->id_pengaduan ?></td>
-                                            <td><?php echo $data->nama_ruang ?></td>
-                                            <td><?php echo date('H:i:s', strtotime($data->timestamp)) ?></td>
-                                            <td><?php echo date('d-F-Y', strtotime($data->timestamp)) ?></td>
+                                            <td><?php echo $data->wkt_pengaduan ?></td>
+                                            <td><?php echo $data->wkt_pengerjaan ?></td>
                                             <td style="text-align: center;">
                                                 <?php
                                                 if ($data->status == 'masuk') {
@@ -149,9 +145,6 @@
                                                 }
                                                 ?>
                                             </td>
-                                            <!-- <td><?php //echo date('H:i:s', strtotime($data->timestamp)) ?></td>
-                                                <td><?php //echo date('d-F-Y', strtotime($data->timestamp)) ?></td> -->
-                                                <td><?= $data->timestamp ?></td>
                                                 <td>
                                                     <!-- <i class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan ?>">&nbsp;Detail</i> -->
                                                     <a href="<?php echo base_url('analis/detail_log/'.$data->id_pengaduan) ?>"><i class="fa fa-eye" style="color: blue"></i></a>

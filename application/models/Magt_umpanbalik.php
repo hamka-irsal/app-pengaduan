@@ -5,7 +5,7 @@ class Magt_umpanbalik extends CI_Model {
 
 	public function log_activity()
 	{
-		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan');
+		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan, p.wkt_pengerjaan');
 		$this->db->from('pengaduan p');
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		$this->db->order_by('p.timestamp','DESC');

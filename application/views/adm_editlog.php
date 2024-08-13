@@ -1,44 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
+	
+	<head>
+		
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Detail Pengaduan</title>
-
+		
+    <title>Admin</title>
+		
     <link href=<?php echo base_url("assets/vendor/bootstrap/css/bootstrap.min.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.css")?>  rel="stylesheet">
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
-
-</head>
-
-<body>
-
+    <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
+		
+	</head>
+	
+	<body>
+		
     <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
+			
+			<!-- Navigation -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color: #204060">
             <div class="navbar-header">
                 <a href="admin" style="color: #ffffff; font-size: 20px;"><img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 50px;"><b> Politeknik Negeri Ujung Pandang</b></a>
             </div>
@@ -117,110 +105,102 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+			
+		</ul>
+		<!-- /.navbar-top-links -->
+		
+		<!-- MENU -->
+		<!-- /.navbar-static-side -->
+	</nav>
+	
+	<!-- Page Content -->
+	<div id="page-wrapper">
+		<div class="row">
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		<div class="row">
+			<div class="col-lg-12">
+			<div class="panel panel-default">
+              <div class="panel-heading">
+                <center><h3><strong>Edit Tgl Perencanaan Pengerjaan</strong></h3></center>
+              </div>
+              <div class="panel-body">
+                <!-- Tab Pane Draft -->
+              <div class="tab-content"><!-- 
+                <div class="active tab-pane fade in" id="halaman_1"> -->
+                 <div class="box-body">
 
-        <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="row">
-                <center>
-                <div class="col-lg-12">
-                    <h1 class="page-header">Detail Pengaduan Pengguna</h1>
-                </div>
-                </center>
-                <!-- /.col-lg-12 -->
+                 <?php echo form_open('admin/update/'.$pelaporan->id_pengaduan); ?>
+                    <!-- Input lainnya -->
+                    <div>
+                        <label for="wkt_pengerjaan">Tanggal Perencanaan Pengerjaan:</label>
+                        <input type="date" name="wkt_pengerjaan" value="<?php echo set_value('wkt_pengerjaan', $pelaporan->wkt_pengerjaan); ?>">
+                    </div>
+                    <button class="btn btn-success"type="submit">Simpan</button>
+                </form>
             </div>
-            <!-- /.row -->
-          
-            <div class="row">
-                <div class="col-lg-12">
-                <table>
-        <thead>
-            <tr>
-                <th style="text-align: center;"><h5><b>POLITEKNIK <br> NEGERI <br> UJUNG PANDANG</b></h5></th>
-                <th style="text-align: center;"><h5><b>LAPORAN KERUSAKAN <br> UPT. TEKNOLOGI PERMESINAN DAN <br> PERALATAN PENUNJANG AKADEMIK</b></h5></th>
-                <th style="text-align: center;">NO LAPORAN : <?= $pengaduan['id_pengaduan']; ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>NAMA ALAT/MESIN :</td>
-                <td><?= $pengaduan['alat']; ?></td>
-                <td>NO INVENT : <?= $pengaduan['inventaris']; ?></td>
-            </tr>
-            <tr>
-                <td>SPESIFIKASI :</td>
-                <td><?= $pengaduan['spesifikasi']; ?></td>
-                <td>TANGGAL : <?= $pengaduan['tgl_kejadian']; ?></td>
-            </tr>
-            <tr>
-                <td>KEJADIAN :</td>
-                <td><?= $pengaduan['kejadian']; ?></td>
-                <td>JURUSAN/UNIT : <?= $pengaduan['jurusan']; ?></td>
-            </tr>
-            <tr>
-                <td>KERUSAKAN :</td>
-                <td><?= $pengaduan['penyebab']; ?></td>
-                <td>PROGRAM STUDI : <?= $pengaduan['studi']; ?></td>
-            </tr>
-        </tbody>
-    </table>
-    <table>
-        <thead>
-            <tr>
-                <th style="text-align: center;"><h5><b>DILAPORKAN OLEH</b></h5></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>NAMA :  <?= $pengaduan['nama']; ?></td>
-            </tr>
-            <tr>
-                <td>NIP/NIKH :  <?= $pengaduan['nip']; ?></td>
-            </tr>
-            <tr>
-                <td>TANDA TANGAN : </td>
-            </tr>
-            <tr>
-                <td>CATATAN TAMBAHAN : </td>
-            </tr>
-            <tr>
-                <td>URAIAN : <?= $pengaduan['uraian']; ?></td>
-            </tr>
-            <tr>
-                <td>PENYEDIA : <?= $pengaduan['penyedia']; ?></td>
-            </tr>
-            <tr>
-                <td>BAHAN : <?= $pengaduan['bahan']; ?></td>
-            </tr>
-            <tr>
-                <td>DOKUMENTASI : <img src="<?= base_url('assets/gambar/'.$pengaduan['gambar']); ?>" alt="Gambar Pengaduan" style="width: 100px; height: 100px;"></td>
-            </tr>
-        </tbody>
-    </table>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row (nested) -->
-        </div>
-        <!-- /.panel-body -->
-    </div>
-    <!-- /.panel -->
-</div>
-<!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-</div>
-<!-- /#page-wrapper -->
+					<!-- /.panel-body -->
+				</div>
+        <!-- /.panel -->
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+		
+		<!-- modal setting -->
+		<div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width: 75%; margin-left: 15%">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span></button>
+						<center>
+						<h4 class="modal-title">GANTI PASSWORD</h4>
+						</center>
+					</div>
+					
+					<form method="POST" action="<?php echo base_url('admin/ubah_password') ?>">
+						<div class="modal-body">
+							<div class="row">
+                				<div class="col-md-12">
+									
+									<div class="form-group row">
+					                  <label class="col-sm-4 col-form-label">Password lama :</label>
+					                  <div class="col-sm-8">
+					                    <input type="password" class="form-control" name="old" required>
+					                  </div>
+					                </div>
+					                <div class="form-group row">
+					                  <label class="col-sm-4 col-form-label">Password baru :</label>
+					                  <div class="col-sm-8">
+					                    <input type="password" class="form-control" name="new" required>
+					                  </div>
+					                </div>
+					                <div class="form-group row">
+					                  <label class="col-sm-4 col-form-label">Konfirmasi :</label>
+					                  <div class="col-sm-8">
+					                    <input type="password" class="form-control" name="re_new" required>
+					                  </div>
+					                </div>
 
-<!-- /.modal-content -->
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Batal</button>
+							<input type="submit" class="btn btn-primary" value="Simpan">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- modal setting -->
+		
+	</div>
+	<!-- /#page-wrapper -->
 </div>
-<!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
-
-</div>
-
 <!-- /#wrapper -->
-
 
 <script src=<?php echo base_url("assets/vendor/jquery/jquery.min.js")?> ></script>
 <script src=<?php echo base_url("assets/vendor/bootstrap/js/bootstrap.min.js")?> ></script>
@@ -229,56 +209,23 @@
 <script src=<?php echo base_url("assets/vendor/datatables-plugins/dataTables.bootstrap.min.js")?> ></script>
 <script src=<?php echo base_url("assets/vendor/datatables-responsive/dataTables.responsive.js")?> ></script>
 <script src=<?php echo base_url("assets/dist/js/sb-admin-2.js")?> ></script>
-<script src=<?php echo base_url("assets/dist/jquery.min.js")?> ></script>
 
 <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 <script>
-    $(document).ready(function() {
-        $('#dataTables-example').DataTable({
-            responsive: true
-        });
-    });
+	$(document).ready(function() {
+		$('#dataTables-example1').DataTable({
+			responsive: true
+		}),
+		$('#dataTables-example2').DataTable({
+			responsive: true
+		}),
+		$('#dataTables-example3').DataTable({
+			responsive: true
+		});
+	});
+
+	$("#hilang").show().delay(3000).slideUp(400);
 </script>
-
-<script type="text/javascript">
-        $(document).ready(function(){ //Make script DOM ready
-        $('#myselect').change(function() { //jQuery Change Function
-        var opval = $(this).val(); //Get value from select element
-        if(opval=="secondoption"){ //Compare it and if true
-            $('#myModal').modal("show"); //Open Modal
-        }
-    });
-    });
-</script>
-
-<script type="text/javascript">
-    $(function(){
-
-$.ajaxSetup({
-type:"post",
-cache:false,
-dataType: "json"
-});
-
-
-$(document).on("click","td",function(){
-$(this).find("span[class~='caption']").hide();
-$(this).find("input[class~='editor']").fadeIn().focus();
-});
-});
-</script>
-
-<script>
-$(function(){
-
-  $('img').mouseenter(function(){
-  $('img').css('width','70%');
- });
- $('img').mouseleave(function(){
-  $('img').css('width','150');
-});});
-</script>
-
 </body>
 
 </html>

@@ -27,5 +27,15 @@ class Madm_pengaduanmsk extends CI_Model {
         $query = $this->db->get('pengaduan');
         return $query->result_array();
     }
+
+    public function log_activity()
+	{
+		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan, p.wkt_pengerjaan, p.email');
+		$this->db->from('pengaduan p');
+		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
+		// $this->db->where('p.deleted');
+		$this->db->order_by('p.timestamp','DESC');
+		return $this->db->get()->result();
+	}
 }
 ?>

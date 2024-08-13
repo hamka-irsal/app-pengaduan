@@ -154,15 +154,15 @@
                     <!-- /.dropdown-user -->
                 </li>
             </ul>
-            <!-- <ul class="nav navbar-top-links navbar-right" style="margin-top: 20px; margin-right:20px;">
+            <ul class="nav navbar-top-links navbar-right" style="margin-top: 20px; margin-right:20px;">
             <div class="notification-icon" onclick="toggleNotifications()">
             <i class="fas fa-bell"></i>
-                <span class="notification-count"><?php echo $unread_count; ?></span>
+                <span class="notification-count"><?php echo 1; ?></span>
             </div>
 
             <div id="notification-list" class="notification-list">
                 <ul>
-                    <?php if (count($pengaduan) > 0) : ?>
+                    <?php if (count($pengaduan) > 1) : ?>
                         <?php foreach ($pengaduan as $p) : ?>
                             <li><?php echo $p->nama; ?></li>
                         <?php endforeach; ?>
@@ -171,7 +171,7 @@
                     <?php endif; ?>
                 </ul>
             </div>
-            </ul> -->
+            </ul>
             <!-- /.navbar-top-links -->
 
             <!--- user panel -->

@@ -142,14 +142,14 @@
                                 <thead>
                                         <tr>
                                             <th>ID Pelapor</th>
-                                            <th>Nama Pelapor</th>
-                                            <th>Jabatan</th>
                                             <th>Uraian</th>
                                             <th>Penyedia</th>
                                             <th>Bahan</th>
                                             <th>Dokumentasi</th>
                                             <th>Status</th>
-                                            <th>Waktu Pelaporan</th>
+                                            <th style="text-align: center;">Tgl Pelaporan</th>
+                                            <th style="text-align: center;">Tgl Perencanaan <br> Pengerjaan</th>
+                                            <th style="text-align: center; width: 50px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -157,14 +157,19 @@
                                             <?php foreach ($pengaduan_selesai as $row): ?>
                                                 <tr>
                                                     <td><?= $row['id_pengaduan']; ?></td>
-                                                    <td><?= $row['nama']; ?></td>
-                                                    <td><?= $row['jabatan']; ?></td>
                                                     <td><?= $row['uraian']; ?></td>
                                                     <td><?= $row['penyedia']; ?></td>
                                                     <td><?= $row['bahan']; ?></td>
                                                     <td><img src="<?php echo base_url('assets/gambar/'.$row['gambar']); ?>" width="100"></td>
                                                     <td><?= $row['status']; ?></td>
-                                                    <td><?= $row['wkt_pengaduan']; ?></td>
+                                                    <td><?= $row['wkt_pengaduan'] ?></td>
+                                                    <td><?= $row['wkt_pengerjaan'] ?></td>
+                                                    <td>
+                                                        <a href="<?php echo base_url('admin/detail_log/'.$row['id_pengaduan']) ?>"><i class="fa fa-eye" style="color: blue"></i></a>
+                                                        <a href="<?= base_url('admin/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
+                                                        <a onclick="window.print()"><i class="fa fa-print" style="color: green"></i></a>
+                                                        <a href="<?php echo site_url('admin/hapus_log/'.$row['id_pengaduan']); ?>"><i class="fa fa-trash-o" style="color: red"></i></a>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php else: ?>

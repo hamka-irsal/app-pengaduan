@@ -110,36 +110,6 @@
 		<!-- /.navbar-top-links -->
 		
 		<!-- MENU -->
-		<div class="navbar-default sidebar" role="navigation">
-			<div class="sidebar-nav navbar-collapse">
-				<ul class="nav" id="side-menu">
-					
-					<li class="sidebar-search" >
-						<div class="input-group custom-search-form" >
-                                <b>Menu Sistem</b>
-                            </div>
-						<!-- /input-group -->
-					</li>
-					
-					<!-- menu -->
-					<li>
-                            <a href=<?php echo base_url('admin')?>><i class="fa fa-home"></i>&nbsp; Dashboard</a>
-                    </li>
-					<li>
-						<a href=<?php echo base_url('admin/data_log')?> ><i class="fa fa-archive"></i>&nbsp; Log Penanganan</a>
-					</li>
-					<li>
-						<a href=<?php echo base_url('admin/data_lokasi')?> ><i class="fa fa-home"></i>&nbsp; Data Lokasi</a>
-					</li>
-					<li class="active">
-						<a href=<?php echo base_url('admin/data_user')?> style="color: #000000" ><i class="fa fa-users"></i><b>&nbsp; Data Pengguna</b></a>
-					</li>
-					<!-- menu -->
-					
-				</ul>
-			</div>
-			<!-- /.sidebar-collapse -->
-		</div>
 		<!-- /.navbar-static-side -->
 	</nav>
 	

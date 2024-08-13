@@ -136,14 +136,14 @@
                             <input type="submit" name="submit" value="Cari">
                         </form>
                         <div class="panel-body">
-                        <?php if (!empty($log_activity)): ?>
+                        <!-- <?php if (!empty($log_activity)): ?> -->
                             <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center; width: 100px">Id Pelapor</th>
                                         <th style="text-align: center;">Tgl Pelaporan</th>
                                         <th style="text-align: center;">Tgl Perencanaan <br> Pengerjaan</th>
-                                        <th style="text-align: center; width: 50px">Aksi</th>
+                                        <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -157,9 +157,10 @@
                                             <!-- <td><?php //echo date('H:i:s', strtotime($data->timestamp)) ?></td>
                                                 <td><?php //echo date('d-F-Y', strtotime($data->timestamp)) ?></td> -->
                                                 <td><?= $data->wkt_pengaduan ?></td>
-                                                <td><?php echo date('d-F-Y', strtotime($data->timestamp)) ?></td>
+                                                <td><?= $data->wkt_pengerjaan ?></td>
                                                 <td>
                                                     <a href="<?php echo base_url('admin/detail_log/'.$data->id_pengaduan) ?>"><i class="fa fa-eye" style="color: blue"></i></a>
+                                                    <a href="<?php echo base_url('admin/edit/'.$data->id_pengaduan) ?>"><i class="fa fa-edit" style="color: green"></i></a>
                                                     <a href="<?= base_url('admin/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
                                                     <a onclick="window.print()"><i class="fa fa-print" style="color: green"></i></a>
                                                     <a href="<?php echo site_url('admin/hapus_log/'.$data->id_pengaduan); ?>"><i class="fa fa-trash-o" style="color: red"></i></a>
@@ -266,9 +267,9 @@
                                                         ?>
                                                     </tbody>
                                                 </table>
-                                                <?php else: ?>
+                                                <!-- <?php else: ?>
                                                     <p>Tidak ada data pelaporan ditemukan.</p>
-                                                <?php endif; ?>
+                                                <?php endif; ?> -->
                                                 <!-- /.row (nested) -->
                                             </div>
                                             <!-- /.panel-body -->

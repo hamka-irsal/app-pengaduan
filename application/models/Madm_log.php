@@ -5,7 +5,7 @@ class Madm_log extends CI_Model {
 
 	public function log_activity()
 	{
-		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan, p.email');
+		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan, p.wkt_pengerjaan, p.email');
 		$this->db->from('pengaduan p');
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		// $this->db->where('p.deleted');
@@ -29,6 +29,16 @@ class Madm_log extends CI_Model {
         $this->db->where('timestamp <=', $endDate);
         $query = $this->db->get();
         return $query->result();
+    }
+
+	public function update_pelaporan($id, $data) {
+        $this->db->where('id_pengaduan', $id);
+        return $this->db->update('pengaduan', $data);
+    }
+
+    public function get_pelaporan_by_id($id) {
+        $this->db->where('id_pengaduan', $id);
+        return $this->db->get('pengaduan')->row();
     }
 
 	public function detail_log($id_pengaduan)
