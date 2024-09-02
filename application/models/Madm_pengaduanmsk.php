@@ -37,5 +37,19 @@ class Madm_pengaduanmsk extends CI_Model {
 		$this->db->order_by('p.timestamp','DESC');
 		return $this->db->get()->result();
 	}
+
+    public function getPelaporanByDateRange($startDate, $endDate) {
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->where('wkt_pengaduan >=', $startDate);
+        $this->db->where('timestamp <=', $endDate);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function delete_log($id) {
+		$this->db->where('id_pengaduan', $id);
+		return $this->db->delete('pengaduan');
+	}
 }
 ?>

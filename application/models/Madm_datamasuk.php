@@ -4,7 +4,7 @@ class Madm_datamasuk extends CI_Model
 {
 	public function pengaduan_masuk()
 	{
-		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, k.kategori, r.id_tempat, r.nama_ruang, p.status');
+		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, k.kategori, r.id_tempat, r.nama_ruang, p.status, p.uraian, p.penyedia, p.bahan');
 		$this->db->from('pengaduan p');
 		$this->db->join('kategori k','k.id_kategori = p.id_kategori');
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
@@ -24,11 +24,11 @@ class Madm_datamasuk extends CI_Model
 
 	public function detail_koor($id)
 	{
-		$this->db->select('p.id_pengaduan, p.id_user, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek,  r.nama_ruang, p.gambar, k.kategori, u.nama_pengguna, p.alat, p.nama');	
+		$this->db->select('p.id_pengaduan, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek,  r.nama_ruang, p.gambar, k.kategori, p.alat, p.nama, p.uraian, p.penyedia, p.bahan');	
 		$this->db->from('pengaduan p','ruang r'); 
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		$this->db->join('kategori k','k.id_kategori = p.id_kategori');
-		$this->db->join('user u','u.id_user = p.id_user');
+		// $this->db->join('user u','u.id_user = p.id_user');
 		//$this->db->join('tempat t','t.id_tempat = r.id_tempat');
 		$this->db->where('p.id_pengaduan',$id);
 		

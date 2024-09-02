@@ -37,6 +37,15 @@ class Magt_Penilaian extends CI_Model {
         return $this->db->count_all_results();
     }
 
+    public function getPelaporanByDateRange($startDate, $endDate) {
+        $this->db->select('*');
+        $this->db->from('penilaian');
+        $this->db->where('tgl_penilaian >=', $startDate);
+        $this->db->where('tgl_penilaian <=', $endDate);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function get_penilaian_count_with_date()
     {
         $this->db->select('

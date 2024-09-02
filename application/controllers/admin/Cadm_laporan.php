@@ -26,4 +26,27 @@ class Cadm_laporan extends CI_Controller
         $data['pengaduan_selesai'] = $this->Madm_pengaduanmsk->get_selesai_pengaduan();
         $this->load->view('adm_hasillaporan', $data);
     }
+
+    public function cari() {
+        $data['pengaduan_selesai'] = [];
+
+        if ($this->input->post('submit')) {
+            $startDate = $this->input->post('start_date');
+            $endDate = $this->input->post('end_date');
+
+            // Validasi input tanggal
+            if ($startDate && $endDate) {
+                $data['pengaduan_selesai'] = $this->Madm_pengaduanmsk->getPelaporanByDateRange($startDate, $endDate);
+            } else {
+                $data['error'] = 'Tanggal mulai dan akhir harus diisi!';
+            }
+        }
+
+        $this->load->view('adm_carihasil', $data);
+    }
+
+    public function delete($id) {
+        $this->Madm_log->delete_log($id);
+        redirect('admin/data_laporan');
+    }
 }

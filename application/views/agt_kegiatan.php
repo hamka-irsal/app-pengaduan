@@ -79,7 +79,7 @@
                         <li>
                             <a href=<?php echo base_url('anggota')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('anggota/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
                         </li>
                         <li>
@@ -87,16 +87,16 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('anggota/data_umpanbalik')?> ><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('anggota/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

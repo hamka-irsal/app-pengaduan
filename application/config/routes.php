@@ -49,9 +49,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Login/login_karyawan';
+$route['default_controller'] = 'home';
+// $route['default_controller'] = 'Login/login_karyawan';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//beranda
+$route['home'] = 'Home';
+$route['visi_misi'] = 'Visimisi';
+$route['laporan_kerusakan'] = 'Laporan_kerusakan';
+$route['insert_data'] = 'Laporan_kerusakan/tambah';
+$route['upload'] = 'Uploadfile';
+$route['upload/do_upload'] = 'Uploadfile/do_upload';
+$route['reports'] = 'Cek_laporan';
+$route['upt'] = 'Upt';
+$route['kegiatan'] = 'Foto_kegiatan';
+
+
 
 // $route['login_pengaduan'] = 'Login_pengadu'; //path lain dari login
 $route['karyawan'] = 'Login/login_karyawan';
@@ -119,12 +133,18 @@ $route['admin/pdf_log'] = 'admin/Cadm_log/generate_pdf';
 $route['admin/cari'] = 'admin/Cadm_log/cari';
 $route['admin/edit/(:num)'] = 'admin/Cadm_log/edit/$1';
 $route['admin/update/(:num)'] = 'admin/Cadm_log/update/$1';
+$route['admin/konfirmasi/(:num)'] = 'admin/Cadm_log/konfirmasi/$1';
+$route['admin/konfirmasi'] = 'admin/Cadm_log/konfirmasi';
+$route['admin/detail_datamasuk/(:num)'] = 'admin/Cadm_log/detail_koor/$1';
+$route['admin/kirim_pengaduan'] = 'admin/Cadm_log/kirim';
 
 $route['admin/download-pdf'] = 'admin/Cadm_pdf/download_pdf';
 
 $route['admin/riwayat_pengaduan'] = 'admin/Cadm_riwayatpeng';
 
 $route['admin/data_chart'] = 'admin/Cadm_penilaian/chart';
+$route['admin/data_datapenilaian'] = 'admin/Cadm_datapenilaian';
+$route['admin/caripenilaian'] = 'admin/Cadm_datapenilaian/cari';
 
 // Route untuk mendapatkan jumlah pengaduan yang belum dibaca
 $route['admin/get_unread_count'] = 'Cadm_dashboard/get_unread_count';
@@ -132,7 +152,7 @@ $route['admin/get_unread_count'] = 'Cadm_dashboard/get_unread_count';
 // Route untuk mendapatkan pengaduan yang belum dibaca
 $route['admin/get_unread_pengaduan'] = 'Cadm_dashboard/get_unread_pengaduan';
 
-$route['admin/konfirmasi/(:num)'] = 'admin/Cadm_datamasuk/konfirmasi/$1';
+// $route['admin/konfirmasi/(:num)'] = 'admin/Cadm_datamasuk/konfirmasi/$1';
 // $route['admin/konfirmasi'] = 'admin/Cadm_datamasuk/konfirmasi';
 
 $route['admin/data_topsis'] = 'admin/Cadm_topsis/index';
@@ -143,11 +163,13 @@ $route['admin/tampilkan/(:num)'] = 'admin/Cadm_feedback/tampilkanUmpanBalik/$1';
 $route['admin/pesan/(:num)'] = 'admin/Cadm_feedback/tampilkanPesanAdmin/$1';
 
 $route['admin/data_laporan'] = 'admin/Cadm_laporan/selesai';
+$route['admin/carihasil'] = 'admin/Cadm_laporan/cari';
+$route['admin/hapus_laporan/(:num)'] = 'admin/Cadm_laporan/delete/$1';
 
 
 //user
 $route['user'] = 'user/Cform';
-$route['user/home'] = 'user/Cform/home';
+// $route['user/home'] = 'user/Cform/home';
 $route['user/riwayat_pengaduan'] = 'user/Criwayat_pengaduanuser';
 $route['user/insert_data'] = 'user/Cform/tambah';
 $route['user/ubah_password'] = 'user/Cform/save_password';
@@ -224,6 +246,20 @@ $route['analis/download-pdf'] = 'analis/Canalis_pdf/download_pdf';
 $route['analis/pesan/(:num)'] = 'analis/Canalis_pesanuser/tampilkanFormPesan/$1';
 $route['analis/kirimPesan/(:num)'] = 'analis/Canalis_pesanuser/kirimPesan/$1';
 $route['analis/tampilkan/(:num)'] = 'analis/Canalis_pesanuser/tampilkanUmpanBalik/$1';
+
+$route['analis/cek_lapkeuangan'] = 'analis/Canalis_ceklapkeuangan';
+$route['analis/upload_lapkeuangan'] = 'analis/Canalis_lapkeuangan/do_upload';
+$route['analis/lapkeuangan'] = 'analis/Canalis_lapkeuangan';
+
+$route['analis/cek_lapbulanan'] = 'analis/Canalis_ceklapbulanan';
+$route['analis/upload_lapbulanan'] = 'analis/Canalis_lapbulanan/do_upload';
+$route['analis/lapbulanan'] = 'analis/Canalis_lapbulanan';
+
+$route['analis/cek_procapaian'] = 'analis/Canalis_cekprocapaian';
+$route['analis/upload_procapaian'] = 'analis/Canalis_procapaian/do_upload';
+$route['analis/procapaian'] = 'analis/Canalis_procapaian';
+
+$route['upload/upload_lapkeuangan'] = 'analis/Canalis_uploadlapkeuangan/do_upload';
 
 //koor
 $route['koordinator'] = 'koor/Ckpengaduan_masuk';

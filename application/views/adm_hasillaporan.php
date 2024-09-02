@@ -63,9 +63,9 @@
                         <li>
                             <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
@@ -75,14 +75,17 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_laporan')?>><i class="fa fa-send"></i><b>&nbsp; Hasil Pelaporan</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li> -->
+                        <li>
+                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Grafik Penilaian</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                            <a href=<?php echo base_url('admin/data_datapenilaian')?> ><i class="fa fa-folder"></i><b>&nbsp; Data Penilaian</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
@@ -90,12 +93,12 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
                         </li>
-                         <li>
+                         <!-- <li>
                             <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
-                        </li>
+                        </li> -->
                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
                         </li> -->
@@ -126,7 +129,17 @@
                         <h1 class="page-header">Hasil Pelaporan</h1>
                     </div>
                     </center>
+                    <form method="post" action="<?php echo site_url('admin/carihasil'); ?>">
+                    <label for="start_date">Tanggal Mulai:</label>
+                    <input type="date" name="start_date" required>
+                    
+                    <label for="end_date">Tanggal Akhir:</label>
+                    <input type="date" name="end_date" required>
+                    
+                    <input type="submit" name="submit" value="Cari">
+                </form>
                 </div>
+                
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
@@ -137,6 +150,7 @@
                         <div class="panel-heading">
                             Data Hasil Pelaporan
                         </div>
+                       
                             <div class="panel-body">
                                 <table width="100%" class="table table-striped table-hover" id="dataTables-example" class="text-center">
                                 <thead>
@@ -168,7 +182,7 @@
                                                         <a href="<?php echo base_url('admin/detail_log/'.$row['id_pengaduan']) ?>"><i class="fa fa-eye" style="color: blue"></i></a>
                                                         <a href="<?= base_url('admin/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
                                                         <a onclick="window.print()"><i class="fa fa-print" style="color: green"></i></a>
-                                                        <a href="<?php echo site_url('admin/hapus_log/'.$row['id_pengaduan']); ?>"><i class="fa fa-trash-o" style="color: red"></i></a>
+                                                        <a href="<?php echo site_url('admin/hapus_laporan/'.$row['id_pengaduan']); ?>"><i class="fa fa-trash-o" style="color: red"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>

@@ -185,15 +185,15 @@
                             <a href=<?php echo base_url('analis')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
+                            <a href=<?php echo base_url('analis/cek_lapkeuangan')?>><i class="fa fa-folder"></i><b>&nbsp; Laporan Keuangan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
+                            <a href=<?php echo base_url('analis/cek_lapbulanan')?> ><i class="fa fa-folder"></i><b>&nbsp; Laporan Bulanan</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('analis/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
+                            <a href=<?php echo base_url('analis/cek_procapaian')?>><i class="fa fa-archive"></i><b>&nbsp; Program Capaian</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('analis/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
                         <li>
@@ -201,7 +201,7 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('analis/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
-                        </li>
+                        </li> -->
                         <!-- <li>
                             <a href=<?php echo base_url('analis/data_lokasi')?>><i class="fa fa-home"></i><b>&nbsp; Data Lokasi</b></a>
                         </li> -->

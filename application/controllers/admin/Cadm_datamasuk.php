@@ -24,30 +24,30 @@ class Cadm_datamasuk extends BaseController
 
 	}
 
-	public function konfirmasi()
-	{
-		$keterangan = $this->input->post('keterangan');
-		$id_pengaduan = $this->input->post('id_pengaduan');
-		$id_user = $this->session->userdata('id_user');
-		$data = array(
-			'id_pengaduan'=>$id_pengaduan,
-			'keterangan'=>$keterangan,
-			'id_user'=>$id_user,
-			'status'=>'selesai'
-		);
-		$this->Madm_datamasuk->konfirmasi($data);
+	// public function konfirmasi()
+	// {
+	// 	$keterangan = $this->input->post('keterangan');
+	// 	$id_pengaduan = $this->input->post('id_pengaduan');
+	// 	$id_user = $this->session->userdata('id_user');
+	// 	$data = array(
+	// 		'id_pengaduan'=>$id_pengaduan,
+	// 		'keterangan'=>$keterangan,
+	// 		'id_user'=>$id_user,
+	// 		'status'=>'selesai'
+	// 	);
+	// 	$this->Madm_datamasuk->konfirmasi($data);
 
-		$data2 = array(
-			'status'=>'selesai'
-		);
-		$this->db->where('id_pengaduan',$id_pengaduan)->update('pengaduan',$data2);
+	// 	$data2 = array(
+	// 		'status'=>'selesai'
+	// 	);
+	// 	$this->db->where('id_pengaduan',$id_pengaduan)->update('pengaduan',$data2);
 
-		$this->session->set_flashdata('style', 'success');
-		$this->session->set_flashdata('alert', 'Berhasil!');
-		$this->session->set_flashdata('message', 'Pengaduan telah dikonfirmasi.');
+	// 	$this->session->set_flashdata('style', 'success');
+	// 	$this->session->set_flashdata('alert', 'Berhasil!');
+	// 	$this->session->set_flashdata('message', 'Pengaduan telah dikonfirmasi.');
 
-		redirect('admin/data_masuk');
-	}
+	// 	redirect('admin/data_masuk');
+	// }
 
 	//function mau cek data user
 	public function save_password()

@@ -45,7 +45,7 @@
 			$id_pengaduan = $this->input->post('id_pengaduan');
 			$id_log = $this->input->post('id_log');
 			$waktu = $this->input->post('waktu');
-			$user = $this->session->userdata('id_user');
+			// $user = $this->session->userdata('id_user');
 			$tempat = $this->input->post('tempat');
 			$ruang = $this->input->post('ruang');
 			$kategori = $this->input->post('kategori');
@@ -65,9 +65,9 @@
 			$inventaris = $this->input->post('inventaris');
 			$jurusan = $this->input->post('jurusan');
 			$studi = $this->input->post('studi');
-			$uraian = $this->input->post('uraian');
-			$penyedia = $this->input->post('studi');
-			$bahan = $this->input->post('bahan');
+			// $uraian = $this->input->post('uraian');
+			// $penyedia = $this->input->post('studi');
+			// $bahan = $this->input->post('bahan');
 			// $lokasi = $this->input->post('lokasi');
 			$nama_pengguna = $this->input->post('nama_pengguna');
 			$hidden = $this->input->post('hidden');
@@ -77,12 +77,12 @@
 			$config['max_size']  = '2048';
 			$config['file_name'] = $nama_pengguna.'_'.$kategori.'_'.time();
 			
-	    $this->load->library('upload', $config); // Load konfigurasi uploadnya
-	    if($this->upload->do_upload('gambar')){ // Lakukan upload dan Cek jika proses upload berhasil
+			$this->load->library('upload', $config); // Load konfigurasi uploadnya
+			if($this->upload->do_upload('gambar')){ // Lakukan upload dan Cek jika proses upload berhasil
 				
 				$data1 = array(
 				'tgl_kejadian' => $waktu,
-				'id_user' => $user,
+				// 'id_user' => $user,
 				'id_ruang' => $ruang,
 				'id_kategori' => $kategori,
 				'id_jenis' => $jenis,
@@ -100,9 +100,9 @@
 				'inventaris' => $inventaris,
 				'jurusan' => $jurusan,
 				'studi' => $studi,
-				'uraian' => $uraian,
-				'penyedia' => $penyedia,
-				'bahan' => $bahan,
+				// 'uraian' => $uraian,
+				// 'penyedia' => $penyedia,
+				// 'bahan' => $bahan,
 				// 'lokasi' => $lokasi,
 				'gambar' => $this->upload->data()['file_name']
 				);
@@ -119,7 +119,7 @@
 				$data2 = array(
 				'id_pengaduan' => $lastPengaduan,
 				//'id_kategori' => $kategori,
-				'id_user' => $user,
+				// 'id_user' => $user,
 				'status' => "masuk"
 				);
 				return $this->db->insert('log', $data2);
@@ -129,7 +129,7 @@
 				
 				$data1 = array(
 				'tgl_kejadian' => $waktu,
-				'id_user' => $user,
+				// 'id_user' => $user,
 				'id_ruang' => $ruang,
 				'id_kategori' => $kategori,
 				'id_jenis' => $jenis,
@@ -152,7 +152,7 @@
 				$data2 = array(
 				'id_pengaduan' => $lastPengaduan,
 				//'id_kategori' => $kategori,
-				'id_user' => $user,
+				// 'id_user' => $user,
 				'status' => "masuk"
 				);
 				return $this->db->insert('log', $data2);

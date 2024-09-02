@@ -8,6 +8,8 @@ class Cadm_log extends BaseController {
 	{
 		parent::__construct();
 		$this->load->model('Madm_log');
+        $this->load->model('Madm_pengaduanmsk');
+        $this->load->model('Madm_datamasuk');
 		$this->load->helper('url','form');
         $this->load->library('form_validation');
 		$this->load->library('pdf');
@@ -56,6 +58,9 @@ class Cadm_log extends BaseController {
             $this->edit($id);
         } else {
             $data = array(
+                'uraian' => $this->input->post('uraian'),
+                'penyedia' => $this->input->post('penyedia'),
+                'bahan' => $this->input->post('bahan'),
                 'wkt_pengerjaan' => $this->input->post('wkt_pengerjaan')
             );
             
@@ -162,4 +167,62 @@ class Cadm_log extends BaseController {
         $this->Madm_log->delete_log($id);
         redirect('admin/data_log');
     }
+
+    public function detail_koor($id)
+	{
+		$data['detail_pengaduan']=$this->Madm_datamasuk->detail_koor($id);
+		$this->load->view('admdetail_datamasuk',$data);
+
+	}
+
+	public function konfirmasi()
+	{
+		$keterangan = $this->input->post('keterangan');
+		$id_pengaduan = $this->input->post('id_pengaduan');
+		$id_user = $this->session->userdata('id_user');
+		$data = array(
+			'id_pengaduan'=>$id_pengaduan,
+			'keterangan'=>$keterangan,
+			'id_user'=>$id_user,
+			'status'=>'selesai'
+		);
+		$this->Madm_log->konfirmasi($data);
+
+		$data2 = array(
+			'status'=>'selesai'
+		);
+		$this->db->where('id_pengaduan',$id_pengaduan)->update('pengaduan',$data2);
+
+		$this->session->set_flashdata('style', 'success');
+		$this->session->set_flashdata('alert', 'Berhasil!');
+		$this->session->set_flashdata('message', 'Pengaduan telah dikonfirmasi.');
+
+		redirect('admin/data_log');
+	}
+
+    public function kirim()
+	{
+		$keterangan = $this->input->post('keterangan');
+		$id_pengaduan = $this->input->post('id_pengaduan');
+		$id_user = $this->session->userdata('id_user');
+		$data = array(
+			'id_pengaduan'=>$id_pengaduan,
+			'keterangan'=>$keterangan,
+			'id_user'=>$id_user,
+			'status'=>'diproses'
+		);
+		$this->Madm_log->kirim($data);
+
+		$data2 = array(
+			'status'=>'diproses'
+		);
+		$this->db->where('id_pengaduan',$id_pengaduan)->update('pengaduan',$data2);
+
+		$this->session->set_flashdata('style', 'success');
+		$this->session->set_flashdata('alert', 'Berhasil!');
+		$this->session->set_flashdata('message', 'Pengaduan telah terkirim.');
+
+		redirect('admin/data_log');
+	}
+
 }

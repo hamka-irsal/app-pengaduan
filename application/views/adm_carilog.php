@@ -63,9 +63,9 @@
                         <li>
                             <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
@@ -75,14 +75,17 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_laporan')?>><i class="fa fa-send"></i><b>&nbsp; Hasil Pelaporan</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li> -->
+                        <li>
+                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Grafik Penilaian</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                            <a href=<?php echo base_url('admin/data_datapenilaian')?> ><i class="fa fa-folder"></i><b>&nbsp; Data Penilaian</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
@@ -90,12 +93,12 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
                         </li>
-                         <li>
+                         <!-- <li>
                             <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
-                        </li>
+                        </li> -->
                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
                         </li> -->

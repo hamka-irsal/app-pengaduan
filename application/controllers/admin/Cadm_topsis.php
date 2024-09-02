@@ -3,138 +3,121 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 require APPPATH . '/libraries/BaseController.php';
 class Cadm_topsis extends CI_Controller
 {
-    function __construct()
-	{
-		parent::__construct();
-		$this->load->model('Madm_topsis');
-		$this->load->helper('url','form');
-	}
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('Madm_topsis');
+        $this->load->helper('url','form');
+		// $this->isLoggedIn();
+    }
 
     public function index() {
-        // Ambil data pengaduan
-        $pengaduanData = $this->Madm_topsis->getPengaduanData();
-        
-        // Bobot kriteria
-        $weights = [3, 2, 1]; // Biaya, SDM, Regulasi
-        
-        // Matriks keputusan
-        $decisionMatrix = [];
-        foreach ($pengaduanData as $row) {
-            $decisionMatrix[] = [$row['biaya'], $row['sdm'], $row['regulasi']];
-        }
-        
-        // Normalisasi matriks keputusan
-        $normalizedMatrix = $this->normalizeDecisionMatrix($decisionMatrix);
-        
-        // Matriks keputusan berbobot
-        $weightedNormalizedMatrix = $this->calculateWeightedMatrix($normalizedMatrix, $weights);
-        
-        // Solusi ideal positif dan negatif
-        list($positiveIdealSolution, $negativeIdealSolution) = $this->calculateIdealSolutions($weightedNormalizedMatrix);
-        
-        // Hitung jarak ke solusi ideal
-        $distances = $this->calculateDistances($weightedNormalizedMatrix, $positiveIdealSolution, $negativeIdealSolution);
-        
-        // Hitung skor preferensi
-        $preferenceScores = $this->calculatePreferenceScores($distances);
-        
-        // Urutkan pengaduan berdasarkan skor preferensi
-        array_multisort($preferenceScores, SORT_DESC, $pengaduanData);
+        // Mendapatkan data pengaduan
+        $data['pengaduan'] = $this->Madm_topsis->get_pengaduan();
 
-        // Tampilkan hasil
-        $data['pengaduanData'] = $pengaduanData;
-        $data['preferenceScores'] = $preferenceScores;
-        
+        if (empty($data['pengaduan'])) {
+            show_error('Tidak ada data pengaduan untuk diproses.');
+            return;
+        }
+
+        // Lakukan perhitungan TOPSIS dengan bobot acak untuk setiap pengadu
+        $data['result'] = $this->hitung_topsis($data['pengaduan']);
+
+        // Kirim data ke view
         $this->load->view('adm_topsis', $data);
     }
 
-    private function normalizeDecisionMatrix($matrix) {
-        $normalizedMatrix = [];
-        $colSums = [];
-    
-        // Hitung akar kuadrat dari jumlah kuadrat setiap kolom
-        foreach ($matrix[0] as $colIndex => $value) {
-            $colSums[$colIndex] = 0;
-            foreach ($matrix as $row) {
-                $colSums[$colIndex] += pow($row[$colIndex], 2);
-            }
-            $colSums[$colIndex] = sqrt($colSums[$colIndex]);
-    
-            // Jika colSums adalah nol, setel ke 1 untuk mencegah pembagian dengan nol
-            if ($colSums[$colIndex] == 0) {
-                $colSums[$colIndex] = 1;
-            }
+    private function generate_random_bobot() {
+        // Generate 3 bobot acak dengan total 1
+        $bobot = [
+            'biaya' => mt_rand(1, 10) / 10,   // Random bobot antara 0.1 dan 1
+            'sdm' => mt_rand(1, 10) / 10,     // Random bobot antara 0.1 dan 1
+            'regulasi' => mt_rand(1, 10) / 10 // Random bobot antara 0.1 dan 1
+        ];
+
+        // Normalisasi bobot sehingga totalnya menjadi 1
+        $total = array_sum($bobot);
+        foreach ($bobot as &$value) {
+            $value = $value / $total;
         }
-    
-        // Normalisasi setiap nilai
-        foreach ($matrix as $row) {
-            $normalizedRow = [];
-            foreach ($row as $colIndex => $value) {
-                $normalizedRow[] = $value / $colSums[$colIndex];
-            }
-            $normalizedMatrix[] = $normalizedRow;
-        }
-    
-        return $normalizedMatrix;
+
+        return $bobot;
     }
 
-    private function calculateWeightedMatrix($normalizedMatrix, $weights) {
-        $weightedMatrix = [];
-        foreach ($normalizedMatrix as $row) {
-            $weightedRow = [];
-            foreach ($row as $index => $value) {
-                $weightedRow[] = $value * $weights[$index];
-            }
-            $weightedMatrix[] = $weightedRow;
+    private function generate_random_preferensi($count) {
+        $preferensi = [];
+        for ($i = 0; $i < $count; $i++) {
+            $preferensi[] = mt_rand(0, 100) / 100; // Random preferensi antara 0.0 dan 1.0
         }
-        return $weightedMatrix;
+        return $preferensi;
     }
 
-    private function calculateIdealSolutions($weightedMatrix) {
-        $positiveIdealSolution = [];
-        $negativeIdealSolution = [];
-    
-        foreach ($weightedMatrix[0] as $colIndex => $value) {
-            $colValues = array_column($weightedMatrix, $colIndex);
-            $positiveIdealSolution[] = max($colValues);
-            $negativeIdealSolution[] = min($colValues);
-        }
-    
-        return [$positiveIdealSolution, $negativeIdealSolution];
-    }
+    private function hitung_topsis($pengaduan) {
+        $result = [];
+        
+        // 1. Normalisasi Matriks Keputusan
+        $normalisasi = [];
+        $kriteria = ['biaya', 'sdm', 'regulasi'];
 
-    private function calculateDistances($weightedMatrix, $positiveIdealSolution, $negativeIdealSolution) {
-        $distances = ['positive' => [], 'negative' => []];
-    
-        foreach ($weightedMatrix as $row) {
-            $positiveDistance = 0;
-            $negativeDistance = 0;
-            foreach ($row as $index => $value) {
-                $positiveDistance += pow($value - $positiveIdealSolution[$index], 2);
-                $negativeDistance += pow($value - $negativeIdealSolution[$index], 2);
+        foreach ($kriteria as $k) {
+            $sum_of_squares = 0;
+            foreach ($pengaduan as $p) {
+                $sum_of_squares += pow($p->$k, 2);
             }
-            $distances['positive'][] = sqrt($positiveDistance);
-            $distances['negative'][] = sqrt($negativeDistance);
-        }
-    
-        return $distances;
-    }
+            $sqrt_sum_of_squares = sqrt($sum_of_squares);
 
-    private function calculatePreferenceScores($distances) {
-        $preferenceScores = [];
-    
-        for ($i = 0; $i < count($distances['positive']); $i++) {
-            $sumDistances = $distances['positive'][$i] + $distances['negative'][$i];
-            
-            // Pastikan sumDistances tidak nol
-            if ($sumDistances == 0) {
-                $sumDistances = 1; // Atau nilai lain yang sesuai
+            foreach ($pengaduan as $key => $p) {
+                $normalisasi[$key][$k] = $sqrt_sum_of_squares != 0 ? $p->$k / $sqrt_sum_of_squares : 0;
             }
-    
-            $preferenceScores[] = $distances['negative'][$i] / $sumDistances;
         }
-    
-        return $preferenceScores;
+
+        // Proses setiap pengaduan secara individual
+        $preferensi = $this->generate_random_preferensi(count($pengaduan));
+        
+        foreach ($pengaduan as $key => $p) {
+            $bobot = $this->generate_random_bobot();
+
+            // 2. Membobot Matriks Normalisasi
+            $membobot = [];
+            foreach ($kriteria as $k) {
+                $membobot[$k] = $normalisasi[$key][$k] * $bobot[$k];
+            }
+
+            // 3. Menentukan Solusi Ideal Positif dan Negatif
+            $ideal_positive = [];
+            $ideal_negative = [];
+            foreach ($kriteria as $k) {
+                $values = array_column($normalisasi, $k);
+                if (empty($values)) {
+                    $ideal_positive[$k] = 0;
+                    $ideal_negative[$k] = 0;
+                } else {
+                    $ideal_positive[$k] = max($values);
+                    $ideal_negative[$k] = min($values);
+                }
+            }
+
+            // 4. Menghitung Jarak ke Solusi Ideal Positif dan Negatif
+            $sum_positive = $sum_negative = 0;
+            foreach ($kriteria as $k) {
+                $sum_positive += pow($membobot[$k] - $ideal_positive[$k], 2);
+                $sum_negative += pow($membobot[$k] - $ideal_negative[$k], 2);
+            }
+            $jarak_positif = sqrt($sum_positive);
+            $jarak_negatif = sqrt($sum_negative);
+
+            // 5. Menghitung Nilai Preferensi
+            $score = ($jarak_positif + $jarak_negatif) != 0 ? $jarak_negatif / ($jarak_positif + $jarak_negatif) : 0;
+
+            // Menggunakan nilai preferensi acak
+            $result[] = [
+                'pengaduan' => $p,
+                'bobot' => $bobot,
+                'score' => $score,
+                'preferensi' => $preferensi[$key]
+            ];
+        }
+
+        return $result;
     }
 }
 

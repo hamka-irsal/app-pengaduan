@@ -62,9 +62,9 @@
                         <li>
                             <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
@@ -74,14 +74,17 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_laporan')?>><i class="fa fa-send"></i><b>&nbsp; Hasil Pelaporan</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li> -->
+                        <li>
+                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Grafik Penilaian</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                            <a href=<?php echo base_url('admin/data_datapenilaian')?> ><i class="fa fa-folder"></i><b>&nbsp; Data Penilaian</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
@@ -89,12 +92,12 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
                         </li>
-                         <li>
+                         <!-- <li>
                             <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
-                        </li>
+                        </li> -->
                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
                         </li> -->
@@ -124,6 +127,7 @@
 			</div>
 			<!-- /.col-lg-12 -->
 		</div>
+
 		<!-- /.row -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -132,26 +136,35 @@
 						<div class="tab-content">
 							<div id="mahasiswa" class="tab-pane fade in active">
 								<!-- data mahasiswa -->
-								<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example1">
+								<table width="100%" class="table table-striped table-bordered table-hover" >
                                 <thead>
                                     <tr>
-                                        <th>ID Pengaduan</th>
-                                        <th>Biaya</th>
-                                        <th>SDM</th>
-                                        <th>Regulasi</th>
-                                        <th>Skor Preferensi</th>
+                                        <th>ID Pengadu</th>
+                                        <th  style="text-align: center; margin-top: 10px;">Email</th>
+                                        <th>Nama</th>
+                                        <th>NIP</th>
+                                        <th>Jabatan</th>
+                                        <th>Bobot Biaya</th>
+                                        <th>Bobot SDM</th>
+                                        <th>Bobot Regulasi</th>
+                                        <th>Nilai Preferensi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($pengaduanData as $index => $pengaduan): ?>
-                                        <tr>
-                                            <td><?php echo $pengaduan['id_pengaduan']; ?></td>
-                                            <td><?php echo $pengaduan['biaya']; ?></td>
-                                            <td><?php echo $pengaduan['sdm']; ?></td>
-                                            <td><?php echo $pengaduan['regulasi']; ?></td>
-                                            <td><?php echo number_format($preferenceScores[$index], 4); ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                <?php foreach ($result as $item): ?>
+                                    <tr>
+                                        <td><?= $item['pengaduan']->id_pengaduan; ?></td>
+                                        <td><?= $item['pengaduan']->email; ?></td>
+                                        <!-- <td><?= $item['pengaduan']->tgl_penilaian; ?></td> -->
+                                        <td><?= $item['pengaduan']->nama; ?></td>
+                                        <td><?= $item['pengaduan']->nip; ?></td>
+                                        <td><?= $item['pengaduan']->jabatan; ?></td>
+                                        <td><?= number_format($item['bobot']['biaya'], 4); ?></td>
+                                        <td><?= number_format($item['bobot']['sdm'], 4); ?></td>
+                                        <td><?= number_format($item['bobot']['regulasi'], 4); ?></td>
+                                        <td><?= number_format($item['preferensi'], 4); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
                                 </tbody>
 								</table>
                             </div>
@@ -167,6 +180,7 @@
 			<!-- /.col-lg-12 -->
 		</div>
 		<!-- /.row -->
+
 		
 		<!-- modal setting -->
 		<div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">

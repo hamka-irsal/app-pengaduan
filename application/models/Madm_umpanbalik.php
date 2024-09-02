@@ -12,7 +12,7 @@ class Madm_umpanbalik extends CI_Model {
 
 	public function pengaduan_masuk()
 	{
-		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, r.nama_ruang, k.kategori, skala_prioritas, nilai_prioritas, status');	//select field yang mau ditampilin
+		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, r.nama_ruang, k.kategori, skala_prioritas, nilai_prioritas, status, nama, jabatan');	//select field yang mau ditampilin
 		$this->db->from('pengaduan p'); //tabel
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		$this->db->join('kategori k','p.id_kategori = k.id_kategori');
@@ -30,11 +30,11 @@ class Madm_umpanbalik extends CI_Model {
 
 	public function detail_pengaduan($id)
 	{
-		$this->db->select('p.id_pengaduan, p.id_user, p.deskripsi, p.tindaklanjut, l.keterangan, p.kejadian, p.penyebab, p.tgl_kejadian, p.efek, p.gambar, r.nama_ruang, p.status, k.kategori, u.nama_pengguna, t.nama_tempat');	
+		$this->db->select('p.id_pengaduan, p.deskripsi, p.tindaklanjut, l.keterangan, p.kejadian, p.penyebab, p.tgl_kejadian, p.efek, p.gambar, r.nama_ruang, p.status, k.kategori, t.nama_tempat, nama');	
 		$this->db->from('pengaduan p');
 		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		$this->db->join('kategori k','k.id_kategori = p.id_kategori');
-		$this->db->join('user u','u.id_user = p.id_user');
+		// $this->db->join('user u','u.id_user = p.id_user');
 		$this->db->join('tempat t','t.id_tempat = r.id_tempat');
 		$this->db->join('log l','p.id_pengaduan = l.id_pengaduan');
 		$this->db->where('p.status',"diproses");

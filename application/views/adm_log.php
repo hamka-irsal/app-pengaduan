@@ -63,9 +63,9 @@
                         <li>
                             <a href=<?php echo base_url('admin')?>><i class="fa fa-dashboard"></i><b>&nbsp; Dashboard</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_umum')?>><i class="fa fa-users"></i><b>&nbsp; Data Umum</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('admin/data_user')?> ><i class="fa fa-user"></i><b>&nbsp; Data Pengguna</b></a>
                         </li>
@@ -75,14 +75,17 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_laporan')?>><i class="fa fa-send"></i><b>&nbsp; Hasil Pelaporan</b></a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/riwayat_pengaduan')?>><i class="fa fa-table"></i><b>&nbsp; Riwayat Pelaporan</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_masuk')?>><i class="fa fa-folder"></i><b>&nbsp; Data Masuk</b></a>
+                        </li> -->
+                        <li>
+                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Grafik Penilaian</b></a>
                         </li>
                         <li>
-                            <a href=<?php echo base_url('admin/data_penilaian')?> ><i class="fa fa-star"></i><b>&nbsp; Penilaian</b></a>
+                            <a href=<?php echo base_url('admin/data_datapenilaian')?> ><i class="fa fa-folder"></i><b>&nbsp; Data Penilaian</b></a>
                         </li>
                         <li>
                             <a href=<?php echo base_url('admin/data_umpanbalik')?>><i class="fa fa-envelope"></i><b>&nbsp; Umpan Balik</b></a>
@@ -90,12 +93,12 @@
                         <li>
                             <a href=<?php echo base_url('admin/data_topsis')?>><i class="fa fa-atom"></i><b>&nbsp; SPK Topsis</b></a>
                         </li>
-                         <li>
+                         <!-- <li>
                             <a href=<?php echo base_url('admin/data_lokasi')?>><i class="fa fa-folder"></i><b>&nbsp; Data Lokasi</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_kegiatan')?>><i class="fa fa-image"></i><b>&nbsp; Foto Kegiatan</b></a>
-                        </li>
+                        </li> -->
                        <!-- <li>
                             <a href=<?php echo base_url('admin/data_sasaranmutu')?>><i class="fa fa-folder"></i><b>&nbsp; Sasaran Mutu</b></a>
                         </li> -->
@@ -141,8 +144,11 @@
                                 <thead>
                                     <tr>
                                         <th style="text-align: center; width: 100px">Id Pelapor</th>
+                                        <th style="text-align: center;">Uraian</th>
+                                        <th style="text-align: center;">Penyedia</th>
+                                        <th style="text-align: center;">Bahan</th>
                                         <th style="text-align: center;">Tgl Pelaporan</th>
-                                        <th style="text-align: center;">Tgl Perencanaan <br> Pengerjaan</th>
+                                        <th style="text-align: center;">Perencanaan <br> Pengerjaan</th>
                                         <th style="text-align: center;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -156,6 +162,9 @@
                                             <td style="text-align: center;"><?php echo $data->id_pengaduan ?></td>
                                             <!-- <td><?php //echo date('H:i:s', strtotime($data->timestamp)) ?></td>
                                                 <td><?php //echo date('d-F-Y', strtotime($data->timestamp)) ?></td> -->
+                                                <td><?= $data->uraian; ?></td>
+                                                <td><?= $data->penyedia; ?></td>
+                                                <td><?= $data->bahan; ?></td>
                                                 <td><?= $data->wkt_pengaduan ?></td>
                                                 <td><?= $data->wkt_pengerjaan ?></td>
                                                 <td>
@@ -164,6 +173,7 @@
                                                     <a href="<?= base_url('admin/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
                                                     <a onclick="window.print()"><i class="fa fa-print" style="color: green"></i></a>
                                                     <a href="<?php echo site_url('admin/hapus_log/'.$data->id_pengaduan); ?>"><i class="fa fa-trash-o" style="color: red"></i></a>
+                                                    <a href="<?php echo base_url('admin/detail_datamasuk/'.$data->id_pengaduan) ?>" ><span class="fa fa-send"></span></a>
                                                 </td>
 
                                             </tr>
