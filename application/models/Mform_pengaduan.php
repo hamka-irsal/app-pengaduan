@@ -26,6 +26,7 @@
 			$this->db->order_by('nama_ruang','ASC');
 			return $this->db->get()->result();
 		}
+
 		public function jenis_kejadian()
 		{
 			$this->db->select('id_jenis,nama_jenis');
@@ -39,6 +40,16 @@
 			$this->db->from('pengaduan');
 			return $this->db->get()->result();
 		}
+
+		public function get_user_by_email($email) 
+		{
+			return $this->db->get_where('user', ['email' => $email])->row();
+		}
+
+		public function insert_user($data) 
+		{
+			$this->db->insert('user', $data);
+		}
 		
 		public function tambah()
 		{
@@ -48,16 +59,17 @@
 			// $user = $this->session->userdata('id_user');
 			$tempat = $this->input->post('tempat');
 			$ruang = $this->input->post('ruang');
-			$kategori = $this->input->post('kategori');
+			// $kategori = $this->input->post('kategori');
 			$jenis = $this->input->post('jenis');
 			$kejadian = $this->input->post('kejadian');
-			$efek = $this->input->post('efek');
-			$penyebab = $this->input->post('penyebab');
-			$deskripsi = $this->input->post('deskripsi');
+			// $efek = $this->input->post('efek');
+			// $penyebab = $this->input->post('penyebab');
+			// $deskripsi = $this->input->post('deskripsi');
 			$tindaklanjut = $this->input->post('tindaklanjut');
 			$status = $this->input->post('status');
 			$email = $this->input->post('email');
-			$nama = $this->input->post('nama');
+			$password = $this->input->post('password');
+			// $nama_pengguna = $this->input->post('nama_pengguna');
 			$nip = $this->input->post('nip');
 			$jabatan = $this->input->post('jabatan');
 			$alat = $this->input->post('alat');
@@ -75,7 +87,7 @@
 			$config['upload_path'] = './assets/gambar/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$config['max_size']  = '2048';
-			$config['file_name'] = $nama_pengguna.'_'.$kategori.'_'.time();
+			$config['file_name'] = $nama_pengguna.'_'.'_'.time();
 			
 			$this->load->library('upload', $config); // Load konfigurasi uploadnya
 			if($this->upload->do_upload('gambar')){ // Lakukan upload dan Cek jika proses upload berhasil
@@ -84,15 +96,16 @@
 				'tgl_kejadian' => $waktu,
 				// 'id_user' => $user,
 				'id_ruang' => $ruang,
-				'id_kategori' => $kategori,
-				'id_jenis' => $jenis,
+				// 'id_kategori' => $kategori,
+				// 'id_jenis' => $jenis,
 				'kejadian' => $kejadian,
-				'efek' => $efek,
-				'penyebab' => $penyebab,
-				'deskripsi' => $deskripsi,
+				// 'efek' => $efek,
+				// 'penyebab' => $penyebab,
+				// 'deskripsi' => $deskripsi,
 				'tindaklanjut' => $tindaklanjut,
 				'email' => $email,
-				'nama' => $nama,
+				// 'password' => $password,
+				// 'nama_pengguna' => $nama_pengguna,
 				'nip' => $nip,
 				'jabatan' => $jabatan,
 				'alat' => $alat,
@@ -106,6 +119,20 @@
 				// 'lokasi' => $lokasi,
 				'gambar' => $this->upload->data()['file_name']
 				);
+				// Cek apakah email sudah terdaftar di tabel users
+				$user = $this->get_user_by_email($email);
+	
+				if (!$user) {
+					// Jika belum ada, buat akun baru otomatis di tabel users
+					$data_user = [
+						'email' => $email,
+						'nama_pengguna' => $nama_pengguna,
+						'password' => password_hash($password, PASSWORD_BCRYPT),  // Hash password
+						'id_role' => 1, // Anda bisa set rolenya
+						'is_auto_registered' => 1,
+					];
+					$this->insert_user($data_user);
+				}
 				
 				if($hidden){
 					$data1['hidden'] = 1;
@@ -131,12 +158,12 @@
 				'tgl_kejadian' => $waktu,
 				// 'id_user' => $user,
 				'id_ruang' => $ruang,
-				'id_kategori' => $kategori,
-				'id_jenis' => $jenis,
+				// 'id_kategori' => $kategori,
+				// 'id_jenis' => $jenis,
 				'kejadian' => $kejadian,
-				'efek' => $efek,
-				'penyebab' => $penyebab,
-				'deskripsi' => $deskripsi,
+				// 'efek' => $efek,
+				// 'penyebab' => $penyebab,
+				// 'deskripsi' => $deskripsi,
 				'tindaklanjut' => $tindaklanjut,
 				);
 				

@@ -7,7 +7,7 @@ class Cadm_datamasuk extends BaseController
 		parent::__construct();
 		$this->load->model('Madm_datamasuk');
 		$this->load->helper('url','form');
-		$this->isLoggedIn();
+		// $this->isLoggedIn();
 	}
 
 	public function index()
@@ -23,6 +23,42 @@ class Cadm_datamasuk extends BaseController
 		$this->load->view('admdetail_datamasuk',$data);
 
 	}
+
+	public function tambah_pengaduan() {
+        // Ambil data dari form atau input
+        $email = $this->input->post('email');
+        $judul = $this->input->post('judul_pengaduan');
+        $isi = $this->input->post('isi_pengaduan');
+
+        // Data untuk disimpan di tabel pengaduan
+        $data_pengaduan = array(
+            'email' => $email,
+            'judul_pengaduan' => $judul,
+            'isi_pengaduan' => $isi
+        );
+
+        // Simpan pengaduan baru ke tabel pengaduan dan otomatis ke tabel kriteria
+        $id_pengaduan = $this->Madm_datamasuk->insertPengaduan($data_pengaduan);
+
+        if ($id_pengaduan) {
+            // Redirect ke halaman SPK TOPSIS atau tampilkan pesan berhasil
+            $this->session->set_flashdata('message', 'Pengaduan berhasil ditambahkan dan dimasukkan ke perhitungan SPK TOPSIS.');
+            redirect('adm_topsis');
+        } else {
+            // Handle jika pengaduan gagal disimpan
+            $this->session->set_flashdata('error', 'Gagal menambahkan pengaduan.');
+            redirect('pengaduan/tambah');
+        }
+    }
+
+    // Fungsi untuk menampilkan data SPK TOPSIS
+    public function spk_topsis() {
+        // Ambil data kriteria beserta data pengaduan dari model
+        $data['kriteria'] = $this->Kriteria_model->getDataKriteria();
+        
+        // Load view untuk menampilkan data SPK TOPSIS
+        $this->load->view('spk_topsis/index', $data);
+    }
 
 	// public function konfirmasi()
 	// {

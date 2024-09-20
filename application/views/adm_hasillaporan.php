@@ -163,7 +163,7 @@
                                             <th>Status</th>
                                             <th style="text-align: center;">Tgl Pelaporan</th>
                                             <th style="text-align: center;">Tgl Perencanaan <br> Pengerjaan</th>
-                                            <th style="text-align: center; width: 50px">Aksi</th>
+                                            <th style="text-align: center; width: 80px">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -183,6 +183,8 @@
                                                         <a href="<?= base_url('admin/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
                                                         <a onclick="window.print()"><i class="fa fa-print" style="color: green"></i></a>
                                                         <a href="<?php echo site_url('admin/hapus_laporan/'.$row['id_pengaduan']); ?>"><i class="fa fa-trash-o" style="color: red"></i></a>
+                                                        <a href="<?php echo site_url('admin/kirim_notifikasi_pengaduan_selesai/'.$row['id_pengaduan']); ?>"><i class="fa fa-send" style="color: red"></i></a>
+                                                        <!-- <a href="<?= base_url('admin/kirim_email_pengaduan/' . $row->id_pengaduan); ?>" class="btn btn-primary">Kirim Email</a> -->
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>

@@ -9,7 +9,7 @@ class Cagt_datapelapor extends BaseController {
 		$this->load->model('Mform_pengaduan');
 		// $this->load->model('Madmin_datauser');
 		$this->load->helper('url','form');
-		$this->isLoggedIn();
+		// $this->isLoggedIn();
 	}
 
 	public function index()

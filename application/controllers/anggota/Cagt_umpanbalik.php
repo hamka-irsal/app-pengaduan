@@ -10,7 +10,7 @@ class Cagt_umpanbalik extends BaseController {
 		$this->load->model('Madm_log');
 		$this->load->helper('url','form');
 		$this->load->library('pdf');
-		$this->isLoggedIn();
+		// $this->isLoggedIn();
 	}
 
 	public function index()

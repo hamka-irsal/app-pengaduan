@@ -96,8 +96,13 @@
                     </div>
 
                     <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Password</label>
+                      <input type="password" class="form-control" name="password" id="password" placeholder="Silahkan isi password">
+                    </div>
+
+                    <div class="form-group" style="margin-left: 15px; margin-right:15px">
                       <label>Nama</label>
-                      <input type="text" class="form-control" name="nama" id="nama" placeholder="Silahkan isi nama">
+                      <input type="text" class="form-control" name="nama_pengguna" id="nama_pengguna" placeholder="Silahkan isi nama">
                     </div>
 
                     <div class="form-group" style="margin-left: 15px; margin-right:15px">
@@ -197,10 +202,8 @@
                       </div>
                     </div>
 
-                  </div>
-
                   <!-- kategori dan jenis -->
-                  <div class="form-group" style="margin-left: 15px">
+                  <!-- <div class="form-group" style="margin-left: 15px">
                     <label>Seberapa sering terjadi</label>
                     <select class="form-control" name="kejadian" style="width: 48%;">
                       <option value="">
@@ -209,7 +212,17 @@
                       <option value="pertama">Pertama kali</option>
                       <option value="beberapa kali">Beberapa kali</option>
                     </select>
+                  </div> -->
+
+                  <!-- <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Lokasi Alat (Kampus PNUP)</label>
+                    <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Silahkan isi lokasi alat">
                   </div>
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Lokasi Alat/Ruangan</label>
+                    <input type="text" class="form-control" name="ruang" id="ruang" placeholder="Silahkan isi lokasi alat/ruang">
+                  </div> -->
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Kerusakan</label>
@@ -231,7 +244,7 @@
                     <input type="text" class="form-control" name="bahan" id="bahan" placeholder="Silahkan isi bahan">
                   </div> -->
 
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                  <!-- <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Jumlah Bahan</label>
                     <input type="text" class="form-control" name="jumlah_bahan" id="jumlah_bahan" placeholder="Silahkan isi jumlah bahan">
                   </div>
@@ -249,7 +262,7 @@
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Silahkan deskripsikan kejadian <b style="color: red">*</b></label>
                     <textarea class="form-control" name="deskripsi" rows="3" placeholder="text..." required></textarea>
-                  </div>
+                  </div> -->
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Data Tambahan</label>

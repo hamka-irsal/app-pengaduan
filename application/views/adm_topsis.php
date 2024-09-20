@@ -139,31 +139,31 @@
 								<table width="100%" class="table table-striped table-bordered table-hover" >
                                 <thead>
                                     <tr>
-                                        <th>ID Pengadu</th>
-                                        <th  style="text-align: center; margin-top: 10px;">Email</th>
-                                        <th>Nama</th>
-                                        <th>NIP</th>
-                                        <th>Jabatan</th>
-                                        <th>Bobot Biaya</th>
-                                        <th>Bobot SDM</th>
-                                        <th>Bobot Regulasi</th>
-                                        <th>Nilai Preferensi</th>
+                                        <th>ID Pengaduan</th>
+                                        <th>Email</th>
+                                        <th>Biaya</th>
+                                        <th>SDM</th>
+                                        <th>Regulasi</th>
+                                        <th>Nilai Vector</th>
+                                        <th>Ranking</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php foreach ($result as $item): ?>
-                                    <tr>
-                                        <td><?= $item['pengaduan']->id_pengaduan; ?></td>
-                                        <td><?= $item['pengaduan']->email; ?></td>
-                                        <!-- <td><?= $item['pengaduan']->tgl_penilaian; ?></td> -->
-                                        <td><?= $item['pengaduan']->nama; ?></td>
-                                        <td><?= $item['pengaduan']->nip; ?></td>
-                                        <td><?= $item['pengaduan']->jabatan; ?></td>
-                                        <td><?= number_format($item['bobot']['biaya'], 4); ?></td>
-                                        <td><?= number_format($item['bobot']['sdm'], 4); ?></td>
-                                        <td><?= number_format($item['bobot']['regulasi'], 4); ?></td>
-                                        <td><?= number_format($item['preferensi'], 4); ?></td>
-                                    </tr>
+                                <?php foreach ($ranking as $key => $data): ?>
+                                <tr>
+                                    <td><?= $data['id_pengaduan']; ?></td>
+                                    <td><?= $data['email']; ?></td>
+                                    <td><?= number_format($data['biaya'], 4) ?></td>
+                                    <td><?= number_format($data['sdm'], 4) ?></td>
+                                    <td><?= number_format($data['regulasi'], 4) ?></td>
+                                    <td><?= number_format($data['preference'], 2) ?></td>
+                                    <td><?= $key + 1; ?></td>
+                                    <td>
+                                        <!-- <a href="<?= site_url('admin/edit_topsis/'.$data['id_pengaduan']); ?>">Edit</a> -->
+                                        <a href="<?= base_url('admin/edit_topsis/'.$data['id_pengaduan']) ?>"><i class="fa fa-edit" style="color: blue"></i></a>
+                                    </td>
+                                </tr>
                                 <?php endforeach; ?>
                                 </tbody>
 								</table>

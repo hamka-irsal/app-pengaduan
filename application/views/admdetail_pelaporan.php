@@ -174,7 +174,7 @@
         </thead>
         <tbody>
             <tr>
-                <td>NAMA :  <?= $pengaduan['nama']; ?></td>
+                <td>NAMA :  <?= $pengaduan['nama_pengguna']; ?></td>
             </tr>
             <tr>
                 <td>NIP/NIKH :  <?= $pengaduan['nip']; ?></td>

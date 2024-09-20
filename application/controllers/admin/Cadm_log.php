@@ -20,10 +20,9 @@ class Cadm_log extends BaseController {
 	{
 		$data['log_activity']=$this->Madm_log->log_activity();
 		$data['level']=$this->Madm_log->level();
-		// $data['pengaduan']=$this->Madm_log->pengaduan();
 		$this->load->view('adm_log',$data);
 	}
-
+	
 	public function cari() {
         $data['pengaduan'] = [];
 

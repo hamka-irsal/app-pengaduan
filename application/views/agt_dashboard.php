@@ -189,8 +189,8 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
-                        </li>
-                        <li>
+                        </li> -->
+                        <!-- <li>
                             <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li> -->
                         <li>
@@ -214,7 +214,7 @@
             <div class="row">
                 <center>
                 <div class="col-lg-12">
-                    <h1 class="page-header">Halo, <?php echo $this->session->userdata('nama_pengguna'); ?></a></h1>
+                    <!-- <h1 class="page-header">Halo, <?php echo $this->session->userdata('nama_pengguna'); ?></a></h1> -->
                     <h1>Selamat Datang Di Web Pengaduan</h1>
                     <img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 100px; margin-bottom: 30px">
                 </div>

@@ -8,7 +8,7 @@ class Cagt_dashboard extends BaseController {
 		parent::__construct();
 		$this->load->model('Madmin_datauser');
 		$this->load->helper('url','form');
-		$this->isLoggedIn();
+		// $this->isLoggedIn();
 	}
 
 	public function index()

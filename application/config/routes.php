@@ -64,6 +64,7 @@ $route['upload/do_upload'] = 'Uploadfile/do_upload';
 $route['reports'] = 'Cek_laporan';
 $route['upt'] = 'Upt';
 $route['kegiatan'] = 'Foto_kegiatan';
+$route['insert_data'] = 'Laporan_kerusakan/tambah';
 
 
 
@@ -75,6 +76,11 @@ $route['logout_karyawan'] = 'login/logout_karyawan';
 $route['logout'] = 'Login_pengadu/logout';
 $route['user/register'] = 'Register/register';
 
+// Route untuk form pengaduan
+$route['pengaduan'] = 'Login_pengadu/form';
+$route['pengaduan/submit'] = 'Login_pengadu/submit_pengaduan';
+$route['login'] = 'login_user/login_form';
+$route['login/process'] = 'login_user/login';
 
 //admin
 $route['admin'] = 'admin/Cadm_dashboard';
@@ -84,7 +90,7 @@ $route['admin/downloadPdf'] = 'admin/Cadm_log/downloadPdf';
 $route['admin/hapus_pengaduan/(:num)'] = 'admin/Cadm_log/hapus_pengaduan/$1';
 $route['admin/data_lokasi'] = 'admin/Cadm_dataruangtempat';  
 $route['admin/data_user'] = 'admin/Cadm_datauser';
-$route['admin/data_topsisi'] = 'user/Cpengaduan_masuk';
+$route['admin/data_topsis'] = 'user/Cpengaduan_masuk';
 $route['admin/data_user/upload'] = 'admin/Cadm_datauser/upload';
 $route['admin/tambah_ruang'] = 'admin/Cadm_dataruangtempat/tambah_ruang';
 $route['admin/edit_ruang'] = 'admin/Cadm_dataruangtempat/edit_ruang';
@@ -156,6 +162,8 @@ $route['admin/get_unread_pengaduan'] = 'Cadm_dashboard/get_unread_pengaduan';
 // $route['admin/konfirmasi'] = 'admin/Cadm_datamasuk/konfirmasi';
 
 $route['admin/data_topsis'] = 'admin/Cadm_topsis/index';
+$route['admin/edit_topsis/(:num)'] = 'admin/Cadm_topsis/edit_pengaduan/$1';
+$route['admin/update_topsis'] = 'admin/Cadm_topsis/update_pengaduan';
 
 $route['admin/form/(:num)'] = 'admin/Cadm_feedback/tampilkanFormUmpanBalik/$1';
 $route['admin/kirim/(:num)'] = 'admin/Cadm_feedback/kirimUmpanBalik/$1';
@@ -165,6 +173,8 @@ $route['admin/pesan/(:num)'] = 'admin/Cadm_feedback/tampilkanPesanAdmin/$1';
 $route['admin/data_laporan'] = 'admin/Cadm_laporan/selesai';
 $route['admin/carihasil'] = 'admin/Cadm_laporan/cari';
 $route['admin/hapus_laporan/(:num)'] = 'admin/Cadm_laporan/delete/$1';
+$route['admin/kirim_notifikasi_pengaduan_selesai/(:num)'] = 'admin/Cadm_laporan/kirim_notifikasi_pengaduan_selesai/$1';
+
 
 
 //user

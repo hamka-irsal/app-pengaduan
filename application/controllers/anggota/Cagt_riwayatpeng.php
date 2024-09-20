@@ -8,7 +8,7 @@ class Cagt_riwayatpeng extends BaseController {
 		parent::__construct();
 		$this->load->model('Manalis_riwayatpeng');
 		$this->load->helper('url','form');
-		$this->isLoggedIn();
+		// $this->isLoggedIn();
 	}
 
 	public function index()

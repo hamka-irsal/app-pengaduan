@@ -133,7 +133,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						
-						<a href="#" class="btn btn-success btn-md" data-toggle="modal" data-target="#modalUpload"><span class="fa fa-upload"></span> Unggah </a>
+						<!-- <a href="#" class="btn btn-success btn-md" data-toggle="modal" data-target="#modalUpload"><span class="fa fa-upload"></span> Unggah </a> -->
 
 						<a href="#" class="btn btn-primary btn-md" style="margin-left: 74%" data-toggle="modal" data-target="#tambahPengguna"><span class="fa fa-user-plus"></span> Tambah Pengguna </a>
 						
@@ -153,9 +153,9 @@
 									<thead>
 										<tr>
 											<th>No</th>
-											<th style="width: 35%">Nama Pengguna</th>
+											<!-- <th style="width: 35%">Nama Pengguna</th> -->
 											<th>Email</th>
-											<th>NIM</th>
+											<!-- <th>NIM</th> -->
 											<th>Role</th>
 											<th>Status</th>
 											<th style="width: 40px;">aksi</th>
@@ -170,9 +170,9 @@
 												?>
 												<tr>
 													<td><?php echo $i; ?></td>
-													<td><?php echo $data->nama_pengguna ?></td>
+													<!-- <td><?php echo $data->nama_pengguna ?></td> -->
 													<td><?php echo $data->email ?></td>
-													<td><?php echo $data->username ?></td>
+													<!-- <td><?php echo $data->username ?></td> -->
 													<td><?php echo $data->role ?></td>
 													<td>
 														<?php

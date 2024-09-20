@@ -14,7 +14,8 @@ class Madm_pengaduanmsk extends CI_Model {
         return $this->db->count_all_results();
     }
 	
-    public function getPengaduanById($id_pengaduan) {
+    public function getPengaduanById($id_pengaduan) 
+    {
         $this->db->where('id_pengaduan', $id_pengaduan);
         $query = $this->db->get('pengaduan');
         return $query->row();
@@ -38,7 +39,8 @@ class Madm_pengaduanmsk extends CI_Model {
 		return $this->db->get()->result();
 	}
 
-    public function getPelaporanByDateRange($startDate, $endDate) {
+    public function getPelaporanByDateRange($startDate, $endDate) 
+    {
         $this->db->select('*');
         $this->db->from('pengaduan');
         $this->db->where('wkt_pengaduan >=', $startDate);
@@ -47,9 +49,55 @@ class Madm_pengaduanmsk extends CI_Model {
         return $query->result();
     }
 
-    public function delete_log($id) {
+    public function delete_log($id) 
+    {
 		$this->db->where('id_pengaduan', $id);
 		return $this->db->delete('pengaduan');
 	}
+
+    public function insertPengaduan($data_pengaduan) {
+        $this->db->insert('pengaduan', $data_pengaduan);
+        $id_pengaduan = $this->db->insert_id(); // Ambil ID pengaduan yang baru dimasukkan
+        
+        // Jika pengaduan berhasil disimpan, masukkan juga ke tabel kriteria
+        if ($id_pengaduan) {
+            // Data default untuk kriteria, bisa disesuaikan
+            $data_kriteria = array(
+                'id_pengaduan' => $id_pengaduan,
+                'biaya' => 0, // nilai default atau bisa dihitung berdasarkan data
+                'sdm' => 0,   // nilai default atau bisa dihitung berdasarkan data
+                'regulasi' => 0 // nilai default atau bisa dihitung berdasarkan data
+            );
+            
+            // Simpan ke tabel kriteria
+            $this->db->insert('kriteria', $data_kriteria);
+        }
+        
+        return $id_pengaduan;
+    }
+
+    public function insert_pengaduan($data) {
+        $this->db->insert('pengaduan', $data);
+    }
+
+    // public function get_pengaduan_by_id($id_pengaduan) {
+    //     $this->db->select('p.id_pengaduan, u.nama_pengguna, u.email');
+    //     $this->db->from('pengaduan p');
+    //     $this->db->join('user u', 'p.id_user = u.id_user');
+    //     $this->db->where('p.id_pengaduan', $id_pengaduan);
+    //     $query = $this->db->get();
+        
+    //     return $query->row();
+    // }
+
+    public function get_pengaduan_by_id($id_pengaduan) {
+        return $this->db->get_where('pengaduan', array('id_pengaduan' => $id_pengaduan))->row();
+    }
+
+    public function update_status($id_pengaduan, $status) {
+        $this->db->set('status', $status);
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        return $this->db->update('pengaduan');
+    }
 }
 ?>

@@ -139,7 +139,7 @@
                             <input type="submit" name="submit" value="Cari">
                         </form>
                         <div class="panel-body">
-                        <!-- <?php if (!empty($log_activity)): ?> -->
+                        <?php if (!empty($log_activity)): ?>
                             <table width="100%" class="table table-striped table-bordered table-hover" id="example2">
                                 <thead>
                                     <tr>
@@ -277,9 +277,9 @@
                                                         ?>
                                                     </tbody>
                                                 </table>
-                                                <!-- <?php else: ?>
+                                                <?php else: ?>
                                                     <p>Tidak ada data pelaporan ditemukan.</p>
-                                                <?php endif; ?> -->
+                                                <?php endif; ?>
                                                 <!-- /.row (nested) -->
                                             </div>
                                             <!-- /.panel-body -->

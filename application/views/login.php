@@ -51,7 +51,7 @@
               </center>
 
               <div class="panel-body">
-                <form role="form" action=<?php echo base_url("Login_pengadu/loginMe")?> method="POST">
+                <form role="form" action=<?php echo base_url("login/process")?> method="POST">
                   <fieldset>
 
                     <div class="form-group">
@@ -59,7 +59,7 @@
                         <div class="input-group-addon">
                           <i class="fa fa-user"></i>
                         </div>
-                        <input type="text" name="username" class="form-control"  placeholder="NIP/NIM" required>
+                        <input type="email" name="email" class="form-control"  placeholder="email" required>
                       </div>
                     </div>
 
@@ -77,9 +77,9 @@
                       </center>
                     </div>
                     <div>
-                      <center>
+                      <!-- <center>
                       <a href=<?php echo base_url('user/register')?> class="btn btn-primary btn-md"><span class="fa fa-user-plus"></span> Registrasi Pengguna </a>
-                      </center>
+                      </center> -->
                     </div>
                   </fieldset>
                 </form>

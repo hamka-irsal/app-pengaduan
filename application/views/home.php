@@ -44,7 +44,7 @@
       <a href="<?php echo base_url('Home') ?>" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="asset/img/logo.png" alt=""> -->
-        <h2 class="sitename">Politeknik Negri Ujung Pandang</h2>
+        <h2 class="sitename">Politeknik Negeri Ujung Pandang</h2>
       </a>
 
       <nav id="navmenu" class="navmenu">

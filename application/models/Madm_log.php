@@ -13,6 +13,20 @@ class Madm_log extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	public function insert_user($data) {
+        $this->db->insert('user', $data);
+    }
+
+	public function get_all_pengaduan() {
+        $query = $this->db->get('pengaduan');
+        return $query->result();
+    }
+
+    // Fungsi untuk mendapatkan pengaduan tertentu berdasarkan ID atau parameter lainnya
+    public function get_pengaduan_by_id($id) {
+        $query = $this->db->get_where('pengaduan', array('id' => $id));
+        return $query->row();
+    }
 	// public function pengaduan()
 	// {
 	// 	$this->db->select('id_log, id_pengaduan, id_user, status, keterangan, timestamp');
@@ -115,7 +129,7 @@ class Madm_log extends CI_Model {
 
 	public function get_pengaduan_data()
     {
-        $this->db->select('id_pengaduan, alat, spesifikasi, kejadian, penyebab, inventaris, tgl_kejadian, jurusan, studi, nama, nip, gambar');
+        $this->db->select('id_pengaduan, alat, spesifikasi, kejadian, penyebab, inventaris, tgl_kejadian, jurusan, studi, nama_pengguna, nip, gambar');
         $query = $this->db->get('pengaduan');
         return $query->result_array();
     }

@@ -149,7 +149,7 @@
                                         <td>:</td>
                                         <td>
 											<?php 
-												echo $data->nama; 
+												echo $data->nama_pengguna; 
 											?>
 										</td>
                                     </tr>
@@ -184,13 +184,13 @@
                                         <td>:</td>
                                         <td style="width: 80%"><?php echo $data->tindaklanjut ?></td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td><b>Kategori</b></td>
                                         <td>:</td>
                                         <td><?php echo $data->kategori ?>
                                             <span></span>
                                         </td>
-                                    </tr>
+                                    </tr> -->
 
                                     <!-- modal konfirm -->
                                     <div class="modal modal-primary fade" id="modalKonfirmasi" style="margin-top: 5%;">
