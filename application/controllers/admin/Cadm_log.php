@@ -10,6 +10,8 @@ class Cadm_log extends BaseController {
 		$this->load->model('Madm_log');
         $this->load->model('Madm_pengaduanmsk');
         $this->load->model('Madm_datamasuk');
+		$this->load->model('Madm_notif');
+        $this->load->model('Muser');
 		$this->load->helper('url','form');
         $this->load->library('form_validation');
 		$this->load->library('pdf');
@@ -223,5 +225,57 @@ class Cadm_log extends BaseController {
 
 		redirect('admin/data_log');
 	}
+
+    // public function update_status($id_pengaduan)
+    // {
+    //     // $this->load->model('Madm_pengaduanmsk');
+        
+    //     // Update status pengaduan jadi 'SELESAI'
+    //     $this->Madm_pengaduanmsk->update_pengaduan($id_pengaduan, ['status' => 'selesai']);
+        
+    //     // Set flashdata untuk notifikasi
+    //     $this->session->set_userdata('notif', 'Pengaduan telah selesai dikerjakan.');
+        
+    //     // Redirect ke halaman pengaduan atau dashboard admin
+    //     redirect('admin/data_log');
+    // }
+   
+	public function update_status($id_pengaduan)
+	{
+		// $this->load->model('Madm_pengaduanmsk');
+		
+		// Update status pengaduan jadi 'SELESAI'
+		$this->Madm_pengaduanmsk->update_pengaduan($id_pengaduan, ['status' => 'selesai']);
+		
+		// Tambahkan notifikasi untuk user di database
+		$notifikasi_data = [
+			'id_user' => $this->Madm_pengaduanmsk->get_user_id_by_pengaduan($id_pengaduan),
+			'pesan' => 'Pengaduan Anda telah selesai dikerjakan oleh admin.',
+			'status' => 'baru'
+		];
+		$this->db->insert('notifikasi', $notifikasi_data);
+		
+		// Redirect ke halaman pengaduan atau dashboard admin
+		redirect('admin/data_log');
+	}
+
+	public function update_pengaduan($id_pengaduan) {
+        // $this->load->model('Madm_pengaduanmsk');
+
+        // Update status pengaduan
+        $status = 'selesai';
+        $this->Madm_pengaduanmsk->update_status_pengaduan($id_pengaduan, $status);
+
+        // Dapatkan pengaduan dan user terkait
+        $pengaduan = $this->Madm_pengaduanmsk->get_pengaduan($id_pengaduan);
+        $user = $this->Muser->get_user_by_id($pengaduan->id_user);
+
+        // Kirim notifikasi ke user
+        $pesan = 'Pengaduan Anda dengan waktu pengaduan "' . $pengaduan->wkt_pengaduan . '" telah selesai diproses.';
+        $this->Madm_notif->buat_notifikasi($id_pengaduan, $pengaduan->id_user, $pesan);
+
+        // Redirect atau tampilkan pesan berhasil
+        redirect('admin/data_log/' . $id_pengaduan);
+    }
 
 }

@@ -24,9 +24,9 @@ class Madm_datamasuk extends CI_Model
 
 	public function detail_koor($id)
 	{
-		$this->db->select('p.id_pengaduan, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek, r.nama_ruang, p.gambar, p.alat, p.nama_pengguna, p.uraian, p.penyedia, p.bahan');	
+		$this->db->select('p.id_pengaduan, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek, p.gambar, p.alat, p.nama, p.uraian, p.penyedia, p.bahan');	
 		$this->db->from('pengaduan p','ruang r'); 
-		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
+		// $this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		// $this->db->join('kategori k','k.id_kategori = p.id_kategori');
 		// $this->db->join('user u','u.id_user = p.id_user');
 		//$this->db->join('tempat t','t.id_tempat = r.id_tempat');

@@ -51,12 +51,29 @@
 			$this->db->insert('user', $data);
 		}
 		
+		public function insert_data($data) {
+			// Cek apakah id_user sudah ada dan tidak null
+			if (!isset($data['id_user']) || empty($data['id_user'])) {
+				return false; // Atau handle error sesuai kebutuhan
+			}
+	
+			// Lakukan insert jika validasi berhasil
+			return $this->db->insert('user', $data);
+		}
+
+		public function user()
+		{
+			$this->db->select('id_user, nama_pengguna');
+			$this->db->from('user');
+			return $this->db->get()->result();
+		}
+		
 		public function tambah()
 		{
 			$id_pengaduan = $this->input->post('id_pengaduan');
 			$id_log = $this->input->post('id_log');
 			$waktu = $this->input->post('waktu');
-			// $user = $this->session->userdata('id_user');
+			$user = $this->session->userdata('id_user') ? $this->session->userdata('id_user') : 0;
 			$tempat = $this->input->post('tempat');
 			$ruang = $this->input->post('ruang');
 			// $kategori = $this->input->post('kategori');
@@ -94,7 +111,7 @@
 				
 				$data1 = array(
 				'tgl_kejadian' => $waktu,
-				// 'id_user' => $user,
+				'id_user' => $user,
 				'id_ruang' => $ruang,
 				// 'id_kategori' => $kategori,
 				// 'id_jenis' => $jenis,

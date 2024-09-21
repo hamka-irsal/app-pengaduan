@@ -7,8 +7,11 @@ class Cagt_dashboard extends BaseController {
 	{
 		parent::__construct();
 		$this->load->model('Madmin_datauser');
+        $this->load->model('Madm_pengaduanmsk');
+        $this->load->model('Madm_notif');
+        $this->load->model('Madm_log');
 		$this->load->helper('url','form');
-		// $this->isLoggedIn();
+		$this->isLoggedIn();
 	}
 
 	public function index()
@@ -16,8 +19,23 @@ class Cagt_dashboard extends BaseController {
         $data['user']=$this->Madmin_datauser->user();
 		$data['level']=$this->Madmin_datauser->level();
 		$data['role']=$this->Madmin_datauser->role();
-		$this->load->view('agt_dashboard', $data);
-	}
+        $data['log_activity']=$this->Madm_log->log_activity();
+		$data['level']=$this->Madm_log->level();
+
+        $this->load->view('agt_dashboard', $data);
+
+    }
+
+    
+
+    public function lihat_notifikasi($id_notifikasi) {
+        // Update status notifikasi menjadi 'TERBACA'
+        $this->Madm_notif->update_status_notifikasi($id_notifikasi, 'dibaca');
+
+        // Redirect ke halaman pengaduan terkait
+        $notifikasi = $this->Madm_notif->get_notifikasi($id_notifikasi);
+        redirect('admin/data_log/' . $notifikasi->id_pengaduan);
+    }
 
     public function save_password()
     { 

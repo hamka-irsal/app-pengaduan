@@ -151,24 +151,6 @@
                     <!-- /.dropdown-user -->
                 </li>
             </ul>
-            <ul class="nav navbar-top-links navbar-right" style="margin-top: 20px; margin-right:20px;">
-            <div class="notification-icon" onclick="toggleNotifications()">
-            <i class="fas fa-bell"></i>
-                <span class="notification-count"><?php echo 1; ?></span>
-            </div>
-
-            <div id="notification-list" class="notification-list">
-                <ul>
-                    <?php if (count($pengaduan) > 1) : ?>
-                        <?php foreach ($pengaduan as $p) : ?>
-                            <li><?php echo $p->nama; ?></li>
-                        <?php endforeach; ?>
-                    <?php else : ?>
-                        <li>Tidak ada pengaduan baru.</li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-            </ul>
             <!-- /.navbar-top-links -->
 
             <!--- user panel -->
@@ -208,7 +190,11 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+        <?php
+                $data = $this->db->get_where('log', ['id_pengaduan'])->row();
+                $id_user = $this->session->userdata('id_user');
 
+            ?>
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
@@ -216,16 +202,92 @@
                 <div class="col-lg-12">
                     <!-- <h1 class="page-header">Halo, <?php echo $this->session->userdata('nama_pengguna'); ?></a></h1> -->
                     <h1>Selamat Datang Di Web Pengaduan</h1>
-                    <img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 100px; margin-bottom: 30px">
+                    <img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 100px; margin-bottom: 30px"> </br>
+					<a class="fa fa-bell fa-3x" style="color: blue" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan; ?>"></a>&nbsp;
+                </div>
+                <div class="col-lg-12">
                 </div>
                 </center>
                 <!-- /.col-lg-12 -->
+            </div>
+
+            <div class="row">
+          
             </div>
             <!-- /.row -->
             <div class="row">
             <h1 class="page-header"></a>
             </h1>
             </div>
+
+         
+
+            <div class="modal modal-primary fade" id="detail<?php echo $data->id_pengaduan ?>" style="margin-top: 5%;">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title">NOTIFIKASI PENGADUAN</h4></center>
+            </div>
+            <center>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-md-2">
+                        <label>Tanggal</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label>Jam</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label>Status</label>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Notifikasi Admin</label>
+                    </div>
+                </div>
+                <?php 
+                $this->load->model('Madm_log');
+                $log_activity = $this->Madm_log->detail_log($data->id_pengaduan);   
+                $j = 1;
+                foreach ($log_activity as $log) { 
+                    ?> 
+                    <div class="row text-center">
+                        <div class="col-md-2">
+                            <p><?php echo date("d F Y", strtotime($log->timestamp)) ?></p>
+                        </div>
+                        <div class="col-md-1">
+                            <p><?php echo date("H:i:s", strtotime($log->timestamp)) ?></p>
+                        </div>
+                        <div class="col-md-1">
+                            <p>
+                                <?php
+                                if($log->status == 'masuk') {
+                                    ?>
+                                    <span class="badge primary"><?php echo $log->status ?></span><br>
+                                    <?php }elseif($log->status == 'diproses'){
+                                        ?>
+                                        <span class="badge warning"><?php echo $log->status ?></span><br>
+                                        <?php }else{ ?>
+                                        <span class="badge success"><?php echo $log->status ?></span><br>
+                                        <?php } ?>
+                            </p>
+                        </div>
+                        <div class="col-md-3">
+                            <p><?php echo $log->keterangan ?></p>
+                        </div>
+                            </div>
+                            <?php $j++;} ?>
+                        </div>
+                    </center>
+                        <div class="modal-footer">
+                            <button style="margin-left: 45%" type="button" class="btn btn-warning pull-left" data-dismiss="modal">selesai
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                                            <!-- modal edit user -->
 
             <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
                           <div class="modal-dialog">

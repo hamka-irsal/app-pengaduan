@@ -132,88 +132,105 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var ctx = document.getElementById('penilaianChart').getContext('2d');
+    var penilaianChart;
 
-            var data = {
-                labels: [
-                    <?php 
-                        foreach ($penilaian as $p) {
-                            echo '"' . $p['tgl_penilaian'] . '", ';
-                        }
-                    ?>
-                ],
-                datasets: [
-                    {
-                        label: 'Pendapat 1 - Sangat Memuaskan',
-                        data: [
-                            <?php 
-                                foreach ($penilaian as $p) {
-                                    echo $p['pendapat1_sangat_memuaskan'] . ', ';
-                                }
-                            ?>
-                        ],
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Pendapat 2 - Memuaskan',
-                        data: [
-                            <?php 
-                                foreach ($penilaian as $p) {
-                                    echo $p['pendapat2_memuaskan'] . ', ';
-                                }
-                            ?>
-                        ],
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Pendapat 3 - Kurang Memuaskan',
-                        data: [
-                            <?php 
-                                foreach ($penilaian as $p) {
-                                    echo $p['pendapat3_kurang_memuaskan'] . ', ';
-                                }
-                            ?>
-                        ],
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Pendapat 4 - Tidak Memuaskan',
-                        data: [
-                            <?php 
-                                foreach ($penilaian as $p) {
-                                    echo $p['pendapat4_tidak_memuaskan'] . ', ';
-                                }
-                            ?>
-                        ],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            };
+    document.addEventListener("DOMContentLoaded", function() {
+        var ctx = document.getElementById('penilaianChart').getContext('2d');
+        var data = generateChartData();
 
-            var options = {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
-            };
+            }
+        };
 
-            var penilaianChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: options
-            });
+        // Inisialisasi Chart
+        penilaianChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
         });
-    </script>
+    });
+
+    // Fungsi untuk generate data chart
+    function generateChartData() {
+        return {
+            labels: [
+                <?php 
+                    foreach ($penilaian as $p) {
+                        echo '"' . $p['tgl_penilaian'] . '", ';
+                    }
+                ?>
+            ],
+            datasets: [
+                {
+                    label: 'Pendapat 1 - Sangat Memuaskan',
+                    data: [
+                        <?php 
+                            foreach ($penilaian as $p) {
+                                echo $p['pendapat1_sangat_memuaskan'] . ', ';
+                            }
+                        ?>
+                    ],
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pendapat 2 - Memuaskan',
+                    data: [
+                        <?php 
+                            foreach ($penilaian as $p) {
+                                echo $p['pendapat2_memuaskan'] . ', ';
+                            }
+                        ?>
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pendapat 3 - Kurang Memuaskan',
+                    data: [
+                        <?php 
+                            foreach ($penilaian as $p) {
+                                echo $p['pendapat3_kurang_memuaskan'] . ', ';
+                            }
+                        ?>
+                    ],
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Pendapat 4 - Tidak Memuaskan',
+                    data: [
+                        <?php 
+                            foreach ($penilaian as $p) {
+                                echo $p['pendapat4_tidak_memuaskan'] . ', ';
+                            }
+                        ?>
+                    ],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }
+            ]
+        };
+    }
+
+    // Fungsi untuk memperbarui chart dengan data baru
+    function updateChart() {
+        var newData = generateChartData();
+        penilaianChart.data = newData;
+        penilaianChart.update();
+    }
+
+    // Panggil updateChart() ketika data diperbarui
+</script>
+
   
         </div>
 

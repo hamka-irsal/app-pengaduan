@@ -90,14 +90,78 @@ class Madm_pengaduanmsk extends CI_Model {
     //     return $query->row();
     // }
 
-    public function get_pengaduan_by_id($id_pengaduan) {
-        return $this->db->get_where('pengaduan', array('id_pengaduan' => $id_pengaduan))->row();
+    // public function get_pengaduan_by_id($id_pengaduan) {
+    //     return $this->db->get_where('pengaduan', array('id_pengaduan' => $id_pengaduan))->row();
+    // }
+
+    // public function update_status($id_pengaduan, $status) {
+    //     $this->db->set('status', $status);
+    //     $this->db->where('id_pengaduan', $id_pengaduan);
+    //     return $this->db->update('pengaduan');
+    // }
+
+    // public function get_pengadu_by_id($pengaduan_id)
+    // {
+    //     $this->db->select('email');
+    //     $this->db->from('pengaduan');
+    //     $this->db->where('id_pengaduan', $pengaduan_id);
+    //     $query = $this->db->get();
+        
+    //     if ($query->num_rows() > 0) {
+    //         return $query->row();
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // // Fungsi untuk memperbarui status pengaduan
+    // public function update_status($pengaduan_id, $status)
+    // {
+    //     $data = array(
+    //         'status' => $status, 
+    //     );
+
+    //     $this->db->where('id_pengaduan', $pengaduan_id);
+    //     return $this->db->update('pengaduan', $data);
+    // }
+
+    public function update_pengaduan($id, $data)
+    {
+        $this->db->where('id_pengaduan', $id);
+        $this->db->update('pengaduan', $data);
     }
 
-    public function update_status($id_pengaduan, $status) {
-        $this->db->set('status', $status);
+    public function get_pengaduan_by_id($id_pengaduan)
+    {
         $this->db->where('id_pengaduan', $id_pengaduan);
-        return $this->db->update('pengaduan');
+        $query = $this->db->get('pengaduan');
+        return $query->row();
+    }
+
+    public function get_pengaduan_by_user($id_user) {
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->where('id_user', $id_user);
+        return $this->db->get()->result();
+    }
+    
+
+    public function update_status($id_pengaduan, $status)
+    {
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        $this->db->update('pengaduan', ['status' => $status]);
+    }
+
+    public function get_pengaduan($id_pengaduan) {
+        $this->db->select('*');
+        $this->db->from('pengaduan');
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        return $this->db->get()->row();
+    }
+
+    public function update_status_pengaduan($id_pengaduan, $status) {
+        $this->db->where('id_pengaduan', $id_pengaduan);
+        $this->db->update('pengaduan', ['status' => $status]);
     }
 }
 ?>

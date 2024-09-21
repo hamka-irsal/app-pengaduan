@@ -198,20 +198,11 @@
                                                                     <div class="col-md-1">
                                                                         <label>Jam</label>
                                                                     </div>
-                                                                    <div class="col-md-2">
-                                                                        <label>Bagian</label>
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <label>Nama</label>
-                                                                    </div>
                                                                     <div class="col-md-1">
                                                                         <label>Status</label>
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <label>Laporan</label>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label>Email</label>
+                                                                        <label>Notifikasi Admin</label>
                                                                     </div>
                                                                 </div>
                                                                 <?php 
@@ -229,13 +220,6 @@
                                                                         </div>
                                                                         <div class="col-md-1">
                                                                             <p><?php echo date("H:i:s", strtotime($log->timestamp)) ?></p>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <p><?= $log->nama_level." ".$log->posisi; ?>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <p><?php echo $log->nama_pengguna ?></p>
                                                                         </div>
                                                                         <div class="col-md-1">
                                                                             <p>
@@ -257,13 +241,6 @@
                                                                             </div>
                                                                             <?php $j++;} ?>
                                                                         </div>
-                                                                        <div class="col-md-2">
-                                                                            <p><?php echo $log->email ?></p>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <p><?php echo $log->alat ?></p>
-                                                                        </div>
-
                                                                         <div class="modal-footer">
                                                                             <button style="margin-left: 45%" type="button" class="btn btn-warning pull-left" data-dismiss="modal">selesai
                                                                             </button>

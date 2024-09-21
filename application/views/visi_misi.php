@@ -79,26 +79,17 @@
     <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
       <h3>Visi</h3>
       <p class="fst-italic">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
+        Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu Bersaing Secara Global Pada Tahun 2025.
       </p>
-      <ul>
-        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-        <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-      </ul>
     </div>
 
     <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
       <h3>Misi</h3>
-      <p class="fst-italic">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua.
-      </p>
       <ul>
-        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-        <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-        <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+        <li><i class="bi bi-check-circle"></i> <span>Meningkatkan dan mengembangkan tri dharma perguruan tinggi secara dinamis dan inovatif.</span></li>
+        <li><i class="bi bi-check-circle"></i> <span>Memberdayakan dan mengembangkan potensi dan sumberdaya PNUP secara berkesinambungan.</span></li>
+        <li><i class="bi bi-check-circle"></i> <span>Mewujudkan sivitas akademik dan tenaga kependidikan yang berahlak mulia.</span></li>
+        <li><i class="bi bi-check-circle"></i> <span>Meningkatkan dan mengembangkan kerja sama dengan pihak stakeholders.</span></li>
       </ul>
     </div>
 

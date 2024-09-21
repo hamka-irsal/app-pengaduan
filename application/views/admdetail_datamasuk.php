@@ -145,39 +145,20 @@
                                         <td><?php echo $data->tgl_kejadian ?></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Nama Pengadu</b></td>
+                                        <td><b>Uraian</b></td>
                                         <td>:</td>
-                                        <td>
-											<?php 
-												echo $data->nama_pengguna; 
-											?>
-										</td>
+                                        <td><?php echo $data->uraian ?></td>
                                     </tr>
                                     <tr>
-                                        <td><b>Ruang</b></td>
+                                        <td><b>Penyedia</b></td>
                                         <td>:</td>
-                                        <td><?php echo $data->nama_ruang ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Jumlah kejadian</b></td>
-                                        <td>:</td>
-                                        <td><?php echo $data->kejadian ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Penyebab</b></td>
-                                        <td>:</td>
-                                        <td><?php echo $data->penyebab ?>
+                                        <td><?php echo $data->penyedia ?>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><b>Efek kejadian</b></td>
+                                        <td><b>Bahan</b></td>
                                         <td>:</td>
-                                        <td><?php echo $data->efek ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Deskripsi</b></td>
-                                        <td>:</td>
-                                        <td style="width: 80%"><?php echo $data->deskripsi ?></td>
+                                        <td><?php echo $data->bahan ?></td>
                                     </tr>
                                     <tr>
                                         <td><b>Tindakan Pelapor</b></td>

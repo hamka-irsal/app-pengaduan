@@ -102,7 +102,7 @@
 
                     <div class="form-group" style="margin-left: 15px; margin-right:15px">
                       <label>Nama</label>
-                      <input type="text" class="form-control" name="nama_pengguna" id="nama_pengguna" placeholder="Silahkan isi nama">
+                      <input type="text" class="form-control" name="nama" id="nama" placeholder="Silahkan isi nama">
                     </div>
 
                     <div class="form-group" style="margin-left: 15px; margin-right:15px">
@@ -141,7 +141,7 @@
                     </div>
                    
                     <!-- ruang dan tempat -->
-                    <div class="form-group" style="width: 100%; margin-bottom: 10px">
+                    <!-- <div class="form-group" style="width: 100%; margin-bottom: 10px">
                       <div class="col-md-6">
                         <label><b>Lokasi Alat <b style="color: red">*</b></b></label>
                         <select  class="form-control" name="tempat"  id="tempat" required>
@@ -200,7 +200,7 @@
                           ?>
                         </select>
                       </div>
-                    </div>
+                    </div> -->
 
                   <!-- kategori dan jenis -->
                   <!-- <div class="form-group" style="margin-left: 15px">
@@ -214,7 +214,7 @@
                     </select>
                   </div> -->
 
-                  <!-- <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Lokasi Alat (Kampus PNUP)</label>
                     <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Silahkan isi lokasi alat">
                   </div>
@@ -222,7 +222,7 @@
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Lokasi Alat/Ruangan</label>
                     <input type="text" class="form-control" name="ruang" id="ruang" placeholder="Silahkan isi lokasi alat/ruang">
-                  </div> -->
+                  </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Kerusakan</label>
