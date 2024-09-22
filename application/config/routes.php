@@ -82,6 +82,10 @@ $route['pengaduan/submit'] = 'Login_pengadu/submit_pengaduan';
 $route['login'] = 'login_user/login_form';
 $route['login/process'] = 'login_user/login';
 
+//notifikasi
+$route['notifikasi'] = 'Notifikasi/index';
+$route['notifikasi/tandaiDibaca/(:num)'] = 'Notifikasi/tandaiDibaca/$1';
+
 //admin
 $route['admin'] = 'admin/Cadm_dashboard';
 $route['admin/data_log'] = 'admin/Cadm_log';

@@ -12,10 +12,10 @@ class Madm_umpanbalik extends CI_Model {
 
 	public function pengaduan_masuk()
 	{
-		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, r.nama_ruang, k.kategori, skala_prioritas, nilai_prioritas, status, nama, jabatan');	//select field yang mau ditampilin
+		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, skala_prioritas, nilai_prioritas, status, email, jabatan');	//select field yang mau ditampilin
 		$this->db->from('pengaduan p'); //tabel
-		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
-		$this->db->join('kategori k','p.id_kategori = k.id_kategori');
+		// $this->db->join('ruang r','r.id_ruang = p.id_ruang');
+		// $this->db->join('kategori k','p.id_kategori = k.id_kategori');
 		$this->db->where('p.status',"diproses");
 		$this->db->order_by('wkt_pengaduan','ASC');
 		return $this->db->get()->result();	//hasil

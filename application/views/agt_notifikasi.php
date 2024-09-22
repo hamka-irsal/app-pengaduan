@@ -18,127 +18,9 @@
     <link href=<?php echo base_url("assets/dist/css/sb-admin-2.css")?> rel="stylesheet">
     <link href=<?php echo base_url("assets/vendor/font-awesome/css/font-awesome.min.css")?>  rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href=<?php echo base_url("assets/badge.css")?> >
-    <style>
-        .notification-icon {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
 
-        .notification-count {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: red;
-            color: white;
-            border-radius: 50%;
-            padding: 5px 10px;
-            font-size: 12px;
-        }
-
-        .notification-list {
-            display: none;
-            position: absolute;
-            right: 0;
-            background: white;
-            border: 1px solid #ccc;
-            width: 300px;
-            max-height: 400px;
-            overflow-y: auto;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-
-        .notification-list ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .notification-list li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .notification-list li:last-child {
-            border-bottom: none;
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background-color: red;
-            color: white;
-            border-radius: 50%;
-            padding: 5px 10px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function toggleNotifications() {
-            console.log("Icon clicked!");
-            var notificationList = document.getElementById('notification-list');
-            if (notificationList.style.display === 'none' || notificationList.style.display === '') {
-                notificationList.style.display = 'block';
-            } else {
-                notificationList.style.display = 'none';
-            }
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.notification-icon') && !event.target.closest('.notification-list')) {
-                var notificationList = document.getElementById('notification-list');
-                if (notificationList.style.display === 'block') {
-                    notificationList.style.display = 'none';
-                }
-            }
-        }
-
-        function fetchUnreadCount() {
-            $.ajax({
-                url: '<?php echo base_url("Cadm_dashboard/get_unread_count"); ?>',
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('.notification-count').text(data.unread_count);
-                }
-            });
-        }
-
-        function fetchUnreadPengaduan() {
-            $.ajax({
-                url: '<?php echo base_url("Cadm_dashboard/get_unread_pengaduan"); ?>',
-                method: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    var list = $('#notification-list ul');
-                    list.empty();
-                    if (data.length > 0) {
-                        data.forEach(function(pengaduan) {
-                            list.append('<li>' + pengaduan.nama + '</li>');
-                        });
-                    } else {
-                        list.append('<li>Tidak ada pengaduan baru.</li>');
-                    }
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            fetchUnreadCount();
-            fetchUnreadPengaduan();
-            setInterval(fetchUnreadCount, 5000); // Poll every 5 seconds
-            setInterval(fetchUnreadPengaduan, 5000); // Poll every 5 seconds
-        });
-    </script>
 </head>
-    <?php
-        $data = $this->db->get_where('log', ['id_pengaduan'])->row();
-        $id_user = $this->session->userdata('id_user');
-    ?>
+
 <body>
 
     <div id="wrapper">
@@ -149,7 +31,7 @@
                 <a href="admin" style="color: #ffffff; font-size: 20px;"><img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 50px;"><b> Politeknik Negeri Ujung Pandang</b></a>
             </div>
             <!-- /.navbar-header -->
-           
+
             <ul class="nav navbar-top-links navbar-right">
 
                 <!-- /.dropdown -->
@@ -166,12 +48,6 @@
                     <!-- /.dropdown-user -->
                 </li>
             </ul>
-           
-            <ul class="nav navbar-top-links navbar-right">
-				<a class="fa fa-bell fa-3x" style="color: orange" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan; ?>"></a>
-                
-            </ul>
-
             <!-- /.navbar-top-links -->
 
             <!--- user panel -->
@@ -192,8 +68,8 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
-                        </li> -->
-                        <!-- <li>
+                        </li>
+                        <li>
                             <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
                         </li> -->
                         <li>
@@ -211,100 +87,25 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-       
+
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="row">
-                <center>
-                <div class="col-lg-12">
-                    <!-- <h1 class="page-header">Halo, <?php echo $this->session->userdata('nama_pengguna'); ?></a></h1> -->
-                    <h1>Selamat Datang Di Web Pengaduan</h1>
-                    <img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 100px; margin-bottom: 30px"> </br>
-                </div>
-                <div class="col-lg-12">
-                </div>
-                </center>
-                <!-- /.col-lg-12 -->
-            </div>
-
-            <div class="row">
-          
+            <h2>Notifikasi</h2>
+            <ul>
+                <?php foreach ($notifikasi as $notif): ?>
+                    <li class="<?php echo ($notif->status == 'unread') ? 'bold' : ''; ?>">
+                        <?php echo $notif->pesan; ?> 
+                        <span>(<?php echo date('d-m-Y H:i', strtotime($notif->tanggal)); ?>)</span>
+                        <a href="<?php echo site_url('notifikasi/tandaiDibaca/' . $notif->id_notifikasi); ?>">Tandai dibaca</a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
             </div>
             <!-- /.row -->
-            <div class="row">
-            <h1 class="page-header"></a>
-            </h1>
-            </div>
 
-         
-
-            <div class="modal modal-primary fade" id="detail<?php echo $data->id_pengaduan ?>" style="margin-top: 5%;">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span></button>
-                <center><h4 class="modal-title">NOTIFIKASI PENGADUAN</h4></center>
-            </div>
-            <center>
-            <div class="modal-body">
-                <div class="row text-center">
-                    <div class="col-md-2">
-                        <label>Tanggal</label>
-                    </div>
-                    <div class="col-md-1">
-                        <label>Jam</label>
-                    </div>
-                    <div class="col-md-1">
-                        <label>Status</label>
-                    </div>
-                    <div class="col-md-3">
-                        <label>Notifikasi Admin</label>
-                    </div>
-                </div>
-                <?php 
-                $this->load->model('Madm_log');
-                $log_activity = $this->Madm_log->detail_log($data->id_pengaduan);   
-                $j = 1;
-                foreach ($log_activity as $log) { 
-                    ?> 
-                    <div class="row text-center">
-                        <div class="col-md-2">
-                            <p><?php echo date("d F Y", strtotime($log->timestamp)) ?></p>
-                        </div>
-                        <div class="col-md-1">
-                            <p><?php echo date("H:i:s", strtotime($log->timestamp)) ?></p>
-                        </div>
-                        <div class="col-md-1">
-                            <p>
-                                <?php
-                                if($log->status == 'masuk') {
-                                    ?>
-                                    <span class="badge primary"><?php echo $log->status ?></span><br>
-                                    <?php }elseif($log->status == 'diproses'){
-                                        ?>
-                                        <span class="badge warning"><?php echo $log->status ?></span><br>
-                                        <?php }else{ ?>
-                                        <span class="badge success"><?php echo $log->status ?></span><br>
-                                        <?php } ?>
-                            </p>
-                        </div>
-                        <div class="col-md-3">
-                            <p><?php echo $log->keterangan ?></p>
-                        </div>
-                            </div>
-                            <?php $j++;} ?>
-                        </div>
-                    </center>
-                        <div class="modal-footer">
-                            <button style="margin-left: 45%" type="button" class="btn btn-warning pull-left" data-dismiss="modal">selesai
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                                                            <!-- modal edit user -->
-
+            
+            
             <div class="modal modal-primary fade" id="settingModal" style="margin-top: 5%">
                           <div class="modal-dialog">
                             <div class="modal-content" style="width: 75%; margin-left: 15%">
@@ -372,4 +173,41 @@
                           })
                         })
                     </script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#tempat').change(function(){
+      var id=$(this).val();
+      $.ajax({
+                    url : "<?php echo base_url('user/Cform/ruang');?>", //ngarahin ke function ruang di cform
+                    method : "POST",
+                    data : {id:id},
+                    dataType : 'json',
+                    success : function(data){
+                      var html = '';
+                      var i;
+
+                      html += '<option value="">pilih ruang kejadian</option>';
+
+                      if(data.length == 0)
+                      {
+                        html += '<option value = ""> Maaf, data tidak ditemukan!</option>';
+                      }
+                      else
+                      {
+                        for(i=0; i<data.length; i++)
+                        {   //jika ada, maka akan tampilkan data dari tabel ruang
+                          html += '<option value = "'+ data[i].id_ruang +'">' + data[i].nama_ruang +'</option>';
+                        }
+                      }
+                      $('.ruang').html(html);
+                    }
+                  });
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  $("#hilang").show().delay(1500).slideUp(400);
+</script>
         </html>

@@ -144,10 +144,10 @@
                                 <table width="100%" class="table table-striped table-hover" id="dataTables-example" class="text-center">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>Nama</th>
+                                            <th>Email</th>
                                             <th>Jabatan</th>
-                                            <th>Kategori</th>
-                                            <th>Tempat</th>
+                                            <!-- <th>Kategori</th> -->
+                                            <!-- <th>Tempat</th> -->
                                             <th>Jam</th>
                                             <th>Tanggal</th>
                                             <th>Status</th>
@@ -161,10 +161,10 @@
                                                 // if($this->Manalis_pengaduanmsk->pengaduan_diproses($data->id_pengaduan) == 0){
                                         ?>
                                         <tr>
-                                            <td><?php echo $data->nama ?></td>
+                                            <td><?php echo $data->email ?></td>
                                             <td><?php echo $data->jabatan ?></td>
-                                            <td><?php echo $data->kategori ?></td>
-                                            <td><?php echo $data->nama_ruang ?></td>
+                                            <!-- <td><?php echo $data->kategori ?></td> -->
+                                            <!-- <td><?php echo $data->nama_ruang ?></td> -->
                                             <td><?php echo date('H:i:s', strtotime($data->wkt_pengaduan)) ?></td>
                                             <td><?php echo date('d-F-Y', strtotime($data->wkt_pengaduan)) ?></td>
                                             <td style="text-align: center;">

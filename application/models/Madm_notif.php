@@ -4,30 +4,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // Model Notifikasi_model.php
 class Madm_notif extends CI_Model
 {
-    public function buat_notifikasi($id_pengaduan, $id_user, $pesan) {
+    public function tambahNotifikasi($id_user, $id_pengaduan, $pesan) {
         $data = [
-            'id_pengaduan' => $id_pengaduan,
             'id_user' => $id_user,
+            'id_pengaduan' => $id_pengaduan,
             'pesan' => $pesan,
-            'status' => 'baru'
+            'status' => 'unread'
         ];
-        $this->db->insert('notifikasi', $data);
-    }
-
-    public function update_status_notifikasi($id_notifikasi, $status) {
-        $this->db->where('id', $id_notifikasi);
-        $this->db->update('notifikasi', ['status' => $status]);
-    }
-
-    public function get_notifikasi_by_user($id_user) {
-        $this->db->select('*');
-        $this->db->from('notifikasi');
-        $this->db->where('id_user', $id_user);
-        $this->db->order_by('created_at', 'DESC'); // Menampilkan notifikasi terbaru dulu
-        return $this->db->get()->result();
+        return $this->db->insert('notifikasi', $data);
     }
     
-    public function get_notifikasi($id_notifikasi) {
-        return $this->db->get_where('notifikasi', ['id' => $id_notifikasi])->row();
+    public function getNotifikasiByUser($id_user) {
+        $this->db->where('id_user', $id_user);
+        $this->db->order_by('tanggal', 'DESC');
+        return $this->db->get('notifikasi')->result();
+    }
+    
+    public function tandaiDibaca($id_notifikasi) {
+        $this->db->where('id_notifikasi', $id_notifikasi);
+        $this->db->update('notifikasi', ['status' => 'read']);
     }
 }

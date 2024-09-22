@@ -24,7 +24,7 @@ class Madm_log extends CI_Model {
 
     // Fungsi untuk mendapatkan pengaduan tertentu berdasarkan ID atau parameter lainnya
     public function get_pengaduan_by_id($id) {
-        $query = $this->db->get_where('pengaduan', array('id' => $id));
+        $query = $this->db->get_where('pengaduan', array('id_pengaduan' => $id));
         return $query->row();
     }
 	// public function pengaduan()
