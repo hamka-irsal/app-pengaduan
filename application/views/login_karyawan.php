@@ -72,7 +72,7 @@
                     </div>
                     <div>
                       <center>
-                      <a href=<?php echo base_url('user/register')?> class="btn btn-primary btn-md"><span class="fa fa-user-plus"></span> Registrasi Pengguna </a>
+                      <!-- <a href=<?php echo base_url('user/register')?> class="btn btn-primary btn-md"><span class="fa fa-user-plus"></span> Registrasi Pengguna </a> -->
                       </center>
                     </div>
 

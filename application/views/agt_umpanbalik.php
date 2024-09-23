@@ -117,11 +117,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-
-                                    foreach ($log_activity as $data)
-                                    {
-                                        ?>
+                                        <?php if (!empty($pengaduan)) : ?>
+                                        <?php foreach ($pengaduan as $data) : ?>
                                         <tr>
                                             <td style="text-align: center;"><?php echo $data->id_pengaduan ?></td>
                                             <td><?php echo $data->wkt_pengaduan ?></td>
@@ -143,6 +140,7 @@
                                                 }
                                                 ?>
                                             </td>
+                                            </td>
                                                 <td>
                                                     <!-- <i class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan ?>">&nbsp;Detail</i> -->
                                                     <a href="<?php echo base_url('anggota/detail_log/'.$data->id_pengaduan) ?>"><i class="fa fa-eye" style="color: blue"></i></a>
@@ -152,94 +150,13 @@
                                                 </td>
                                             </tr>
                                             <!-- modal edit user -->
-                                            <div class="modal modal-primary fade" id="detail<?php echo $data->id_pengaduan ?>" style="margin-top: 5%;">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span></button>
-                                                                <center><h4 class="modal-title">DETAIL UMPAN BALIK</h4></center>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <div class="row text-center">
-
-                                                                    <div class="col-md-1">
-                                                                        <label>No.</label>
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <label>Tanggal</label>
-                                                                    </div>
-                                                                    <div class="col-md-1">
-                                                                        <label>Jam</label>
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <label>Bagian</label>
-                                                                    </div>
-                                                                    <div class="col-md-2">
-                                                                        <label>Nama</label>
-                                                                    </div>
-                                                                    <div class="col-md-1">
-                                                                        <label>Status</label>
-                                                                    </div>
-                                                                    <div class="col-md-3">
-                                                                        <label>Pesan</label>
-                                                                    </div>
-                                                                </div>
-                                                                <?php 
-                                                                $this->load->model('Magt_umpanbalik');
-                                                                $log_activity = $this->Magt_umpanbalik->detail_log($data->id_pengaduan);
-                                                                $j = 1;
-                                                                foreach ($log_activity as $log) { 
-                                                                    ?> 
-                                                                    <div class="row text-center">
-                                                                        <div class="col-md-1">
-                                                                            <p><?php echo $j ?></p>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <p><?php echo date("d F Y", strtotime($log->timestamp)) ?></p>
-                                                                        </div>
-                                                                        <div class="col-md-1">
-                                                                            <p><?php echo date("H:i:s", strtotime($log->timestamp)) ?></p>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <p><?= $log->nama_level." ".$log->posisi; ?>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="col-md-2">
-                                                                            <p><?php echo $log->nama_pengguna ?></p>
-                                                                        </div>
-                                                                        <div class="col-md-1">
-                                                                            <p>
-                                                                                <?php
-                                                                                if($log->status == 'masuk') {
-                                                                                    ?>
-                                                                                    <span class="badge primary"><?php echo $log->status ?></span><br>
-                                                                                    <?php }elseif($log->status == 'diproses'){
-                                                                                        ?>
-                                                                                        <span class="badge warning"><?php echo $log->status ?></span><br>
-                                                                                        <?php }else{ ?>
-                                                                                        <span class="badge success"><?php echo $log->status ?></span><br>
-                                                                                        <?php } ?>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                            <p><?php echo $log->keterangan ?></p>
-                                                                        </div>
-                                                                            </div>
-                                                                            <?php $j++;} ?>
-                                                                        </div>
-
-                                                                        <div class="modal-footer">
-                                                                            <button style="margin-left: 45%" type="button" class="btn btn-warning pull-left" data-dismiss="modal">close
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <!-- modal edit user -->
-                                                            <?php
-                                                        }
-                                                        ?>
+                                                            <?php endforeach; ?>
+                                                            <?php else : ?>
+                                                                <tr>
+                                                                    <td colspan="4">Tidak ada pengaduan.</td>
+                                                                </tr>
+                                                            <?php endif; ?>
                                                     </tbody>
                                                 </table>
                                                 <!-- /.row (nested) -->

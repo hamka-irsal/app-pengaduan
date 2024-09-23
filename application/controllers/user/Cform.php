@@ -7,24 +7,22 @@ class Cform extends BaseController {
 	{
 		parent::__construct();
 		$this->load->model('Mform_pengaduan');
+		// $this->load->model('Madmin_datauser');
 		$this->load->helper('url','form');
-		$this->isLoggedIn();
+		// $this->isLoggedIn();
 	}
 
 	public function index()
 	{
-		$this->load->view('pengadu_home');
-	}
-	
-	public function home()
-	{
+		// $data['user']=$this->Madmin_datauser->user();
+		// $data['level']=$this->Madmin_datauser->level();
+		// $data['role']=$this->Madmin_datauser->role();
 		$data['kategori']= $this->Mform_pengaduan->kategori();
 		$data['tempat']= $this->Mform_pengaduan->tempat();
 		$data['jenis']= $this->Mform_pengaduan->jenis_kejadian();
 		$data['kejadian']= $this->Mform_pengaduan->jml_kejadian();
-		$this->load->view('form_pengaduan',$data);
+		$this->load->view('laporan_kerusakan',$data);
 	}
-
 
 	public function ruang()
 	{
@@ -42,7 +40,7 @@ class Cform extends BaseController {
 			$this->session->set_flashdata('alert', 'Berhasil!');
 			$this->session->set_flashdata('message', 'Pengaduan telah direkam.');
 			
-			redirect('user/home');
+			redirect('laporan_kerusakan');
 		}
 	}
 
@@ -57,7 +55,7 @@ class Cform extends BaseController {
 
 	    if($this->form_validation->run() == FALSE)
 	  {
-			redirect('user/home');
+			redirect('anggota/data_pelapor');
 	  }
 	  	else
 	  {
@@ -68,7 +66,7 @@ class Cform extends BaseController {
 			    $this->session->set_flashdata('alert','Gagal!' );
 			    $this->session->set_flashdata('message','Password lama yang Anda masukkan salah' );
 			    
-			    redirect('user/home');
+			    redirect('anggota/data_pelapor');
 		   }
 		   	else
 		   {

@@ -15,8 +15,11 @@ class Cagt_umpanbalik extends BaseController {
 
 	public function index()
 	{
-		$data['log_activity']=$this->Magt_umpanbalik->log_activity();
+		// $data['log_activity']=$this->Magt_umpanbalik->log_activity();
 		$data['level']=$this->Magt_umpanbalik->level();
+		$id_user = $this->session->userdata('id_user'); 
+        $data['pengaduan'] = $this->Magt_umpanbalik->get_pengaduan_by_user_id($id_user);
+
 		$this->load->view('agt_umpanbalik',$data);
 	}
 

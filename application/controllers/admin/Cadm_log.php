@@ -180,26 +180,45 @@ class Cadm_log extends BaseController {
 	{
 		$keterangan = $this->input->post('keterangan');
 		$id_pengaduan = $this->input->post('id_pengaduan');
-		$id_user = $this->session->userdata('id_user');
-		$data = array(
-			'id_pengaduan'=>$id_pengaduan,
-			'keterangan'=>$keterangan,
-			'id_user'=>$id_user,
-			'status'=>'selesai'
-		);
-		$this->Madm_log->konfirmasi($data);
 
-		$data2 = array(
-			'status'=>'selesai'
-		);
-		$this->db->where('id_pengaduan',$id_pengaduan)->update('pengaduan',$data2);
+		// Mengambil id_user yang sesuai dengan id_pengaduan dari tabel pengaduan
+		$this->db->select('id_user');
+		$this->db->from('pengaduan');
+		$this->db->where('id_pengaduan', $id_pengaduan);
+		$user = $this->db->get()->row();
 
-		$this->session->set_flashdata('style', 'success');
-		$this->session->set_flashdata('alert', 'Berhasil!');
-		$this->session->set_flashdata('message', 'Pengaduan telah dikonfirmasi.');
+		if ($user) {
+			$id_user = $user->id_user; // Ambil id_user yang terkait dengan pengaduan
+
+			// Data yang akan disimpan ke tabel log
+			$data = array(
+				'id_pengaduan' => $id_pengaduan,
+				'keterangan' => $keterangan,
+				'id_user' => $id_user, // Menggunakan id_user yang diambil dari pengaduan
+				'status' => 'selesai'
+			);
+			$this->Madm_log->konfirmasi($data);
+
+			// Update status di tabel pengaduan
+			$data2 = array(
+				'status' => 'selesai'
+			);
+			$this->db->where('id_pengaduan', $id_pengaduan)->update('pengaduan', $data2);
+
+			// Flash message
+			$this->session->set_flashdata('style', 'success');
+			$this->session->set_flashdata('alert', 'Berhasil!');
+			$this->session->set_flashdata('message', 'Pengaduan telah dikonfirmasi.');
+		} else {
+			// Jika pengaduan tidak ditemukan
+			$this->session->set_flashdata('style', 'danger');
+			$this->session->set_flashdata('alert', 'Gagal!');
+			$this->session->set_flashdata('message', 'Pengaduan tidak ditemukan.');
+		}
 
 		redirect('admin/data_log');
 	}
+
 
     public function kirim()
 	{
@@ -224,6 +243,29 @@ class Cadm_log extends BaseController {
 		$this->session->set_flashdata('message', 'Pengaduan telah terkirim.');
 
 		redirect('admin/data_log');
-	}	
+	}
 
+	public function tampilkanDetail($id_pengaduan)
+	{
+		// Mengambil id_user dari tabel pengaduan berdasarkan id_pengaduan
+		$this->db->select('id_user');
+		$this->db->from('pengaduan');
+		$this->db->where('id_pengaduan', $id_pengaduan);
+		$user = $this->db->get()->row();
+
+		if ($user) {
+			$id_user = $user->id_user;
+
+			// Mengambil keterangan dari tabel log berdasarkan id_user
+			$this->db->select('keterangan');
+			$this->db->from('log');
+			$this->db->where('id_user', $id_user);
+			$keterangan = $this->db->get()->row();
+
+			// Passing data ke view
+			$data['keterangan'] = $keterangan ? $keterangan->keterangan : null;
+			$data['id_pengaduan'] = $id_pengaduan;
+			$this->load->view('agt_dashboard', $data); // Ganti dengan nama view Anda
+		}
+	}
 }

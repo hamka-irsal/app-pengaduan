@@ -22,6 +22,13 @@ class Magt_umpanbalik extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	public function get_pengaduan_by_user_id($id_user) {
+        $this->db->where('id_user', $id_user);
+		$this->db->select('p.id_pengaduan, p.status, p.timestamp, p.wkt_pengaduan, p.wkt_pengerjaan');
+		$this->db->from('pengaduan p');
+		return $this->db->get()->result();
+    }
+
 	public function level()
 	{
 		return $this->db->get('level')->result();

@@ -8,7 +8,7 @@ class Madm_log extends CI_Model {
 		$this->db->select('p.id_pengaduan, p.status, p.timestamp, p.wkt_pengaduan, p.wkt_pengerjaan, p.email, p.uraian, p.penyedia, p.bahan');
 		$this->db->from('pengaduan p');
 		// $this->db->join('ruang r','r.id_ruang = p.id_ruang');
-		// $this->db->where('p.deleted');
+		$this->db->where_in('p.status', ['masuk', 'diproses']);
 		$this->db->order_by('p.timestamp','DESC');
 		return $this->db->get()->result();
 	}
@@ -57,12 +57,18 @@ class Madm_log extends CI_Model {
 
 	public function detail_log($id_pengaduan)
 	{
+		// var_dump('testes:'.$id_pengaduan);
+		// if ($id_pengaduan == 0) {
+		// 	return 0;
+		// }
 		$this->db->select('log.id_pengaduan, log.status, log.keterangan, user.id_user, level.id_level, level.nama_level, level.posisi, user.nama_pengguna, user.email, log.timestamp');
-		$this->db->from('log','user','level');
+		$this->db->from('log');
 		$this->db->join('user', 'user.id_user = log.id_user');
 		$this->db->join('level', 'level.id_level = user.id_level');
-		$this->db->where('id_pengaduan',$id_pengaduan);
-		return $this->db->get()->result();
+		$this->db->where('log.id_pengaduan', $id_pengaduan);
+		$this->db->where('log.status', 'selesai');
+		$result = $this->db->get()->result();
+		return $result;
 	}
 
 	public function level()

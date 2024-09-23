@@ -64,8 +64,6 @@ $route['upload/do_upload'] = 'Uploadfile/do_upload';
 $route['reports'] = 'Cek_laporan';
 $route['upt'] = 'Upt';
 $route['kegiatan'] = 'Foto_kegiatan';
-$route['insert_data'] = 'Laporan_kerusakan/tambah';
-
 
 
 // $route['login_pengaduan'] = 'Login_pengadu'; //path lain dari login
@@ -191,6 +189,7 @@ $route['user/ubah_password'] = 'user/Cform/save_password';
 
 //anggota
 $route['anggota'] = 'anggota/Cagt_dashboard';
+
 $route['anggota/data_umum'] = 'anggota/Cagt_dataumum';
 $route['anggota/data_diri'] = 'anggota/Cagt_datadiri';
 $route['anggota/data_pelapor'] = 'anggota/Cagt_datapelapor';
