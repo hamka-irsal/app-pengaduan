@@ -170,8 +170,8 @@
                                                 <td>
                                                     <a href="<?php echo base_url('admin/detail_log/'.$data->id_pengaduan) ?>"><i class="fa fa-eye" style="color: blue"></i></a>
                                                     <a href="<?php echo base_url('admin/edit/'.$data->id_pengaduan) ?>"><i class="fa fa-edit" style="color: green"></i></a>
-                                                    <a href="<?= base_url('admin/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
-                                                    <a onclick="window.print()"><i class="fa fa-print" style="color: green"></i></a>
+                                                    <a href="<?= base_url('admin/download-pdf/' . $data->id_pengaduan) ?>"><i class="fa fa-download" style="color: orange"></i></a>
+                                                    <!-- <a onclick="window.print()"><i class="fa fa-print" style="color: green"></i></a> -->
                                                     <a href="<?php echo site_url('admin/hapus_log/'.$data->id_pengaduan); ?>"><i class="fa fa-trash-o" style="color: red"></i></a>
                                                     <a href="<?php echo base_url('admin/detail_datamasuk/'.$data->id_pengaduan) ?>" ><span class="fa fa-send"></span></a>
                                                 </td>

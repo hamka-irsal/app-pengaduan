@@ -10,10 +10,11 @@ class Cadm_laporan extends CI_Controller
         $this->load->model('Madm_pengaduanmsk');
         $this->load->model('Madm_log');
         $this->load->library('form_validation');
-        $this->load->helper('url');
+		$this->load->helper('url','form');
         $this->load->library('phpmailer_lib');
         $this->load->library('email');
         $this->load->config('email');
+		$this->load->library('pdf');
         
     }
 

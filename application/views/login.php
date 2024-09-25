@@ -46,7 +46,7 @@
                 <div class="panel-heading" style="align-items: center; margin-top: none">
                   <img src=<?php echo base_url("img/logo.png")?> style="width: auto; height: 100px; margin-bottom: 30px">
                   <h3 class="panel-title"><b>SISTEM PENGADUAN KERUSAKAN KAMPUS</b></h3>
-                  <h5>Politeknik Negri Ujung Pandang</h5>
+                  <h5>Politeknik Negeri Ujung Pandang</h5>
                 </div>
               </center>
 

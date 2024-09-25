@@ -36,9 +36,9 @@
 
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
+                    <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
                         <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama_pengguna'); ?></i>
-                    </a>
+                    </a> -->
                     <ul class="dropdown-menu dropdown-user">
                         <li><a data-toggle="modal" data-target="#settingModal"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -68,10 +68,10 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
-                        </li> -->
+                        </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_umpanbalik')?> ><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>

@@ -88,6 +88,7 @@ $route['notifikasi/tandaiDibaca/(:num)'] = 'Notifikasi/tandaiDibaca/$1';
 $route['admin'] = 'admin/Cadm_dashboard';
 $route['admin/data_log'] = 'admin/Cadm_log';
 $route['admin/data_penilaian'] = 'admin/Cadm_penilaian';
+$route['admin/filter_grafik'] = 'admin/Cadm_penilaian/filter_date';
 $route['admin/downloadPdf'] = 'admin/Cadm_log/downloadPdf';
 $route['admin/hapus_pengaduan/(:num)'] = 'admin/Cadm_log/hapus_pengaduan/$1';
 $route['admin/data_lokasi'] = 'admin/Cadm_dataruangtempat';  
@@ -146,7 +147,8 @@ $route['admin/konfirmasi'] = 'admin/Cadm_log/konfirmasi';
 $route['admin/detail_datamasuk/(:num)'] = 'admin/Cadm_log/detail_koor/$1';
 $route['admin/kirim_pengaduan'] = 'admin/Cadm_log/kirim';
 
-$route['admin/download-pdf'] = 'admin/Cadm_pdf/download_pdf';
+// $route['admin/download-pdf'] = 'admin/Cadm_pdf/download_pdf';
+$route['admin/download-pdf/(:num)'] = 'admin/Cadm_pdf/download_pdf/$1';
 
 $route['admin/riwayat_pengaduan'] = 'admin/Cadm_riwayatpeng';
 

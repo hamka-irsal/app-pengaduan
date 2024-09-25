@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Madm_log extends CI_Model {
+class Madm_log extends CI_Model
+{
 
 	public function log_activity()
 	{
@@ -9,24 +10,27 @@ class Madm_log extends CI_Model {
 		$this->db->from('pengaduan p');
 		// $this->db->join('ruang r','r.id_ruang = p.id_ruang');
 		$this->db->where_in('p.status', ['masuk', 'diproses']);
-		$this->db->order_by('p.timestamp','DESC');
+		$this->db->order_by('p.timestamp', 'DESC');
 		return $this->db->get()->result();
 	}
 
-	public function insert_user($data) {
-        $this->db->insert('user', $data);
-    }
+	public function insert_user($data)
+	{
+		$this->db->insert('user', $data);
+	}
 
-	public function get_all_pengaduan() {
-        $query = $this->db->get('pengaduan');
-        return $query->result();
-    }
+	public function get_all_pengaduan()
+	{
+		$query = $this->db->get('pengaduan');
+		return $query->result();
+	}
 
-    // Fungsi untuk mendapatkan pengaduan tertentu berdasarkan ID atau parameter lainnya
-    public function get_pengaduan_by_id($id) {
-        $query = $this->db->get_where('pengaduan', array('id_pengaduan' => $id));
-        return $query->row();
-    }
+	// Fungsi untuk mendapatkan pengaduan tertentu berdasarkan ID atau parameter lainnya
+	public function get_pengaduan_by_id($id)
+	{
+		$query = $this->db->get_where('pengaduan', array('id_pengaduan' => $id));
+		return $query->row();
+	}
 	// public function pengaduan()
 	// {
 	// 	$this->db->select('id_log, id_pengaduan, id_user, status, keterangan, timestamp');
@@ -36,24 +40,29 @@ class Madm_log extends CI_Model {
 	// 	return $this->db->get()->result();
 	// }
 
-	public function getPelaporanByDateRange($startDate, $endDate) {
-        $this->db->select('*');
-        $this->db->from('pengaduan');
-        $this->db->where('wkt_pengaduan >=', $startDate);
-        $this->db->where('timestamp <=', $endDate);
-        $query = $this->db->get();
-        return $query->result();
-    }
+	public function getPelaporanByDateRange($startDate, $endDate)
+	{
+		$this->db->select('*');
+		$this->db->from('pengaduan');
+		// $this->db->where('wkt_pengaduan >=', $startDate);
+		// $this->db->where('timestamp <=', $endDate);
+		$this->db->where('DATE(wkt_pengaduan) >=', $startDate);
+		$this->db->where('DATE(wkt_pengaduan) <=', $endDate);
+		$query = $this->db->get();
+		return $query->result();
+	}
 
-	public function update_pelaporan($id, $data) {
-        $this->db->where('id_pengaduan', $id);
-        return $this->db->update('pengaduan', $data);
-    }
+	public function update_pelaporan($id, $data)
+	{
+		$this->db->where('id_pengaduan', $id);
+		return $this->db->update('pengaduan', $data);
+	}
 
-    public function get_pelaporan_by_id($id) {
-        $this->db->where('id_pengaduan', $id);
-        return $this->db->get('pengaduan')->row();
-    }
+	public function get_pelaporan_by_id($id)
+	{
+		$this->db->where('id_pengaduan', $id);
+		return $this->db->get('pengaduan')->row();
+	}
 
 	public function detail_log($id_pengaduan)
 	{
@@ -81,17 +90,18 @@ class Madm_log extends CI_Model {
 		return $this->db->get('pengaduan')->result();
 	}
 
-	public function get_pengaduan($id) {
-        $this->db->where('id_pengaduan', $id);
-        $query = $this->db->get('pengaduan');
-        return $query->row_array();
-    }
+	public function get_pengaduan($id)
+	{
+		$this->db->where('id_pengaduan', $id);
+		$query = $this->db->get('pengaduan');
+		return $query->row_array();
+	}
 
 	//bikin update password di admin dulu
 	public function save()
 	{
 		$password = password_hash($this->input->post('new'), PASSWORD_BCRYPT);
-		$data = array (
+		$data = array(
 			'password' => $password
 		);
 		$this->db->where('id_user', $this->session->userdata('id_user'));
@@ -103,8 +113,8 @@ class Madm_log extends CI_Model {
 	{
 		$user = $this->db->select('password')->where('id_user', $this->session->userdata('id_user'))->get('user')->result();
 
-		if(!empty($user)){
-			if(password_verify($this->input->post('old'), $user[0]->password )){
+		if (!empty($user)) {
+			if (password_verify($this->input->post('old'), $user[0]->password)) {
 				return $user;
 			} else {
 				return array();
@@ -113,49 +123,52 @@ class Madm_log extends CI_Model {
 			return array();
 		}
 	}
-		//end
+	//end
 
-	public function get_log_by_id($id_pengaduan) {
+	public function get_log_by_id($id_pengaduan)
+	{
 		$this->db->where('id_pengaduan', $id_pengaduan);
 		$query = $this->db->get('log');
 		return $query->row();
 	}
 
-	public function get_logs() {
+	public function get_logs()
+	{
 		$query = $this->db->select('id_pengaduan, status, timestamp')
-							->from('log')
-							->get();
+			->from('log')
+			->get();
 		return $query->result();
 	}
 
-	public function delete_log($id) {
+	public function delete_log($id)
+	{
 		$this->db->where('id_pengaduan', $id);
 		return $this->db->delete('pengaduan');
 	}
 
 	public function get_pengaduan_data()
-    {
-        $this->db->select('id_pengaduan, alat, spesifikasi, kejadian, penyebab, inventaris, tgl_kejadian, jurusan, studi, nama_pengguna, nip, gambar');
-        $query = $this->db->get('pengaduan');
-        return $query->result_array();
-    }
+	{
+		$this->db->select('id_pengaduan, alat, spesifikasi, kejadian, penyebab, inventaris, tgl_kejadian, jurusan, studi, nama_pengguna, nip, gambar');
+		$query = $this->db->get('pengaduan');
+		return $query->result_array();
+	}
 
 	public function kirim($data)
 	{
-		return $this->db->insert('log',$data);
+		return $this->db->insert('log', $data);
 	}
 
 	public function konfirmasi($data)
 	{
-		return $this->db->insert('log',$data);
+		return $this->db->insert('log', $data);
 	}
 
 	public function pengaduan_masuk()
 	{
 		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, k.kategori, r.id_tempat, r.nama_ruang, p.status, p.uraian, p.penyedia, p.bahan');
 		$this->db->from('pengaduan p');
-		$this->db->join('kategori k','k.id_kategori = p.id_kategori');
-		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
+		$this->db->join('kategori k', 'k.id_kategori = p.id_kategori');
+		$this->db->join('ruang r', 'r.id_ruang = p.id_ruang');
 		$this->db->where('p.status', "masuk");
 		//var_dump($this->session->userdata('level'));exit;
 		// if($this->session->userdata('id_level')==3)
@@ -172,14 +185,14 @@ class Madm_log extends CI_Model {
 
 	public function detail_koor($id)
 	{
-		$this->db->select('p.id_pengaduan, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek,  r.nama_ruang, p.gambar, k.kategori, p.alat, p.nama, p.uraian, p.penyedia, p.bahan');	
-		$this->db->from('pengaduan p','ruang r'); 
-		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
-		$this->db->join('kategori k','k.id_kategori = p.id_kategori');
+		$this->db->select('p.id_pengaduan, p.deskripsi, p.kejadian, p.penyebab, p.tindaklanjut, p.tgl_kejadian, p.efek,  r.nama_ruang, p.gambar, k.kategori, p.alat, p.nama, p.uraian, p.penyedia, p.bahan');
+		$this->db->from('pengaduan p', 'ruang r');
+		$this->db->join('ruang r', 'r.id_ruang = p.id_ruang');
+		$this->db->join('kategori k', 'k.id_kategori = p.id_kategori');
 		// $this->db->join('user u','u.id_user = p.id_user');
 		//$this->db->join('tempat t','t.id_tempat = r.id_tempat');
-		$this->db->where('p.id_pengaduan',$id);
-		
-		return $this->db->get()->result();	
+		$this->db->where('p.id_pengaduan', $id);
+
+		return $this->db->get()->result();
 	}
 }

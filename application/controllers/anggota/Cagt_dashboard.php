@@ -19,20 +19,11 @@ class Cagt_dashboard extends BaseController {
         $data['user']=$this->Madmin_datauser->user();
 		$data['level']=$this->Madmin_datauser->level();
 		$data['role']=$this->Madmin_datauser->role();
-        // $data['log_activity']=$this->Madm_log->log_activity();
+        $data['log_activity']=$this->Madm_log->log_activity();
 		$data['level']=$this->Madm_log->level();
-        $id_user = $this->session->userdata('id_user');
-
-        // Mengambil data log berdasarkan id_user
-        $this->db->select('id_pengaduan, keterangan');
-        $this->db->from('log');
-        $this->db->where('id_user', $id_user);
-        $logs = $this->db->get()->result();
-
-        // Mengirimkan data log ke view
-        $data['logs'] = $logs;
 
         $this->load->view('agt_dashboard', $data);
+
     }
 
     

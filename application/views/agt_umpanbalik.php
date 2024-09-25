@@ -36,9 +36,9 @@
 
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
+                    <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
                         <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama_pengguna'); ?></i>
-                    </a>
+                    </a> -->
                     <ul class="dropdown-menu dropdown-user">
                         <li><a data-toggle="modal" data-target="#settingModal"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -68,10 +68,10 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
-                        </li> -->
+                        </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_umpanbalik')?> ><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
@@ -144,8 +144,9 @@
                                                 <td>
                                                     <!-- <i class="btn btn-primary fa fa-eye" data-toggle="modal" data-target="#detail<?php echo $data->id_pengaduan ?>">&nbsp;Detail</i> -->
                                                     <a href="<?php echo base_url('anggota/detail_log/'.$data->id_pengaduan) ?>"><i class="fa fa-eye" style="color: blue"></i></a>
-                                                    <a href="<?= base_url('anggota/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a>
-                                                    <a href="<?= site_url('anggota/tampilkan/' . $data->id_pengaduan); ?>"><i class="fa fa-eye" style="color: green"></i></a>
+                                                    <a href="<?= base_url('admin/download-pdf/' . $data->id_pengaduan) ?>"><i class="fa fa-download" style="color: orange"></i></a>
+                                                    <!-- <a href="<?= base_url('anggota/download-pdf') ?>"><i class="fa fa-download" style="color: orange"></i></a> -->
+                                                    <!-- <a href="<?= site_url('anggota/tampilkan/' . $data->id_pengaduan); ?>"><i class="fa fa-eye" style="color: green"></i></a> -->
                                                     <a href="<?= site_url('anggota/pesan/' . $data->id_pengaduan); ?>"><i class="fa fa-send" style="color: brown"></i></a>
                                                 </td>
                                             </tr>

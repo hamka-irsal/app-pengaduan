@@ -74,7 +74,7 @@
           <div class="carousel-container">
             <h2>Selamat Datang</h2>
             <h3>Sistem Pengaduan Kerusakan Kampus.</h3>
-            <h3>Politeknik Negri Ujung Pandang.</h3>
+            <h3>Politeknik Negeri Ujung Pandang.</h3>
             <a href="<?php echo base_url('Laporan_kerusakan') ?>" class="btn-get-started">Lapor Kerusakan</a>
             <a href="#faq" class="btn-get-started">UPT TP3A</a>
           </div>
@@ -123,14 +123,27 @@
               <div class="faq-item faq-active">
                 <h3><span class="num"></span> <span>Janji Layanan</span></h3>
                 <div class="faq-content">
-                  <p>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</p>
+                  <p>Dengan komitmen pelayanan unit yaitu :</p>
+                  <p>- Melayani dengan cepat dan tepat; </p>
+                  <p>- Memberikan informasi secara akurat, jelas, dan pasti; </p>
+                  <p>- Menciptakan suasana yang nyaman;  </p>
+                  <p>- Memberikan jaminan keamanan terhadap diri dan hak-hak yang dilayani ;  </p>
+                  <p>- Membudayakan senyum,salap,sapa,sopan, dan santun (5s);  </p>
+
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->
               <div class="faq-item faq-active">
                 <h3><span class="num"></span> <span>Tupoksi Kerja</span></h3>
                 <div class="faq-content">
-                  <p>Menjadi Perguruan Tinggi Vokasi Yang Unggul di Indonesia dan Mampu S+Bersaing Secara Global</p>
+                  <p>Melakukan Pemeliharaan dan perbaikan</p>
+                  <p>1. Peralatan Lab & Bengkel,</p>
+                  <p>2. Instalasi kelistrikan, </p>
+                  <p>3. Kendaraan dinas, </p>
+                  <p>4. Perangkat Komputer/Elektronik, </p>
+                  <p>5. Pompa Air & Air Conditioner (AC)</p>
+
+
                 </div>
                 <i class="faq-toggle bi bi-chevron-right"></i>
               </div><!-- End Faq item-->

@@ -173,7 +173,7 @@
 													<!-- <td><?php echo $data->nama_pengguna ?></td> -->
 													<td><?php echo $data->email ?></td>
 													<!-- <td><?php echo $data->username ?></td> -->
-													<td><?php echo $data->role ?></td>
+													<td><?php echo $data->jabatan ?></td>
 													<td>
 														<?php
 															$i++;
@@ -292,7 +292,7 @@
                                                     <td><?php echo $data->nama_pengguna ?></td>
                                                     <td><?php echo $data->email ?></td>
                                                     <td><?php echo $data->username ?></td>
-                                                    <td><?php echo $data->role ?></td>
+                                                    <td><?php echo $data->jabatan ?></td>
                                                     <td>
                                                         <?php
                                                             $i++;

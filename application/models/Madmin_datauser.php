@@ -1,19 +1,27 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Madmin_datauser extends CI_Model {
+class Madmin_datauser extends CI_Model
+{
 
 	public function user()
 	{
-		$this->db->select('u.id_user, u.id_role, u.nama_pengguna, u.email, u.status, u.username, l.id_level, l.nama_level, l.posisi, r.role,');
-		$this->db->from('user u','level l', 'roles r');
-		$this->db->join('level l','l.id_level = u.id_level');
-		$this->db->join('roles r','r.id_role = u.id_role','left');
-		$this->db->where('u.id_level !=',5);
-		$this->db->where('deleted',0);
+		// $this->db->select('u.id_user, u.id_role, u.nama_pengguna, u.email, u.status, u.username, l.id_level, l.nama_level, l.posisi, p.jabatan, r.id_role, r.role');
+		// $this->db->from('user u','level l', 'roles r', 'pengaduan p');
+		// $this->db->join('level l','l.id_level = u.id_level');
+		// $this->db->join('roles r','r.id_role = u.id_role','left');
+		// $this->db->join('pengaduan p','p.id_user = u.id_user');
+		// $this->db->where('u.id_level !=',5);
+		$this->db->select('u.id_user, u.id_role, u.nama_pengguna, u.email, u.status, u.username, l.id_level, l.nama_level, l.posisi, p.jabatan, r.id_role');	
+		$this->db->from('pengaduan p');
+		$this->db->join('user u', 'u.id_user = p.id_user');
+		$this->db->join('level l', 'l.id_level = u.id_level');
+		$this->db->join('roles r', 'r.id_role = u.id_role');
+		$this->db->where('u.id_level !=', 5);
+		// $this->db->where('deleted',0);
 		return $this->db->get()->result();
 	}
-	
+
 	//get level list
 	public function level()
 	{
@@ -29,7 +37,7 @@ class Madmin_datauser extends CI_Model {
 	public function save()
 	{
 		$password = password_hash($this->input->post('new'), PASSWORD_BCRYPT);
-		$data = array (
+		$data = array(
 			'password' => $password
 		);
 		$this->db->where('id_user', $this->session->userdata('id_user'));
@@ -41,8 +49,8 @@ class Madmin_datauser extends CI_Model {
 	{
 		$user = $this->db->select('password')->where('id_user', $this->session->userdata('id_user'))->get('user')->result();
 
-		if(!empty($user)){
-			if(password_verify($this->input->post('old'), $user[0]->password )){
+		if (!empty($user)) {
+			if (password_verify($this->input->post('old'), $user[0]->password)) {
 				return $user;
 			} else {
 				return array();
@@ -51,28 +59,28 @@ class Madmin_datauser extends CI_Model {
 			return array();
 		}
 	}
-		//end
+	//end
 
-	public function edit_user($data,$id_user)
+	public function edit_user($data, $id_user)
 	{
-		$this->db->where('id_user',$id_user);
-		return $this->db->update('user',$data);
+		$this->db->where('id_user', $id_user);
+		return $this->db->update('user', $data);
 	}
-	
+
 	public function tambah_user($data)
 	{
-		return $this->db->insert('user',$data);
+		return $this->db->insert('user', $data);
 	}
 
-	public function getPenggunaById($id_pengaduan) {
-        $this->db->where('id_pengaduan', $id_pengaduan);
-        $query = $this->db->get('pengaduan');
-        return $query->row(); // Mengembalikan satu baris data
-    }
+	public function getPenggunaById($id_pengaduan)
+	{
+		$this->db->where('id_pengaduan', $id_pengaduan);
+		$query = $this->db->get('pengaduan');
+		return $query->row(); // Mengembalikan satu baris data
+	}
 
 	// public function cek_user()
 	// {	//strtolower = biar hurufnya kecil semua
 	// 	return $this->db->where('nama_pengguna')->or_where('email', $this->input->post('nama_pengguna').$this->input->post('email')))->where('deleted', 0)->get('user')->result();
 	// }
 }
-?>

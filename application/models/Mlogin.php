@@ -4,27 +4,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mlogin extends CI_Model {
 
 	function loginMe($user, $password)
-    {
-        $this->db->select('u.id_user, u.password, u.nama_pengguna, u.username, u.id_role, u.id_level, r.role');
-        $this->db->from('user u');
-        $this->db->join('roles r','r.id_role = u.id_role');
-        $this->db->where('u.username',$user);
-        $this->db->where('u.deleted', 0);
-        $this->db->where('status',1);
-        $query = $this->db->get();
-        
-        $user = $query->result();
-        
-        if(!empty($user)){
-            if(md5($password, $user[0]->password)){
-                return $user;
-            } else {
-                return array();
-            }
+{
+    // Query untuk mendapatkan data user berdasarkan username
+    $this->db->select('u.id_user, u.password, u.nama_pengguna, u.username, u.id_role, u.id_level, r.role');
+    $this->db->from('user u');
+    $this->db->join('roles r', 'r.id_role = u.id_role');
+    $this->db->where('u.username', $user);
+    $this->db->where('u.deleted', 0);
+    $this->db->where('u.status', 1);
+    $query = $this->db->get();
+
+    $user = $query->row(); // Mengambil satu baris saja
+
+    // Cek apakah pengguna ditemukan
+    if (!empty($user)) {
+        // Verifikasi password menggunakan md5
+        if (md5($password) === $user->password) {
+            return $user; // Jika password cocok, return data user
         } else {
-            return array();
+            return array(); // Jika password tidak cocok, return array kosong
         }
+    } else {
+        return array(); // Jika username tidak ditemukan, return array kosong
     }
+}
+
 
     //function yang dipakai buat reset password
 

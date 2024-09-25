@@ -155,9 +155,9 @@
                 <td>TANGGAL : <?= $pengaduan['tgl_kejadian']; ?></td>
             </tr>
             <tr>
-                <td>KEJADIAN :</td>
-                <td><?= $pengaduan['kejadian']; ?></td>
-                <td>JURUSAN/UNIT : <?= $pengaduan['jurusan']; ?></td>
+                <td colspan="3"></td>
+                <!-- <td><?= ''//$pengaduan['kejadian']; ?></td>
+                <td>JURUSAN/UNIT : <?= $pengaduan['jurusan']; ?></td> -->
             </tr>
             <tr>
                 <td>KERUSAKAN :</td>
@@ -174,7 +174,8 @@
         </thead>
         <tbody>
             <tr>
-                <td>NAMA :  <?= $pengaduan['nama']; ?></td>
+                <?php $nama = explode('@',$pengaduan['email']) ?>
+                <td>NAMA :  <?= $nama[0]; ?></td>
             </tr>
             <tr>
                 <td>NIP/NIKH :  <?= $pengaduan['nip']; ?></td>

@@ -31,7 +31,9 @@ class Cadm_log extends BaseController {
         if ($this->input->post('submit')) {
             $startDate = $this->input->post('start_date');
             $endDate = $this->input->post('end_date');
-
+			// var_dump($startDate);
+			// var_dump($endDate);
+			// die(true);
             // Validasi input tanggal
             if ($startDate && $endDate) {
                 $data['pengaduan'] = $this->Madm_log->getPelaporanByDateRange($startDate, $endDate);
@@ -73,7 +75,7 @@ class Cadm_log extends BaseController {
 	public function detail($id) {
         $this->load->model('Madm_log');
         $data['pengaduan'] = $this->Madm_log->get_pengaduan($id);
-        
+        // var_dump($data);
         // Load the view and pass the data
         $this->load->view('admdetail_pelaporan', $data);
     }

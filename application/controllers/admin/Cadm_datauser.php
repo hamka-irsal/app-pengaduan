@@ -16,8 +16,9 @@ class Cadm_datauser extends BaseController {
 	public function index()
 	{
 		$data['user']=$this->Madmin_datauser->user();
-		$data['level']=$this->Madmin_datauser->level();
-		$data['role']=$this->Madmin_datauser->role();
+		// $data['level']=$this->Madmin_datauser->level();
+		// $data['role']=$this->Madmin_datauser->role();
+		var_dump($data['user']);
 		$this->load->view('adm_datauser',$data);
 	}
 

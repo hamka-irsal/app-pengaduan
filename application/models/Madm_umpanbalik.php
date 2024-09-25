@@ -13,14 +13,25 @@ class Madm_umpanbalik extends CI_Model
 
 	public function pengaduan_masuk()
 	{
-		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, skala_prioritas, nilai_prioritas, status, email, jabatan');	//select field yang mau ditampilin
-		$this->db->from('pengaduan p'); //tabel
-		// $this->db->join('ruang r','r.id_ruang = p.id_ruang');
-		// $this->db->join('kategori k','p.id_kategori = k.id_kategori');
+		// $this->db->select('p.id_pengaduan, p.wkt_pengaduan, skala_prioritas, nilai_prioritas, status, email, jabatan');	//select field yang mau ditampilin
+		// $this->db->from('pengaduan p'); //tabel
+		// // $this->db->join('ruang r','r.id_ruang = p.id_ruang');
+		// // $this->db->join('kategori k','p.id_kategori = k.id_kategori');
+		// $this->db->where_in('p.status', ["masuk", "diproses"]);
+		// // $this->db->where('p.status',"diproses");
+		// $this->db->order_by('p.id_pengaduan', 'DESC');
+		$this->db->select('p.id_pengaduan, p.wkt_pengaduan, p.skala_prioritas, p.nilai_prioritas, p.status, p.email, p.jabatan');
+		$this->db->from('pengaduan p');
+		// Left join untuk menghubungkan dengan tabel messages
+		$this->db->join('messages m', 'm.id_pengaduan = p.id_pengaduan', 'inner');
+		// Menggunakan GROUP BY untuk hanya mengambil satu record dari messages per id_pengaduan
+		$this->db->group_by('p.id_pengaduan');
+		// Memastikan status pengaduan sesuai dengan yang diinginkan
 		$this->db->where_in('p.status', ["masuk", "diproses"]);
-		// $this->db->where('p.status',"diproses");
 		$this->db->order_by('p.id_pengaduan', 'DESC');
-		return $this->db->get()->result();	//hasil
+		$result = $this->db->get()->result();
+		// var_dump($result);
+		return $result; // Mengambil hasil query
 	}
 
 	public function pengaduan_diproses($id_pengaduan)

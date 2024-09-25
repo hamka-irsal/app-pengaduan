@@ -1,20 +1,23 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Madm_pengaduanmsk extends CI_Model {
-    public function get_unread_pengaduan() {
+class Madm_pengaduanmsk extends CI_Model
+{
+    public function get_unread_pengaduan()
+    {
         $this->db->where('status', 'unread'); // Assuming there's a status field
         $query = $this->db->get('pengaduan');
         return $query->result();
     }
 
-    public function count_unread_pengaduan() {
+    public function count_unread_pengaduan()
+    {
         $this->db->where('status', 'unread');
         $this->db->from('pengaduan');
         return $this->db->count_all_results();
     }
-	
-    public function getPengaduanById($id_pengaduan) 
+
+    public function getPengaduanById($id_pengaduan)
     {
         $this->db->where('id_pengaduan', $id_pengaduan);
         $query = $this->db->get('pengaduan');
@@ -30,35 +33,38 @@ class Madm_pengaduanmsk extends CI_Model {
     }
 
     public function log_activity()
-	{
-		$this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan, p.wkt_pengerjaan, p.email');
-		$this->db->from('pengaduan p');
-		$this->db->join('ruang r','r.id_ruang = p.id_ruang');
-		// $this->db->where('p.deleted');
-		$this->db->order_by('p.timestamp','DESC');
-		return $this->db->get()->result();
-	}
+    {
+        $this->db->select('p.id_pengaduan, p.status, p.timestamp, r.nama_ruang, p.wkt_pengaduan, p.wkt_pengerjaan, p.email');
+        $this->db->from('pengaduan p');
+        $this->db->join('ruang r', 'r.id_ruang = p.id_ruang');
+        // $this->db->where('p.deleted');
+        $this->db->order_by('p.timestamp', 'DESC');
+        return $this->db->get()->result();
+    }
 
-    public function getPelaporanByDateRange($startDate, $endDate) 
+    public function getPelaporanByDateRange($startDate, $endDate)
     {
         $this->db->select('*');
         $this->db->from('pengaduan');
-        $this->db->where('wkt_pengaduan >=', $startDate);
-        $this->db->where('timestamp <=', $endDate);
+        // $this->db->where('wkt_pengaduan >=', $startDate);
+        $this->db->where('status =', 'selesai');
+        $this->db->where('DATE(wkt_pengaduan) >=', $startDate);
+        $this->db->where('DATE(wkt_pengaduan) <=', $endDate);
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function delete_log($id) 
+    public function delete_log($id)
     {
-		$this->db->where('id_pengaduan', $id);
-		return $this->db->delete('pengaduan');
-	}
+        $this->db->where('id_pengaduan', $id);
+        return $this->db->delete('pengaduan');
+    }
 
-    public function insertPengaduan($data_pengaduan) {
+    public function insertPengaduan($data_pengaduan)
+    {
         $this->db->insert('pengaduan', $data_pengaduan);
         $id_pengaduan = $this->db->insert_id(); // Ambil ID pengaduan yang baru dimasukkan
-        
+
         // Jika pengaduan berhasil disimpan, masukkan juga ke tabel kriteria
         if ($id_pengaduan) {
             // Data default untuk kriteria, bisa disesuaikan
@@ -68,15 +74,16 @@ class Madm_pengaduanmsk extends CI_Model {
                 'sdm' => 0,   // nilai default atau bisa dihitung berdasarkan data
                 'regulasi' => 0 // nilai default atau bisa dihitung berdasarkan data
             );
-            
+
             // Simpan ke tabel kriteria
             $this->db->insert('kriteria', $data_kriteria);
         }
-        
+
         return $id_pengaduan;
     }
 
-    public function insert_pengaduan($data) {
+    public function insert_pengaduan($data)
+    {
         $this->db->insert('pengaduan', $data);
     }
 
@@ -86,7 +93,7 @@ class Madm_pengaduanmsk extends CI_Model {
     //     $this->db->join('user u', 'p.id_user = u.id_user');
     //     $this->db->where('p.id_pengaduan', $id_pengaduan);
     //     $query = $this->db->get();
-        
+
     //     return $query->row();
     // }
 
@@ -106,7 +113,7 @@ class Madm_pengaduanmsk extends CI_Model {
     //     $this->db->from('pengaduan');
     //     $this->db->where('id_pengaduan', $pengaduan_id);
     //     $query = $this->db->get();
-        
+
     //     if ($query->num_rows() > 0) {
     //         return $query->row();
     //     } else {
@@ -138,13 +145,14 @@ class Madm_pengaduanmsk extends CI_Model {
         return $query->row();
     }
 
-    public function get_pengaduan_by_user($id_user) {
+    public function get_pengaduan_by_user($id_user)
+    {
         $this->db->select('*');
         $this->db->from('pengaduan');
         $this->db->where('id_user', $id_user);
         return $this->db->get()->result();
     }
-    
+
 
     public function update_status($id_pengaduan, $status)
     {
@@ -152,16 +160,17 @@ class Madm_pengaduanmsk extends CI_Model {
         $this->db->update('pengaduan', ['status' => $status]);
     }
 
-    public function get_pengaduan($id_pengaduan) {
+    public function get_pengaduan($id_pengaduan)
+    {
         $this->db->select('*');
         $this->db->from('pengaduan');
         $this->db->where('id_pengaduan', $id_pengaduan);
         return $this->db->get()->row();
     }
 
-    public function update_status_pengaduan($id_pengaduan, $status) {
+    public function update_status_pengaduan($id_pengaduan, $status)
+    {
         $this->db->where('id_pengaduan', $id_pengaduan);
         $this->db->update('pengaduan', ['status' => $status]);
     }
 }
-?>

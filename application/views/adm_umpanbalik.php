@@ -185,7 +185,7 @@
                                                 ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('admin/detail_pengaduan/'.$data->id_pengaduan) ?>"><i class="fa fa-edit" style="color: blue"></i></a>
+                                                <!-- <a href="<?php echo base_url('admin/detail_pengaduan/'.$data->id_pengaduan) ?>"><i class="fa fa-edit" style="color: blue"></i></a> -->
                                                 <a href="<?= site_url('admin/pesan/' . $data->id_pengaduan); ?>"><i class="fa fa-eye" style="color: green"></i></a>
                                                 <a href="<?= site_url('admin/form/' . $data->id_pengaduan); ?>"><i class="fa fa-send" style="color: orange"></i></a>
                                             </td>

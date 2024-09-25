@@ -36,9 +36,9 @@
 
                 <!-- /.dropdown -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
+                    <!-- <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #ffffff">
                         <i class="fa fa-user fa-fw"></i> <?php echo $this->session->userdata('nama_pengguna'); ?></i>
-                    </a>
+                    </a> -->
                     <ul class="dropdown-menu dropdown-user">
                         <li><a data-toggle="modal" data-target="#settingModal"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
@@ -47,7 +47,7 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-            </ul>
+          </ul>
             <!-- /.navbar-top-links -->
 
             <!--- user panel -->
@@ -68,10 +68,10 @@
                         </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_diri')?> ><i class="fa fa-user"></i><b>&nbsp; Data Diri</b></a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href=<?php echo base_url('anggota/data_pelapor')?>><i class="fa fa-archive"></i><b>&nbsp; Pelaporan</b></a>
-                        </li> -->
+                        </li>
                         <li>
                             <a href=<?php echo base_url('anggota/data_umpanbalik')?> ><i class="fa fa-envelope"></i><b>&nbsp; Data Masuk</b></a>
                         </li>
@@ -98,7 +98,7 @@
 
                 <form action="<?php echo base_url('anggota/insert_data') ?>" method="POST" role="form" enctype="multipart/form-data">
 
-                    <div class="form-group" style="margin-left: 15px">
+                <div class="form-group" style="margin-left: 15px">
                       <label>Silahkan isikan tanggal kejadian (Anda dapat mengubahnya) <b style="color: red">*</b></label>
                       <div class="input-group col-sm-6" style="width: 10%">
                         <div class="input-group-addon">
@@ -112,6 +112,11 @@
                       <label>Email</label>
                       <input type="email" class="form-control" name="email" id="email" placeholder="Silahkan isi email">
                     </div>
+
+                    <!-- <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                      <label>Password</label>
+                      <input type="password" class="form-control" name="password" id="password" placeholder="Silahkan isi password">
+                    </div> -->
 
                     <div class="form-group" style="margin-left: 15px; margin-right:15px">
                       <label>Nama</label>
@@ -154,7 +159,7 @@
                     </div>
                    
                     <!-- ruang dan tempat -->
-                    <div class="form-group" style="width: 100%; margin-bottom: 10px">
+                    <!-- <div class="form-group" style="width: 100%; margin-bottom: 10px">
                       <div class="col-md-6">
                         <label><b>Lokasi Alat <b style="color: red">*</b></b></label>
                         <select  class="form-control" name="tempat"  id="tempat" required>
@@ -213,12 +218,10 @@
                           ?>
                         </select>
                       </div>
-                    </div>
-
-                  </div>
+                    </div> -->
 
                   <!-- kategori dan jenis -->
-                  <div class="form-group" style="margin-left: 15px">
+                  <!-- <div class="form-group" style="margin-left: 15px">
                     <label>Seberapa sering terjadi</label>
                     <select class="form-control" name="kejadian" style="width: 48%;">
                       <option value="">
@@ -227,6 +230,16 @@
                       <option value="pertama">Pertama kali</option>
                       <option value="beberapa kali">Beberapa kali</option>
                     </select>
+                  </div> -->
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Lokasi Alat (Kampus PNUP)</label>
+                    <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Silahkan isi lokasi alat">
+                  </div>
+
+                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                    <label>Lokasi Alat/Ruangan</label>
+                    <input type="text" class="form-control" name="ruang" id="ruang" placeholder="Silahkan isi lokasi alat/ruang">
                   </div>
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
@@ -234,7 +247,7 @@
                     <input type="text" class="form-control" name="penyebab" id="penyebab" placeholder="Silahkan isi kerusakan">
                   </div>
 
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                  <!-- <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Uraian</label>
                     <input type="text" class="form-control" name="uraian" id="uraian" placeholder="Silahkan isi uraian">
                   </div>
@@ -247,9 +260,9 @@
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Nama Bahan</label>
                     <input type="text" class="form-control" name="bahan" id="bahan" placeholder="Silahkan isi bahan">
-                  </div>
+                  </div> -->
 
-                  <div class="form-group" style="margin-left: 15px; margin-right:15px">
+                  <!-- <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Jumlah Bahan</label>
                     <input type="text" class="form-control" name="jumlah_bahan" id="jumlah_bahan" placeholder="Silahkan isi jumlah bahan">
                   </div>
@@ -267,7 +280,7 @@
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Silahkan deskripsikan kejadian <b style="color: red">*</b></label>
                     <textarea class="form-control" name="deskripsi" rows="3" placeholder="text..." required></textarea>
-                  </div>
+                  </div> -->
 
                   <div class="form-group" style="margin-left: 15px; margin-right:15px">
                     <label>Data Tambahan</label>
